@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/* font-family import */
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500&family=Noto+Sans+KR:wght@500;900&display=swap');
+
+/* main */
+#wrap{width:75%; height:1000px; background-color:#FFFFE4; margin: 0 auto;}
+header{height:100px; background-color:#B2CCFF;}
+.logo-font{margin-left:20px;font-size:48px;font-weight:bold;font-family: 'Frank Ruhl Libre', serif;
+font-family: 'Noto Sans KR', sans-serif;}
+.menu{padding-top:10px;height:80px; background-color:#CEFBC9;}
+.img-size{height:300px;  background-color:black;}
+.menu a{font-size:24px;font-family: 'Frank Ruhl Libre', serif;
+font-family: 'Noto Sans KR', sans-serif;}
+.lg-btn{margin-right:30px;}
