@@ -39,9 +39,14 @@
 					</li>
 				</ul>
 		</nav>
-		<section>
+		<section >
 			<div>
 				<div class="img-size"></div>
+			</div>
+			<div class="d-flex justify-content-center">
+				<div class="loa-hot-board">
+				
+				</div>
 			</div>
 		</section>
 		<footer></footer>
