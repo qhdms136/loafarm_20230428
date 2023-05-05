@@ -3,13 +3,36 @@
 @import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500&family=Noto+Sans+KR:wght@500;900&display=swap');
 
 /* main */
-#wrap{width:75%; height:1000px; background-color:#FFFFE4; margin: 0 auto;}
+#wrap{width:75%;background-color:#FFFFE4; margin: 0 auto;}
 header{height:100px; background-color:#B2CCFF;}
 .logo-font{margin-left:20px;font-size:48px;font-weight:bold;font-family: 'Frank Ruhl Libre', serif;
 font-family: 'Noto Sans KR', sans-serif;}
-.menu{padding-top:10px;height:80px; background-color:#CEFBC9;}
-.img-size{height:300px;  background-color:black;}
+.menu{height:50px; background-color:#CEFBC9;}
+.img-size{height:300px;  background-color:#D4F4FA;}
 .menu a{font-size:24px;font-family: 'Frank Ruhl Libre', serif;
 font-family: 'Noto Sans KR', sans-serif;}
 .lg-btn{margin-right:30px;}
 .loa-hot-board{margin-top:50px;width:50%; height:200px; background-color:#B5B2FF;}
+.lf-hot{color:#ffffff;font-weight:bold;font-size:20px;}
+.lf-today{margin-left:60px;font-size:12px;}
+.content2{height:550px;background-color:#FFB2D9;padding-top:30px;}
+.cm-subject{margin-left:50px;font-size:24px; font-weight:bold;}
+.cate{font-size:17px;font-weight:bold;}
+.txt{font-size:17px;}
+.today-content{min-height:151px;}
+.today-list{display:flex;flex-flow:row wrap;}
+.today-list li{width: calc(100% / 2);display:flex;flex-flow:row wrap;}
+.today-list a{max-width:86%;height: 100%;}
+.custom-best-box{margin:10px 25px 0px 25px;background-color:#ffffff;width:300px;box-shadow:3px 3px 3px 3px #BDC0C0;}
+.card{width:250px;border:none;}
+.card-subject{font-size:17px;font-weight:bold;}
+.card-nickname{font-size:17px;font-weight:200;}
+.content3{height:350px;background-color:#FFA7A7;}
+.article-left{width:calc(50% - 5px);background-color:#B2CCFF;}
+.article-right{width:calc(50% - 5px);background-color:#B2EBF4;}
+.article-title{height:60px;background-color:#ffffff;}
+.guild-title{margin-left:50px;font-size:20px;font-weight:bold;}
+.notice-title{margin-left:50px;font-size:20px;font-weight:bold;}
+.article-tb{width:400px;}
+.article-tb td{font-size:12px;}
+footer{height:100px;background-color:black;color:#ffffff;}

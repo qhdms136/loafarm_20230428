@@ -17,39 +17,17 @@
 <body>
 	<div id="wrap">
 		<header class="d-flex align-items-center justify-content-between"">
-				<span class="logo-font">LoaFarm 갤러리</span>
-				<div class="lg-btn">
-					<button class="btn btn-outline-dark">로그인</button>
-					<button class="btn btn-outline-primary mx-3">회원가입</button>
-				</div>
+				<jsp:include page="../include/header.jsp"/>
 		</header>
 		<nav class="menu">
-				<ul class="nav nav-fill">
-					<li class="nav-item">
-						<a class="nav-link" href="#">자유 게시판</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">커스터마이징 자랑</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">길드모임</a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">공지</a>
-					</li>
-				</ul>
+				<jsp:include page="../include/nav.jsp"/>
 		</nav>
-		<section >
-			<div>
-				<div class="img-size"></div>
-			</div>
-			<div class="d-flex justify-content-center">
-				<div class="loa-hot-board">
-				
-				</div>
-			</div>
+		<section>
+			<jsp:include page="../${view}.jsp"/>
 		</section>
-		<footer></footer>
+		<footer class="d-flex justify-content-center align-items-center">
+			<jsp:include page="../include/footer.jsp"/>
+		</footer>
 	</div>
 </body>
 </html>
