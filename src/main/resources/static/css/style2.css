@@ -1,0 +1,48 @@
+@charset "UTF-8";
+/* font-family import */
+@import url('https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@500&family=Noto+Sans+KR:wght@500;900&display=swap');
+
+/* user_sign */
+#wrap{width:50%;background-color:#ffffff; margin: 0 auto;}
+.sign-up{height:680px;}
+.sign-up-box{width:650px;text-align:center; margin-top:30px; box-shadow:5px 5px 5px 5px #BDC0C0;}
+#loginIdCheckBtn{height:35px;margin-top:27px;}
+#nicknameCheckBtn{height:35px;margin-top:27px;}
+.hidden-box{margin-right:170px;}
+/*sign_up_form_style*/
+.form-style1{margin-top:20px;margin-left:150px;}
+
+/* form과 fieldset은 선택자로 사용하지 않는다. */
+
+/* 스타일 */
+.form-style1 { position:relative; width:50%; height:50px; } /* 기본세팅 */
+.form-style1 input { box-sizing:border-box; padding:5px 0 0; width:100%; height:100%; border:0 none; color:#595f63; outline:none; }
+.form-style1 label { position:absolute; left:0%; bottom:0; width:100%; height:100%; border-bottom:1px solid #000; text-align:left; pointer-events:none; }
+.form-style1 label:after { content:""; position:absolute; left:0; bottom:-1px; width:0; height:100%; border-bottom:3px solid #5F00FF; transition:all .3s ease; } /* 파란색 가로줄 */
+.form-style1 label span { position:absolute; left:0; bottom:5px; transition:all .3s ease; }
+.form-style1 input:focus + label span, 
+.form-style1 input:valid + label span { transform:translateY(-150%); font-size:14px; color:#5F00FF; }  /* input에 글을 입력하고 포커스가 지나간 상태에서 제어하려면 valid 선택자를 써야한다. */
+/* 포커스 될 때 label span(name)이 위로 올라감 */
+.form-style1 input:focus + label::after,
+.form-style1 input:valid + label::after { width:100%; transform:translateX(0); } 
+/* 포커스 될 때 파란색 가로줄이 생김 */
+footer{height:100px;background-color:black;color:#ffffff;}
+
+/*sign_in_form_style*/
+.login-box {width:400px;height:400px;text-align:center;margin-top:50px;}
+#loginForm{margin-top:40px;}
+.sign-btn:hover{background-color:#000000;color:#ffffff;}
+/* form과 fieldset은 선택자로 사용하지 않는다. */
+
+/* 스타일 */
+.form-style2 { position:relative;height:50px; margin-top:10px;} /* 기본세팅 */
+.form-style2 input { box-sizing:border-box; padding:5px 0 0; width:100%; height:100%; border:0 none; color:#595f63; outline:none; }
+.form-style2 label { position:absolute; left:0%; bottom:0; width:100%; height:100%; border-bottom:1px solid #000; text-align:left; pointer-events:none; }
+.form-style2 label:after { content:""; position:absolute; left:0; bottom:-1px; width:0; height:100%; border-bottom:3px solid #5F00FF; transition:all .3s ease; } /* 파란색 가로줄 */
+.form-style2 label span { position:absolute; left:0; bottom:5px; transition:all .3s ease; }
+.form-style2 input:focus + label span, 
+.form-style2 input:valid + label span { transform:translateY(-150%); font-size:14px; color:#5F00FF; }  /* input에 글을 입력하고 포커스가 지나간 상태에서 제어하려면 valid 선택자를 써야한다. */
+/* 포커스 될 때 label span(name)이 위로 올라감 */
+.form-style2 input:focus + label::after,
+.form-style2 input:valid + label::after { width:100%; transform:translateX(0); } 
+/* 포커스 될 때 파란색 가로줄이 생김 */
