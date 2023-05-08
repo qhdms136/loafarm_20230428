@@ -16,7 +16,7 @@
 </head>
 <body>
 	<div id="wrap">
-		<header class="d-flex align-items-center justify-content-between"">
+		<header class="d-flex align-items-center justify-content-between">
 				<jsp:include page="../include/header.jsp"/>
 		</header>
 		<nav class="menu">

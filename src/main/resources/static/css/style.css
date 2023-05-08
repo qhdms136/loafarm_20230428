@@ -35,4 +35,57 @@ font-family: 'Noto Sans KR', sans-serif;}
 .notice-title{margin-left:50px;font-size:20px;font-weight:bold;}
 .article-tb{width:400px;}
 .article-tb td{font-size:12px;}
+
+/* free-post*/
+.fp-box{width:60%;height:500px;background-color:#B2EBF4;}
+.fp-title{font-size:32px;margin-top:30px;margin-left:40px;font-weight:bold;}
+.rc-btn{margin-left:70px;height:30px;margin-top:10px;}
+.rc-btn a{display:block;
+    margin:0 10px 0 0;
+    padding:0 10px 0 9px;
+    height:28px;
+    float:left;
+    background:#fff;
+    font-size:12px;
+    text-decoration:none;
+    line-height:26px;
+    border:1px solid #aaa;
+    border-radius:3px;
+    box-sizing:border-box;
+}
+.rc-btn a::before{
+	content:"";
+    display:inline-block;
+    position:relative;
+    top: 3px;
+    height:16px;
+    margin-right: 3px;
+}
+.rc-btn a.reco1::before{
+	background-image:url("/static/img/free/bluegood.png");
+	background-repeat: no-repeat;
+	background-size:16px 16px;
+	width:16px;
+}
+.rc-btn a.reco3::before{
+	background-image:url("/static/img/free/redgood.png");
+	background-repeat: no-repeat;
+	background-size:16px 16px;
+	width:16px;
+}
+.cate-area a::after{content:"";
+    display:block;
+    position:absolute;
+    width:1px;
+    height:10px;
+    top:50%;
+    right:0;
+    margin:-5px -5px 0 0;
+    background:#ccc;}
+.cate-area{margin-left:50px;margin-top:15px;}
+.cate-area a{position:relative;
+float:left;margin:0 4px 5px 5px;
+padding:2px 13px 3px;color:#000000;}
+.cate-area a:hover{text-decoration:none;}
+.cate-area a:active{background:#6d6d6d;color:#fff;border-radius:10px;}
 footer{height:100px;background-color:black;color:#ffffff;}
