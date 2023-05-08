@@ -23,3 +23,30 @@
 		</form>
 	</div>
 </div>
+
+<script>
+$(document).ready(function(){
+	$('#loginForm').submit(function(e){
+		e.preventDefault(); //서브밋 기능 중단(정확히는 서브밋 하고 브라우저 이동 이벤트 막기)
+		
+		// validation
+		let loginId = $('#loginId').val().trim();
+		let password = $('#password').val();
+		
+		let url = $(this).attr("action");
+		console.log(url);
+		let params = $(this).serialize();
+		console.log(params);
+		
+		$.post(url, params) // request
+		.done(function(data){
+			// response
+			if(data.code == 1){
+				location.href="/index/index_view";
+			} else{
+				alert(data.errorMessage);
+			}
+		});
+	});
+});
+</script>

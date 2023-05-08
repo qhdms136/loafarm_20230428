@@ -30,4 +30,33 @@
 		WHERE
 			`nickname` = #{nickname}	
  	</select>
+ 	<insert id="insertUser" parameterType="map">
+ 		INSERT INTO `user`
+ 		(
+ 			`loginId`
+			, `nickname`
+			, `password`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{loginId}
+ 			, #{nickname}
+ 			, #{password}
+ 			, #{email}
+ 			, NOW()
+ 			, NOW()
+ 		)
+ 	</insert>
+ 	<update id="updateUserByPassword" parameterType="map">
+ 		UPDATE
+ 			`user`
+ 		SET
+ 			`password` = #{password}
+ 			,`updatedAt` = NOW()
+ 		WHERE
+ 			`loginId` = #{loginId}
+ 	</update>
  </mapper>

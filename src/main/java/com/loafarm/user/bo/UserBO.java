@@ -19,4 +19,12 @@ public class UserBO {
 	public User getUserByNickname(String nickname) {
 		return userMapper.selectUserByNickname(nickname);
 	}
+	
+	public int addUser(String loginId, String nickname, String password, String email) {
+		return userMapper.insertUser(loginId, nickname, password, email);
+	}
+	
+	public void updateUserByPassword(String loginId, String password) {
+		userMapper.updateUserByPassword(loginId, password);
+	}
 }

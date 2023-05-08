@@ -56,7 +56,7 @@
 
 <script>
 $(document).ready(function(){
-	// 중복확인 버튼 클릭(ID)
+	// 중복 확인 버튼 클릭(ID)
 	$('#loginIdCheckBtn').on('click', function(){
 		// hidden 경고문구 초기화
 		$('#idCheckValid').addClass("d-none");
@@ -65,8 +65,8 @@ $(document).ready(function(){
 		
 		let loginId = $('#loginId').val().trim();
 		// 아이디 유효성 검사
-		var RegExp = /^[a-zA-Z0-9]{4,12}$/;
-		if(!RegExp.test(loginId)){
+		var regId = /^[a-zA-Z0-9]{4,12}$/;
+		if(!regId.test(loginId)){
 			$('#idCheckValid').removeClass("d-none");
 			return false;
 		}
@@ -98,8 +98,8 @@ $(document).ready(function(){
 		let nickname = $('#nickname').val().trim();
 		
 		// 닉네임 유효성 검사
-		var RegExp = /^[a-zA-Z0-9]{4,12}$/;
-		if(!RegExp.test(nickname)){
+		var regNickname = /^[a-zA-Z0-9]{4,12}$/;
+		if(!regNickname.test(nickname)){
 			$('#nicknameCheckValid').removeClass("d-none");
 			return false;
 		}
@@ -121,5 +121,63 @@ $(document).ready(function(){
 			}
 		});
 	});
+	// 회원가입
+	$('#signUpForm').on('submit', function(e){
+		e.preventDefault();
+		
+		// validation
+		let loginId = $('#loginId').val().trim();
+		let nickname = $('#nickname').val().trim();
+		let password = $('#password').val();
+		let confirmPassword = $('#confirmPassword').val();
+		let email = $('#email').val().trim();
+		
+		// 이메일 유효성 검사
+		var regEmail = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/;
+		
+		// 비밀번호 유효성 검사
+		var regPw = /^[a-zA-Z0-9]{4,12}$/;
+		if(!regPw.test(password)){
+			alert("비밀번호는 4~12자 영문 대소문자, 숫자만 입력하세요.");
+			return false;
+		}
+		
+		if(password != confirmPassword){
+			alert("비밀번호가 일치하지 않습니다.");
+			return false;
+		}
+		
+		if($('#idCheckOk').hasClass("d-none")){
+			alert("아이디 중복 확인을 다시 해주세요");
+			return false;
+		}
+		
+		if($('#nickname').hasClass("d-none")){
+			alert("닉네임 중복 확인을 다시 해주세요");
+			return false;
+		}
+		
+		if(!regEmail.test(email)){
+			alert("잘못된 이메일 형식입니다.");
+			return false;
+		}
+		
+		// ajax
+		let url = $(this).attr("action");
+		console.log(url);
+		let params = $(this).serialize();
+		console.log(params);
+		
+		$.post(url, params) // request
+		.done(function(data){
+			if(data.code == 1){
+				alert("가입을 환영합니다!!! 로그인을 해주세요.");
+				location.href="/user/sign_in_view";
+			} else{
+				alert(data.errorMessage);
+			}
+		});
+	});
+	
 });
 </script>
