@@ -4,7 +4,7 @@
 
 /* main */
 #wrap{width:75%;background-color:#FFFFE4; margin: 0 auto;
-min-width:10  00px;}
+min-width:1100px;}
 header{height:100px; background-color:#B2CCFF;}
 .logo-font a{margin-left:20px;font-size:48px;font-weight:bold;font-family: 'Frank Ruhl Libre', serif;
 font-family: 'Noto Sans KR', sans-serif;color:#000000;}
@@ -92,11 +92,18 @@ padding:2px 13px 3px;color:#000000;}
 .active{background:#6d6d6d;color:#ffffff;border-radius:10px;}
 
 /* free_create_view */
-.fp-write-content{width:60%;height:600px;background-color:#ffffff;}
-.fp-write-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
+.fc-write-content{width:60%;background-color:#ffffff;}
+.fc-write-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
 .form-select{margin-top:20px;margin-left:40px;width:120px;}
-.fp-write-box{width:80%;height:400px;background-color:#ffffff;}
+.fc-write-box{margin-bottom:50px;width:80%;background-color:#ffffff;}
 .free-subject{margin-top:20px;margin-left:40px;}
 .free-content{margin-top:20px;margin-left:40px;}
-
+.fc-img-box{margin-top:20px;margin-left:40px;}
+.fc-file{margin-left:40px;margin-top:20px;}
+.fc-save{font-size:12px;}
+.fc-save:hover{background-color:#000000;}
+.fc-clear{font-size:12px;}
+.fc-list{color:#8C8C8C;background-color:#ffffff;border-color:#BDBDBD;}
+.fc-list:hover{color:#000000;}
+.fc-btn-box{height:30px;width:250px;}
 footer{height:100px;background-color:black;color:#ffffff;}
