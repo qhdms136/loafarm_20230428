@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>  
-<span class="logo-font">LoaFarm 갤러리</span>
+<div class="logo-font"><a href="/index/index_view">LoaFarm 갤러리</a></div>
 <!-- 로그인 정보 -->
 <div class="lg-btn">
 	<c:choose>

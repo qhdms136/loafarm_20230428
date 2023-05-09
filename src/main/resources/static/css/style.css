@@ -6,8 +6,9 @@
 #wrap{width:75%;background-color:#FFFFE4; margin: 0 auto;
 min-width:10  00px;}
 header{height:100px; background-color:#B2CCFF;}
-.logo-font{margin-left:20px;font-size:48px;font-weight:bold;font-family: 'Frank Ruhl Libre', serif;
-font-family: 'Noto Sans KR', sans-serif;}
+.logo-font a{margin-left:20px;font-size:48px;font-weight:bold;font-family: 'Frank Ruhl Libre', serif;
+font-family: 'Noto Sans KR', sans-serif;color:#000000;}
+.logo-font a:hover{color:#000000;text-decoration:none;}
 .menu{height:50px; background-color:#CEFBC9;}
 .img-size{height:300px;  background-color:#D4F4FA;}
 .menu a{font-size:24px;font-family: 'Frank Ruhl Libre', serif;
@@ -37,7 +38,7 @@ font-family: 'Noto Sans KR', sans-serif;}
 .article-tb{width:400px;}
 .article-tb td{font-size:12px;}
 
-/* free-post*/
+/* free_list_view */
 .fp-box{width:60%;height:600px;background-color:#ffffff;}
 .fp-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
 .rc-btn{margin-left:70px;height:30px;margin-top:25px;}
@@ -88,5 +89,14 @@ font-family: 'Noto Sans KR', sans-serif;}
 float:left;margin:0 4px 5px 5px;
 padding:2px 13px 3px;color:#000000;}
 .cate-area a:hover{text-decoration:none;}
-.cate-area a:active{background:#6d6d6d;color:#fff;border-radius:10px;}
+.active{background:#6d6d6d;color:#ffffff;border-radius:10px;}
+
+/* free_create_view */
+.fp-write-content{width:60%;height:600px;background-color:#ffffff;}
+.fp-write-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
+.form-select{margin-top:20px;margin-left:40px;width:120px;}
+.fp-write-box{width:80%;height:400px;background-color:#ffffff;}
+.free-subject{margin-top:20px;margin-left:40px;}
+.free-content{margin-top:20px;margin-left:40px;}
+
 footer{height:100px;background-color:black;color:#ffffff;}

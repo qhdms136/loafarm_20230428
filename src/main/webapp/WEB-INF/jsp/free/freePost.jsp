@@ -8,12 +8,12 @@
 			<a href="#" class="free-img reco3">30추글</a>
 		</div>
 		<div class="cate-area">
-			<a href="#">전체</a>
-			<a href="#">잡담</a>
-			<a href="#">투표</a>
-			<a href="#">스킬</a>
-			<a href="#">정보</a>
-			<a href="#">기타</a>
+			<a href="#" class="cate-area-one">전체</a>
+			<a href="#" class="cate-area-one">잡담</a>
+			<a href="#" class="cate-area-one">투표</a>
+			<a href="#" class="cate-area-one">스킬</a>
+			<a href="#" class="cate-area-one">정보</a>
+			<a href="#" class="cate-area-one">기타</a>
 		</div>
 		<div>
 			<table class="table text-center">
@@ -72,3 +72,13 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+	$('a.cate-area-one').on('click', function(){
+		 $('a.cate-area-one').removeClass("active");
+		 $('a.cate-area-one').css('color', "#000000");
+		 $(this).css('color',"#ffffff"); 
+		 $(this).addClass("active");
+	});
+});
+</script>
