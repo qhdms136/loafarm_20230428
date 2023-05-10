@@ -1,11 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="fc-content d-flex justify-content-center">
+<div class="d-flex justify-content-center">
 	<div class="fc-write-content">
 		<div class="fc-write-title">글쓰기</div>
 		<div class="d-flex justify-content-center">
 			<div class="fc-write-box">
-				<select class="form-select form-control" id="category">
+				<select class="form-select form-control" id="category" name="category">
 					<option value="">카테고리</option>
 					<option value="잡담">잡담</option>
 					<option value="투표">투표</option>
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	$('#freeSaveBtn').on('click', function(){
 		
 		// validation
-		let category = $("select[id='category']").val();
+		let category = $("select[name='category']").val();
 		let subject = $('#subject').val().trim();
 		let content = $('#content').val();
 		let file = $('#file').val(); // 파일 경로 C:\fakepath\아아아.jpg
@@ -86,10 +86,11 @@ $(document).ready(function(){
 		// 이미지 업로드 할때는 form 태그가 반드시 있어야 한다.
 		// append 함수는 폼 태그의 name	속성과 같다.
 		let formData = new FormData();
-		formDate.append("category", category);
+		formData.append("category", category);
 		formData.append("subject", subject);
 		formData.append("content", content);
 		formData.append("file", $('#file')[0].files[0]);
+		console.log(formData);
 		
 		$.ajax({
 			// request

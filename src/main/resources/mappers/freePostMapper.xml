@@ -3,7 +3,7 @@
  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.loafarm.freepost.dao.FreePostMapper">
 	<insert id="insertFreePost" parameterType="map">
-		INSRT INTO `free_post`
+		INSERT INTO `free_post`
 		(
 			`userId`
 			, `category`

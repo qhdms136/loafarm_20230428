@@ -4,7 +4,7 @@
 
 /* main */
 #wrap{width:75%;background-color:#FFFFE4; margin: 0 auto;
-min-width:1100px;}
+min-width:1200px;}
 header{height:100px; background-color:#B2CCFF;}
 .logo-font a{margin-left:20px;font-size:48px;font-weight:bold;font-family: 'Frank Ruhl Libre', serif;
 font-family: 'Noto Sans KR', sans-serif;color:#000000;}
@@ -39,7 +39,7 @@ font-family: 'Noto Sans KR', sans-serif;}
 .article-tb td{font-size:12px;}
 
 /* free_list_view */
-.fp-box{width:60%;height:600px;background-color:#ffffff;}
+.fp-content{width:60%;height:600px;background-color:#ffffff;}
 .fp-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
 .rc-btn{margin-left:70px;height:30px;margin-top:25px;}
 .rc-btn a{display:block;
@@ -106,4 +106,12 @@ padding:2px 13px 3px;color:#000000;}
 .fc-list{color:#8C8C8C;background-color:#ffffff;border-color:#BDBDBD;}
 .fc-list:hover{color:#000000;}
 .fc-btn-box{height:30px;width:250px;}
+
+/* free_detail_view */
+.fd-content{width:60%;height:1000px;background-color:#B2EBF4;}
+.fd-header{margin-top:30px;background-color:#B2CCFF;height:60px;}
+.fd-user-name{margin-left:10px;margin-bottom:5px;font-size:24px;font-weight:bold;}
+.fd-category{margin-top:20px;font-size:18px;}
+.fd-box{width:80%;background-color:#FFB2D9;}
+.fd-subject{margin-top:40px;font-size:32px;}
 footer{height:100px;background-color:black;color:#ffffff;}

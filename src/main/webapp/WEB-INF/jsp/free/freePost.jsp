@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<div class="fp-content d-flex justify-content-center">
-	<div class="fp-box">
+<div class="d-flex justify-content-center">
+	<div class="fp-content">
 		<div class="fp-title">자유 게시판</div>
 		<div class="rc-btn">
 			<a href="#" class="free-img reco1">10추글</a>
