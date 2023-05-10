@@ -67,18 +67,25 @@
 			</table>
 		</div>
 		<div class="d-flex justify-content-end">
-			<button class="btn btn-outline-dark">목록</button>
-			<button class="btn btn-dark mx-4">글쓰기</button>
+			<button class="btn btn-outline-dark" id="freeListBtn">목록</button>
+			<button class="btn btn-dark mx-4" id="freeWriteBtn">글쓰기</button>
 		</div>
 	</div>
 </div>
 <script>
 $(document).ready(function(){
+	
+	// 카테고리 필터링 버튼 클릭시 스타일 유지
 	$('a.cate-area-one').on('click', function(){
 		 $('a.cate-area-one').removeClass("active");
 		 $('a.cate-area-one').css('color', "#000000");
 		 $(this).css('color',"#ffffff"); 
 		 $(this).addClass("active");
+	});
+	
+	// 글쓰기 버튼
+	$('#freeWriteBtn').on('click', function(){
+		location.href="/free/free_create_view";
 	});
 });
 </script>

@@ -5,7 +5,7 @@
 		<div class="fc-write-title">글쓰기</div>
 		<div class="d-flex justify-content-center">
 			<div class="fc-write-box">
-				<select class="form-select form-control" id="category" name="category">
+				<select class="form-select form-control" id="category">
 					<option value="">카테고리</option>
 					<option value="잡담">잡담</option>
 					<option value="투표">투표</option>
@@ -22,9 +22,9 @@
 				<div class="fc-file d-flex justify-content-between">
 					<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">
 					<div class="fc-btn-box d-flex">
-						<button class="fc-clear btn-sm btn-outline-dark" id="freeClearBtn">모두 지우기</button>
-						<button class="fc-save mx-3 btn-sm btn-secondary" id="freeSaveBtn">저장하기</button>
-						<button class="fc-list btn-sm" id="freeListBtn">목록</button>
+						<button type="button" class="fc-clear btn-sm btn-outline-dark" id="freeClearBtn">모두 지우기</button>
+						<button type="button" class="fc-save mx-3 btn-sm btn-secondary" id="freeSaveBtn">저장하기</button>
+						<button type="button" class="fc-list btn-sm" id="freeListBtn">목록</button>
 					</div>
 						
 				</div>
@@ -51,7 +51,7 @@ $(document).ready(function(){
 	$('#freeSaveBtn').on('click', function(){
 		
 		// validation
-		let category = $("select[name='category']").val();
+		let category = $("select[id='category']").val();
 		let subject = $('#subject').val().trim();
 		let content = $('#content').val();
 		let file = $('#file').val(); // 파일 경로 C:\fakepath\아아아.jpg
@@ -69,8 +69,8 @@ $(document).ready(function(){
 			alert("내용을 입력해주세요");
 			return;
 		}
-		
-		// 파일 업로드 된 경우에만 확장자 체크
+		console.log(category);
+		 // 파일 업로드 된 경우에만 확장자 체크
 		if(file !=""){
 			// 확장자만 뽑아서 소문자로 변환하고 검사
 			let ext = file.split(".").pop().toLowerCase();
@@ -82,11 +82,38 @@ $(document).ready(function(){
 			}
 		}
 		
-		console.log(category);
-		console.log(subject);
-		console.log(content);
-		console.log(file);
+		// ajax
+		// 이미지 업로드 할때는 form 태그가 반드시 있어야 한다.
+		// append 함수는 폼 태그의 name	속성과 같다.
+		let formData = new FormData();
+		formDate.append("category", category);
+		formData.append("subject", subject);
+		formData.append("content", content);
+		formData.append("file", $('#file')[0].files[0]);
 		
+		$.ajax({
+			// request
+			type:"POST"
+			, url:"/free/create"
+			, data:formData
+			, enctype:"multipart/form-data" // 파일 업로드를 위한 필수 설정
+			, processData:false // 파일 업로드를 위한 필수 설정
+			, contentType:false // 파일 업로드를 위한 필수 설정
+			// response
+			,success:function(data){
+				if(data.code == 1){
+					// 성공
+					alert("글이 저장되었습니다.");
+					location.href="/free/free_list_view";
+				} else {
+					// 실패
+					alert(data.errorMessage);
+				}
+			}
+			,error:function(request, status, error){
+				alert("글을 저장하는데 실패했습니다.");
+			}
+		});
 	});
 });
 </script>
