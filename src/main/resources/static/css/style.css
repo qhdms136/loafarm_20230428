@@ -112,12 +112,15 @@ padding:2px 13px 3px;color:#000000;}
 .fd-header{margin-top:30px;background-color:#B2CCFF;height:60px;}
 .fd-user-name{margin-left:10px;margin-bottom:5px;font-size:24px;font-weight:bold;}
 .fd-category{margin-top:20px;font-size:18px;}
-.fd-box{width:80%;background-color:#FFB2D9;}
-.fd-subject{margin-top:40px;font-size:28px;word-wrap:break-word;}
+.fd-box{width:80%;background-color:#ffffff;}
+.fd-subject{margin-top:40px;font-size:28px;color:#AA1212;word-wrap:break-word;}
 .fd-text{margin-top:30px;white-space:pre-line;}
 .fd-img{margin-top:30px;}
 .fd-like-count{margin-left:7px;font-weight:bold;font-size:16px;color:#CC3D3D;}
 .fd-like-box{margin-top:100px;border-radius:5%;width:90px;height:55px;background-color:#ffffff;border:1px solid #8C8C8C;}
 .fd-bottom{height:100px;background-color:#B2CCFF;}
-.fd-commend-box{height:200px;background-color:#FFB2D9;}
+.fd-comment-box{margin-bottom:100px;background-color:#ffffff;}
+.fd-comment-write{margin-top:10px;margin-left:20px;}
+.fd-comment-input {width:90%;}
+.fd-comment-title{font-size:28px;}
 footer{height:100px;background-color:black;color:#ffffff;}

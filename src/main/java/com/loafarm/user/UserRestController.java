@@ -3,6 +3,7 @@ package com.loafarm.user;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +88,7 @@ public class UserRestController {
 	public Map<String, Object> signIn(
 			@RequestParam("loginId") String loginId,
 			@RequestParam("password") String password,
-			HttpSession session){
+			HttpServletRequest request){
 		Map<String, Object> result = new HashMap<>();
 		User user = userBO.getUserByLoginId(loginId);
 		
@@ -105,6 +106,7 @@ public class UserRestController {
 				// 원래는 캐싱을 써야하지만 어려우므로 보류
 				String encodedPassword = passwordEncoder.encode(password);
 				userBO.updateUserByPassword(loginId, encodedPassword);
+				HttpSession session = request.getSession();
 				session.setAttribute("userLoginId", user.getLoginId());
 				session.setAttribute("userNickname", user.getNickname());
 				session.setAttribute("userId", user.getId());

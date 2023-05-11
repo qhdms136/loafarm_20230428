@@ -85,6 +85,12 @@ $(document).ready(function(){
 	
 	// 글쓰기 버튼
 	$('#freeWriteBtn').on('click', function(){
+		let userId = sessionStorage.getItem("userId");
+		console.log(userId);
+		if(userId == null){
+			alert("글쓰기 권한이없습니다. 로그인을 해주세요.");
+			location.href="/user/sign_in_view";
+		}
 		location.href="/free/free_create_view";
 	});
 });
