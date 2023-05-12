@@ -28,7 +28,7 @@ public class UserController {
 		// 로그아웃
 		session.removeAttribute("userLoginId");
 		session.removeAttribute("userNickname");
-		session.removeAttribute("useId");
+		session.removeAttribute("userId");
 		return "redirect:/index/index_view";
 	}
 }

@@ -91,11 +91,7 @@ public class UserRestController {
 			HttpServletRequest request){
 		Map<String, Object> result = new HashMap<>();
 		User user = userBO.getUserByLoginId(loginId);
-		
-		if(user == null) {
-			result.put("code", 501);
-			result.put("errorMessage", "존재하지 않는 사용자입니다.");
-		}
+
 		if(user != null) {	// matches => 비밀번호 값이 일치하는지 비교
 			boolean check = passwordEncoder.matches(password, user.getPassword());
 			if(check == true) {
@@ -114,6 +110,9 @@ public class UserRestController {
 				result.put("code", 500);
 				result.put("errorMessage", "비밀번호가 일치하지 않습니다.");
 			}
+		} else {	// 로그인 존재x
+			result.put("code", 501);
+			result.put("errorMessage", "존재하지 않는 사용자입니다.");
 		}
 		return result;
 	}
