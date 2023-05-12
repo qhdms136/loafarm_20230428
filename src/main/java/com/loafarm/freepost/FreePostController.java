@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.loafarm.freepost.bo.FreePostBO;
 import com.loafarm.freepost.model.FreePostView;
@@ -26,13 +27,17 @@ public class FreePostController {
 		// 비 로그인 시에도 게시물 목록을 보기위에 null값 허용
 		Integer userId = (Integer)session.getAttribute("userId");
 		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId);
-		model.addAttribute("freeViewList", freePostViewList);
+		model.addAttribute("freePostList", freePostViewList);
 		model.addAttribute("view", "free/freePost");
 		return "template/layout";
 	}
 	
 	@GetMapping("/free_detail_view")
-	public String freeDetailView(Model model) {
+	public String freeDetailView(Model model,
+			@RequestParam("freePostId") int freePostId,
+			@RequestParam("userId") int userId) {
+		FreePostView freePostView = freePostBO.generateFreePostView(freePostId, userId);
+		model.addAttribute("freePostView", freePostView);
 		model.addAttribute("view", "free/freeDetail");
 		return "template/layout";
 	}

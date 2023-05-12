@@ -39,4 +39,19 @@
 		ORDER BY
 			`id` DESC
 	</select>
+	<select id="selectFreePostById" parameterType="int" resultType="com.loafarm.freepost.model.FreePost">
+		SELECT
+			`id`
+			, `userId`
+			, `category`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`free_post`
+		WHERE
+			`id` = #{freePostId}
+	</select>
 </mapper>

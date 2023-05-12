@@ -19,7 +19,7 @@
 			<a href="#" class="cate-area-one">기타</a>
 		</div>
 		<div>
-			<table class="table text-center">
+			<table class="table table-hover text-center">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -30,12 +30,12 @@
 					</tr>
 				</thead>
 				<tbody>
-				<c:forEach items="${freeViewList}" var="free">
+				<c:forEach items="${freePostList}" var="free">
 					<tr>
-						<td>{free.post.id}</td>
-						<td>{free.post.subject}</td>
-						<td>{free.user.nickname}</td>
-						<td><fmt:formatDate value="${free.post.createdAt}" pattern="yyyy-MM-dd"/></td>
+						<td>${free.freepost.id}</td>
+						<td><a href="/free/free_detail_view?freePostId=${free.freepost.id}&userId=${free.user.id}">[${free.freepost.category}]  &nbsp;${free.freepost.subject}</a></td>
+						<td>${free.user.nickname}</td>
+						<td><fmt:formatDate value="${free.freepost.createdAt}" pattern="yyyy-MM-dd"/></td>
 						<td>77</td>
 					</tr>
 				</c:forEach>
@@ -43,7 +43,7 @@
 			</table>
 		</div>
 		<div class="d-flex justify-content-end">
-			<button class="btn btn-outline-dark" id="freeListBtn">목록</button>
+			<button onclick="location.href='/free/free_list_view'" class="btn btn-outline-dark" id="freeListBtn">목록</button>
 			<button class="btn btn-dark mx-4" id="freeWriteBtn">글쓰기</button>
 		</div>
 	</div>

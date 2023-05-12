@@ -17,4 +17,6 @@ public interface FreePostMapper {
 			@Param("imagePath") String imagePath);
 	
 	public List<FreePost> selectFreePostList();
+	
+	public FreePost selectFreePostById(int freePostId);
 }

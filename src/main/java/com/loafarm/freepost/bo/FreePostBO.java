@@ -58,9 +58,26 @@ public class FreePostBO {
 			freePostView.setFreepost(freepost); // 지금 가져온 글
 			
 			// 글쓴이 정보
-			User user = userBO.getUserById(freepost.getId());
+			User user = userBO.getUserById(freepost.getUserId());
 			freePostView.setUser(user);
+			
+			// 카드 리스트 꼭 채우기!!!!
+			freePostViewList.add(freePostView);
 		}
 		return freePostViewList;
+	}
+	
+	public FreePostView generateFreePostView(int freePostId, int userId) {
+		// 자유 게시판 상세게시물 1개
+		FreePostView freePostView = new FreePostView();
+		
+		// 글 
+		FreePost freePost = freePostMapper.selectFreePostById(freePostId);
+		freePostView.setFreepost(freePost);
+		
+		// 글쓴이 정보
+		User user = userBO.getUserById(userId);
+		freePostView.setUser(user);
+		return freePostView;
 	}
 }
