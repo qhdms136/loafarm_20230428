@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <div class="d-flex justify-content-center">
 	<div class="fp-content">
 		<div class="fp-title">자유 게시판</div>
@@ -27,42 +30,15 @@
 					</tr>
 				</thead>
 				<tbody>
+				<c:forEach items="${freeViewList}" var="free">
 					<tr>
-						<td>1</td>
-						<td>자유게시판입니다.~~~~</td>
-						<td>aaaa</td>
-						<td>2023-05-08</td>
+						<td>{free.post.id}</td>
+						<td>{free.post.subject}</td>
+						<td>{free.user.nickname}</td>
+						<td><fmt:formatDate value="${free.post.createdAt}" pattern="yyyy-MM-dd"/></td>
 						<td>77</td>
 					</tr>
-					<tr>
-						<td>1</td>
-						<td>자유게시판입니다.~~~~</td>
-						<td>aaaa</td>
-						<td>2023-05-08</td>
-						<td>77</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>자유게시판입니다.~~~~</td>
-						<td>aaaa</td>
-						<td>2023-05-08</td>
-						<td>77</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>자유게시판입니다.~~~~</td>
-						<td>aaaa</td>
-						<td>2023-05-08</td>
-						<td>77</td>
-					</tr>
-					<tr>
-						<td>1</td>
-						<td>자유게시판입니다.~~~~</td>
-						<td>aaaa</td>
-						<td>2023-05-08</td>
-						<td>77</td>
-					</tr>
-				
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>
@@ -83,10 +59,10 @@ $(document).ready(function(){
 		 $(this).addClass("active");
 	});
 	
-	// 글쓰기 버튼
+	// 글쓰기 버튼 및 글쓰기 권한 필터링
 	$('#freeWriteBtn').on('click', function(){
 		let userId = '<%=(Integer)session.getAttribute("userId")%>';
-		if(userId == "null"){
+		 if(userId == "null"){
 			alert("글쓰기 권한이 없습니다. 로그인을 해주세요.");
 			location.href="/user/sign_in_view";
 		} 

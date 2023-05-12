@@ -48,7 +48,7 @@ public class PermissionInterceptor implements HandlerInterceptor{
 			Object handler, ModelAndView mav) {
 		
 		// view 객체가 존재한다는 것은 아직 jsp가 HTML로 변환되기 전이다.
-		logger.info("[####### freeHandler]");
+		logger.info("[####### postHandler]");
 	}
 	
 	@Override

@@ -30,6 +30,20 @@
 		WHERE
 			`nickname` = #{nickname}	
  	</select>
+ 	<select id="selectUserById" resultType="com.loafarm.user.model.User">
+ 		SELECT
+ 			`id`
+			, `loginId`
+			, `password`
+			, `nickname`
+			, `email`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`user`
+		WHERE
+			`id` = #{id}
+ 	</select>
  	<insert id="insertUser" parameterType="map">
  		INSERT INTO `user`
  		(

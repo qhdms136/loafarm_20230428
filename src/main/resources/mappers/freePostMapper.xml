@@ -24,4 +24,19 @@
 			, NOW()
 		)
 	</insert>
+	<select id="selectFreePostList" resultType="com.loafarm.freepost.model.FreePost">
+		SELECT
+			`id`
+			, `userId`
+			, `category`
+			, `subject`
+			, `content`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`free_post`
+		ORDER BY
+			`id` DESC
+	</select>
 </mapper>
