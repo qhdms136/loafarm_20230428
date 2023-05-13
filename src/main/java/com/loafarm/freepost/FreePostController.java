@@ -23,10 +23,10 @@ public class FreePostController {
 	
 	@GetMapping("/free_list_view")
 	public String freeListView(Model model,
-			HttpSession session) {
+			String category, HttpSession session) {
 		// 비 로그인 시에도 게시물 목록을 보기위에 null값 허용
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId);
+		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId, category);
 		model.addAttribute("freePostList", freePostViewList);
 		model.addAttribute("view", "free/freePost");
 		return "template/layout";

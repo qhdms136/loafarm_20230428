@@ -11,12 +11,12 @@
 			<a href="#" class="free-img reco3">30추글</a>
 		</div>
 		<div class="cate-area">
-			<a href="#" class="cate-area-one">전체</a>
-			<a href="#" class="cate-area-one">잡담</a>
-			<a href="#" class="cate-area-one">투표</a>
-			<a href="#" class="cate-area-one">스킬</a>
-			<a href="#" class="cate-area-one">정보</a>
-			<a href="#" class="cate-area-one">기타</a>
+			<a href="/free/free_list_view" class="cate-area-one">전체</a>
+			<a href="/free/free_list_view?category=잡담" class="cate-area-one">잡담</a>
+			<a href="/free/free_list_view?category=투표" class="cate-area-one">투표</a>
+			<a href="/free/free_list_view?category=스킬" class="cate-area-one">스킬</a>
+			<a href="/free/free_list_view?category=정보" class="cate-area-one">정보</a>
+			<a href="/free/free_list_view?category=기타" class="cate-area-one">기타</a>
 		</div>
 		<div>
 			<table class="table table-hover text-center">

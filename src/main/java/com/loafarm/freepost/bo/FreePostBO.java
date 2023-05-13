@@ -42,15 +42,19 @@ public class FreePostBO {
 	}
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-	public List<FreePostView> generateFreePostViewList(Integer userId){
+	public List<FreePostView> generateFreePostViewList(Integer userId, String category){
 		List<FreePostView> freePostViewList = new ArrayList<>();
-		
+		List<FreePost> freePostList = new ArrayList<>();
 		// 글 목록 가져오기
-		List<FreePost> freePostList = freePostMapper.selectFreePostList();
-		
+		if(category == null) {
+			freePostList = freePostMapper.selectFreePostList();			
+		} else {
+			freePostList = freePostMapper.selectFreePostListByCategory(category);
+		}
 		// freePostList 반복 >> 1:1 freePost ->FreePostView => freePostViewList에 넣는다.
 		// 향상된 for문
 		// for(변수타입 : 리스트)
+		
 		for(FreePost freepost : freePostList) {
 			FreePostView freePostView = new FreePostView();
 			

@@ -19,11 +19,13 @@
 				<div class="fd-category">[${freePostView.freepost.category}]</div>
 				<div class="fd-subject">${freePostView.freepost.subject}</div>
 				<div class="fd-img d-flex justify-content-center">
-					<img src="${freePostView.freepost.imagePath}" alt="업로드 이미지" width="350px;">
+					<c:if test="${not empty freePostView.freepost.imagePath}">
+						<img src="${freePostView.freepost.imagePath}" alt="업로드 이미지" width="350px;">
+					</c:if>	
 				</div>
 				<div class="fd-text">${freePostView.freepost.content}</div>
 				<div class="d-flex justify-content-center">
-					<div class="fd-like-box d-flex justify-content-center align-items-center">
+					<div class="fd-like-box d-flex justify-content-center align-items-center">	
 						<img src="/static/img/free/good_like_red.png" width="30" height="30">
 						<div class="fd-like-count">77</div>
 					</div>

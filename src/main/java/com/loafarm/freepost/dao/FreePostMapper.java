@@ -19,4 +19,6 @@ public interface FreePostMapper {
 	public List<FreePost> selectFreePostList();
 	
 	public FreePost selectFreePostById(int freePostId);
+	
+	public List<FreePost> selectFreePostListByCategory(String category);
 }
