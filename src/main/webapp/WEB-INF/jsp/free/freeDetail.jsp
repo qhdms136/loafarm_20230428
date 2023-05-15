@@ -26,10 +26,20 @@
 				<div class="fd-text">${freePostView.freepost.content}</div>
 				<div class="d-flex justify-content-center">
 					<div class="fd-like-box d-flex justify-content-center align-items-center">	
-						<a href="#" class="recommend-btn" data-post-id="${freePostView.freepost.id}" data-type="free">
-							<img src="/static/img/free/good_like_none.png" width="30" height="30" alt="recommend-none">
-						</a>
-						<div class="fd-like-count">77</div>
+						<c:choose>
+						<%-- 추천하기가 눌려있지 않을 때 --%>
+							<c:when test="${freePostView.filledRecommend eq false}">
+								<a href="#" class="recommend-btn" data-post-id="${freePostView.freepost.id}" data-type="free">
+									<img src="/static/img/free/good_like_none.png" width="30" height="30" alt="recommend-none">
+								</a>
+							</c:when>
+							<c:when test="${freePostView.filledRecommend}">
+								<a href="#" class="recommend-btn" data-post-id="${freePostView.freepost.id}" data-type="free">
+									<img src="/static/img/free/good_like_red.png" width="30" height="30" alt="recommend-none">
+								</a>
+							</c:when>
+						</c:choose>
+						<div class="fd-like-count">${freePostView.recommendCount}</div>
 					</div>
 				</div>
 			</div>

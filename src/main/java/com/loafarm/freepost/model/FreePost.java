@@ -8,6 +8,7 @@ public class FreePost {
 	private String category;
 	private String subject;
 	private String content;
+	private String type;
 	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
@@ -41,6 +42,12 @@ public class FreePost {
 	}
 	public void setContent(String content) {
 		this.content = content;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
 	}
 	public String getImagePath() {
 		return imagePath;

@@ -19,7 +19,7 @@
 			<a href="/free/free_list_view?category=기타" class="cate-area-one">기타</a>
 		</div>
 		<div>
-			<table class="table table-hover text-center">
+			<table class="free-table table table-hover text-center">
 				<thead>
 					<tr>
 						<th>번호</th>
@@ -33,7 +33,7 @@
 				<c:forEach items="${freePostList}" var="free">
 					<tr>
 						<td>${free.freepost.id}</td>
-						<td><a href="/free/free_detail_view?freePostId=${free.freepost.id}&userId=${free.user.id}">[${free.freepost.category}]  &nbsp;${free.freepost.subject}</a></td>
+						<td><a href="/free/free_detail_view?freePostId=${free.freepost.id}&userId=${free.user.id}&type=free">[${free.freepost.category}]  &nbsp;${free.freepost.subject}</a></td>
 						<td>${free.user.nickname}</td>
 						<td><fmt:formatDate value="${free.freepost.createdAt}" pattern="yyyy-MM-dd"/></td>
 						<td>77</td>

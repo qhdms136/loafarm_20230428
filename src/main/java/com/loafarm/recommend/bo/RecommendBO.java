@@ -23,4 +23,9 @@ public class RecommendBO {
 	public boolean existRecommend(int userId, int postId, String type) {
 		return recommendMapper.selectRecommendCountByPostIdUserIdType(userId, postId, type) > 0;
 	}
+	
+	public int selectRecommendCountByPostIdType(int postId, String type) {
+		return recommendMapper.selectRecommendCountByPostIdType(postId, type);
+	}
+	
 }

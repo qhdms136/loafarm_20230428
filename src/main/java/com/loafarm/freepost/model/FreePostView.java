@@ -13,7 +13,15 @@ public class FreePostView {
 	private boolean filledRecommend;
 	
 	// 추천 갯수
-	
+	private int recommendCount;
+
+	public int getRecommendCount() {
+		return recommendCount;
+	}
+
+	public void setRecommendCount(int recommendCount) {
+		this.recommendCount = recommendCount;
+	}
 
 	public boolean isFilledRecommend() {
 		return filledRecommend;

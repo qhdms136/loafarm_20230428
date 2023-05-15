@@ -12,6 +12,15 @@
 			AND `postId` = #{postId}
 			AND `type` = #{type}
 	</select>
+	<select id="selectRecommendCountByPostIdType" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			`recommend
+		WHERE
+			`postId` = #{postId}
+			AND `type` = #{type}
+	</select>
 	<insert id="insertByPostIdUserIdType" parameterType="map">
 		INSERT INTO `recommend`
 		(

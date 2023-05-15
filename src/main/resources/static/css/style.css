@@ -90,6 +90,7 @@ float:left;margin:0 4px 5px 5px;
 padding:2px 13px 3px;color:#000000;}
 .cate-area a:hover{text-decoration:none;}
 .active{background:#6d6d6d;color:#ffffff;border-radius:10px;}
+.free-table td a{color:#000000;}
 
 /* free_create_view */
 .fc-write-content{width:60%;background-color:#ffffff;}

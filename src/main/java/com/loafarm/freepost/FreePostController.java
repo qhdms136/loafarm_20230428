@@ -23,10 +23,11 @@ public class FreePostController {
 	
 	@GetMapping("/free_list_view")
 	public String freeListView(Model model,
-			String category, HttpSession session) {
+			@RequestParam(value="category", required=false) String category,
+			@RequestParam("type") String type, HttpSession session) {
 		// 비 로그인 시에도 게시물 목록을 보기위에 null값 허용
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId, category);
+		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId, category, type);
 		model.addAttribute("freePostList", freePostViewList);
 		model.addAttribute("view", "free/freePost");
 		return "template/layout";
@@ -35,8 +36,9 @@ public class FreePostController {
 	@GetMapping("/free_detail_view")
 	public String freeDetailView(Model model,
 			@RequestParam("freePostId") int freePostId,
-			@RequestParam("userId") int userId) {
-		FreePostView freePostView = freePostBO.generateFreePostView(freePostId, userId);
+			@RequestParam("userId") int userId,
+			@RequestParam(value="type", required=false) String type) {
+		FreePostView freePostView = freePostBO.generateFreePostView(freePostId, userId, type);
 		model.addAttribute("freePostView", freePostView);
 		model.addAttribute("view", "free/freeDetail");
 		return "template/layout";

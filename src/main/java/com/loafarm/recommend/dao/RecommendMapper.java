@@ -20,4 +20,8 @@ public interface RecommendMapper {
 			@Param("userId") int userId,
 			@Param("postId") int postId,
 			@Param("type") String type);
+	
+	public int selectRecommendCountByPostIdType(
+			@Param("postId") int postId,
+			@Param("type") String type);
 }

@@ -46,7 +46,7 @@ public class FreePostBO {
 	}
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-	public List<FreePostView> generateFreePostViewList(Integer userId, String category){
+	public List<FreePostView> generateFreePostViewList(Integer userId, String category, String type){
 		List<FreePostView> freePostViewList = new ArrayList<>();
 		List<FreePost> freePostList = new ArrayList<>();
 		// 글 목록 가져오기
@@ -75,7 +75,7 @@ public class FreePostBO {
 		return freePostViewList;
 	}
 	
-	public FreePostView generateFreePostView(int freePostId, int userId) {
+	public FreePostView generateFreePostView(int freePostId, int userId, String type) {
 		// 자유 게시판 상세게시물 1개
 		FreePostView freePostView = new FreePostView();
 		
@@ -88,10 +88,11 @@ public class FreePostBO {
 		freePostView.setUser(user);
 		
 		// 추천 체크 여부
-		/*
-		 * freePostView.setFilledRecommend(recommendBO.existRecommend(userId,
-		 * freePostId));
-		 */
+		freePostView.setFilledRecommend(recommendBO.existRecommend(userId, freePostId, type));
+		
+		// 추천 개수
+		int recommendCount = recommendBO.selectRecommendCountByPostIdType(freePostId, freePost.getType());
+		freePostView.setRecommendCount(recommendCount);
 		
 		return freePostView;
 	}
