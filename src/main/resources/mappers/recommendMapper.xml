@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.loafarm.recommend.dao.RecommendMapper">
+	<select id="selectRecommendCountByPostIdUserIdType" parameterType="map" resultType="int">
+		SELECT
+			COUNT(1)
+		FROM
+			`recommend`
+		WHERE
+			`userId` = #{userId}
+			AND `postId` = #{postId}
+			AND `type` = #{type}
+	</select>
+	<insert id="insertByPostIdUserIdType" parameterType="map">
+		INSERT INTO `recommend`
+		(
+			`userId`
+			, `postId`
+			, `type`
+			, `createdAt`
+		)
+		VALUES
+		(
+			#{userId}
+			, #{postId}
+			, #{type}
+			, NOW()
+		)
+	</insert>
+	<delete id="deleteByPostIdUserIdType" parameterType="map">
+		DELETE
+		FROM
+			`recommend`
+		WHERE
+			`userId` = #{userId}
+			AND `postId` = #{postId}
+			AND `type` = #{type}
+	</delete>
+</mapper>

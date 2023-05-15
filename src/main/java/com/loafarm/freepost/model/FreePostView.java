@@ -8,8 +8,21 @@ public class FreePostView {
 	
 	// 글쓴이 정보
 	private User user;
-
+	
+	// 추천 여부
+	private boolean filledRecommend;
+	
 	// 추천 갯수
+	
+
+	public boolean isFilledRecommend() {
+		return filledRecommend;
+	}
+
+	public void setFilledRecommend(boolean filledRecommend) {
+		this.filledRecommend = filledRecommend;
+	}
+
 	public FreePost getFreepost() {
 		return freepost;
 	}

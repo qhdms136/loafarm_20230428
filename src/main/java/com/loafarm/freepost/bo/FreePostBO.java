@@ -11,6 +11,7 @@ import com.loafarm.common.FileManagerService;
 import com.loafarm.freepost.dao.FreePostMapper;
 import com.loafarm.freepost.model.FreePost;
 import com.loafarm.freepost.model.FreePostView;
+import com.loafarm.recommend.bo.RecommendBO;
 import com.loafarm.user.bo.UserBO;
 import com.loafarm.user.model.User;
 
@@ -25,6 +26,9 @@ public class FreePostBO {
 	
 	@Autowired
 	private UserBO userBO;
+	
+	@Autowired
+	private RecommendBO recommendBO;
 	
 	public int addFreePost(int userId, 
 			String loginId, 
@@ -82,6 +86,13 @@ public class FreePostBO {
 		// 글쓴이 정보
 		User user = userBO.getUserById(userId);
 		freePostView.setUser(user);
+		
+		// 추천 체크 여부
+		/*
+		 * freePostView.setFilledRecommend(recommendBO.existRecommend(userId,
+		 * freePostId));
+		 */
+		
 		return freePostView;
 	}
 }

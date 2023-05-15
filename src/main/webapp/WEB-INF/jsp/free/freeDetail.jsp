@@ -26,7 +26,9 @@
 				<div class="fd-text">${freePostView.freepost.content}</div>
 				<div class="d-flex justify-content-center">
 					<div class="fd-like-box d-flex justify-content-center align-items-center">	
-						<img src="/static/img/free/good_like_red.png" width="30" height="30">
+						<a href="#" class="recommend-btn" data-post-id="${freePostView.freepost.id}" data-type="free">
+							<img src="/static/img/free/good_like_none.png" width="30" height="30" alt="recommend-none">
+						</a>
 						<div class="fd-like-count">77</div>
 					</div>
 				</div>
@@ -57,3 +59,32 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+	// 추천하기 버튼 클릭
+	$('.fd-like-box > a').on('click', function(e){
+		e.preventDefault();
+		
+		let postId = $(this).data("post-id");
+		let type = $(this).data("type");
+		alert(postId + ":::" + type);
+		
+		$. ajax({
+			// request
+			url:"/recommend/" + postId + "/" + type
+			
+			// response
+			,success:function(data){
+				if(data.code == 1){
+					location.reload();
+				} else{
+					alert("추천 error 발생");
+				}
+			}
+			,error:function(request, status, error){
+				alert("추천하기 중 오류가 발생했습니다.");
+			}
+		});
+	});
+});
+</script>
