@@ -13,7 +13,8 @@ public interface FreePostMapper {
 			@Param("userId") int userId, 
 			@Param("category") String category, 
 			@Param("subject") String subject, 
-			@Param("content") String content, 
+			@Param("content") String content,
+			@Param("type") String type,
 			@Param("imagePath") String imagePath);
 	
 	public List<FreePost> selectFreePostList();

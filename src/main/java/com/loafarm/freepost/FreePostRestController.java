@@ -26,6 +26,7 @@ public class FreePostRestController {
 			@RequestParam("category") String category,
 			@RequestParam("subject") String subject,
 			@RequestParam("content") String content,
+			@RequestParam("type") String type,
 			@RequestParam(value="file", required=false) MultipartFile file,
 			HttpSession session){
 		
@@ -34,7 +35,7 @@ public class FreePostRestController {
 		String userLoginId = (String)session.getAttribute("userLoginId");
 		
 		// insert
-		int rowCount = freePostBO.addFreePost(userId, userLoginId, category, subject, content, file);
+		int rowCount = freePostBO.addFreePost(userId, userLoginId, category, subject, content, type, file);
 		
 		Map<String, Object> result = new HashMap<>();
 		if(rowCount > 0) {

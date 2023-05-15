@@ -23,7 +23,7 @@
 					<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">
 					<div class="fc-btn-box d-flex">
 						<button type="button" class="fc-clear btn-sm btn-outline-dark" id="freeClearBtn">모두 지우기</button>
-						<button type="button" class="fc-save mx-3 btn-sm btn-secondary" id="freeSaveBtn">저장하기</button>
+						<button type="button" class="fc-save mx-3 btn-sm btn-secondary" id="freeSaveBtn" data-type="free">저장하기</button>
 						<button type="button" class="fc-list btn-sm" id="freeListBtn">목록</button>
 					</div>
 						
@@ -54,6 +54,7 @@ $(document).ready(function(){
 		let category = $("select[name='category']").val();
 		let subject = $('#subject').val().trim();
 		let content = $('#content').val();
+		let type = $(this).data("type");
 		let file = $('#file').val(); // 파일 경로 C:\fakepath\아아아.jpg
 		
 		// 유효성 검사
@@ -89,6 +90,7 @@ $(document).ready(function(){
 		formData.append("category", category);
 		formData.append("subject", subject);
 		formData.append("content", content);
+		formData.append("type", type); // 게시판 종류 추가
 		formData.append("file", $('#file')[0].files[0]);
 		console.log(formData);
 		

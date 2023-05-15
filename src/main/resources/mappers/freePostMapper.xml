@@ -9,6 +9,7 @@
 			, `category`
 			, `subject`
 			, `content`
+			, `type`
 			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
@@ -19,6 +20,7 @@
 			, #{category}
 			, #{subject}
 			, #{content}
+			, #{type}
 			, #{imagePath}
 			, NOW()
 			, NOW()
@@ -31,6 +33,7 @@
 			, `category`
 			, `subject`
 			, `content`
+			, `type`
 			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
@@ -46,6 +49,7 @@
 			, `category`
 			, `subject`
 			, `content`
+			, `type`
 			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
@@ -63,6 +67,7 @@
 			, `category`
 			, `subject`
 			, `content`
+			, `type`
 			, `imagePath`
 			, `createdAt`
 			, `updatedAt`

@@ -16,7 +16,7 @@
 		SELECT
 			COUNT(1)
 		FROM
-			`recommend
+			`recommend`
 		WHERE
 			`postId` = #{postId}
 			AND `type` = #{type}

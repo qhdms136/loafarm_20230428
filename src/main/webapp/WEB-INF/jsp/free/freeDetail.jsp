@@ -33,7 +33,7 @@
 									<img src="/static/img/free/good_like_none.png" width="30" height="30" alt="recommend-none">
 								</a>
 							</c:when>
-							<c:when test="${freePostView.filledRecommend}">
+							<c:when test="${freePostView.filledRecommend eq true}">
 								<a href="#" class="recommend-btn" data-post-id="${freePostView.freepost.id}" data-type="free">
 									<img src="/static/img/free/good_like_red.png" width="30" height="30" alt="recommend-none">
 								</a>
