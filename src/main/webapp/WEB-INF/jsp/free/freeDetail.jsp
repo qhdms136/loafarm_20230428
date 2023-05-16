@@ -62,9 +62,8 @@
 					<div class="ml-3 mb-1 font-weight-bold">댓글</div>
 				</div>
 			<div class="fd-comment-write d-flex">
-						<input type="hidden" name="type" value="자유">
 						<input type="text" class="fd-comment-input form-control mr-2" placeholder="댓글 달기"/>
-						<button type="button" class="fd-comment-btn btn btn-light">게시</button>
+						<button type="button" class="fd-comment-btn btn btn-light" data-post-id="${freePostView.freepost.id}" data-type="${freePostView.freepost.type}">게시</button>
 			</div>
 		</div>
 	</div>
@@ -94,6 +93,41 @@ $(document).ready(function(){
 			,error:function(request, status, error){
 				alert("추천하기 중 오류가 발생했습니다.");
 			}
+		});
+	});
+	
+	// 댓글 게시 버튼
+	$('.fd-comment-btn').on('click', function(){
+		let postId = $(this).data("post-id");
+		/* let content = $(this).siblings('input').val().trim(); */
+		let content = $(this).prev().val();
+		let type = $(this).data("type");
+		
+		console.log(postId);
+		console.log(content);
+		console.log(type);
+		
+		if(!content || content == ""){
+			alert("댓글 내용을 입력해주세요.");
+			return;
+		}
+		
+		// ajax
+		$.ajax({
+			// request
+			type:"POST"
+			,url:"/comment/create"
+			,data:{"postId":postId, "content":content, "type":type}
+		,success:function(data){
+			if(data.code == 1){
+				location.reload(); // 새로고침
+			} else{
+				alert(data.errorMessage);
+			}
+		}
+		,error:function(request, status, error){
+			alert("댓글 게시 중 시스템 오류가 발생했습니다.");
+		}
 		});
 	});
 });
