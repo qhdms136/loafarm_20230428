@@ -49,10 +49,10 @@
 				<button onclick="location.href='/free/free_list_view'" class="btn btn-outline-dark">목록</button>
 				<c:choose>
 					<c:when test="${userId eq freePostView.user.id}">
-						<button class="mx-3 btn btn-dark">글수정</button>
+						<button onclick="location.href='/free/free_update_view?freePostId=${freePostView.freepost.id}&type=${freePostView.freepost.type}'" class="mx-3 btn btn-dark">글수정</button>
 					</c:when>
 					<c:when test="${userId != freePostView.user.id}">
-						<button class="mx-3 btn btn-dark">글쓰기</button>
+						<button onclick="location.href='/free/free_create_view'" class="mx-3 btn btn-dark">글쓰기</button>
 					</c:when>
 				</c:choose>
 			</div>
@@ -69,9 +69,11 @@
 							<div class="fd-comment-date">(<fmt:formatDate value="${comments.comment.createdAt}" pattern="yyyy-MM-dd"/>)</div>
 						</div>
 						<div class="fd-comment-content">${comments.comment.content}
+							<c:if test="${not empty comments.comment.content and (userId eq comments.comment.userId)}">
 							<a href="#" class="commentDelBtn" data-comment-id="${comments.comment.id}">
 								<img src="/static/img/free/garbage.png" width="25px" height="25px;">
 							</a>
+							</c:if>
 						</div>
 					</c:if>
 				</c:forEach>

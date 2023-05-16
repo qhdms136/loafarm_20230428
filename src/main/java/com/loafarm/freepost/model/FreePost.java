@@ -9,6 +9,7 @@ public class FreePost {
 	private String subject;
 	private String content;
 	private String type;
+	private int recommendCount;
 	private String imagePath;
 	private Date createdAt;
 	private Date updatedAt;
@@ -48,6 +49,13 @@ public class FreePost {
 	}
 	public void setType(String type) {
 		this.type = type;
+	}
+	
+	public int getRecommendCount() {
+		return recommendCount;
+	}
+	public void setRecommendCount(int recommendCount) {
+		this.recommendCount = recommendCount;
 	}
 	public String getImagePath() {
 		return imagePath;

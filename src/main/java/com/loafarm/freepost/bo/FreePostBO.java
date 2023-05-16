@@ -98,6 +98,7 @@ public class FreePostBO {
 		
 		// 추천 개수
 		int recommendCount = recommendBO.selectRecommendCountByPostIdType(freePostId, type);
+		freePostMapper.updateRecommendCount(freePostId, type, recommendCount);
 		freePostView.setRecommendCount(recommendCount);
 		
 		// 댓글 들

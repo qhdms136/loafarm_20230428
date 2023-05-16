@@ -22,4 +22,9 @@ public interface FreePostMapper {
 	public FreePost selectFreePostById(int freePostId);
 	
 	public List<FreePost> selectFreePostListByCategory(String category);
+	
+	public void updateRecommendCount(
+			@Param("freePostId") int freePostId,
+			@Param("type") String type,
+			@Param("recommendCount") int recommendCount);
 }

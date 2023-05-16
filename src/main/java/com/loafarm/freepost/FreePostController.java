@@ -50,4 +50,16 @@ public class FreePostController {
 		model.addAttribute("view", "free/freeCreate");
 		return "template/layout";
 	}
+	
+	@GetMapping("/free_update_view")
+	public String freeUpdateView(Model model,
+			@RequestParam("freePostId") int freePostId,
+			@RequestParam(value="type", required=false) String type,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		FreePostView freePostView = freePostBO.generateFreePostView(freePostId, userId, type);
+		model.addAttribute("freePostView", freePostView);
+		model.addAttribute("view", "free/freeUpdate");
+		return "template/layout";
+	}
 }

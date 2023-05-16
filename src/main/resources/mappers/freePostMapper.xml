@@ -34,6 +34,7 @@
 			, `subject`
 			, `content`
 			, `type`
+			, `recommendCount`
 			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
@@ -50,6 +51,7 @@
 			, `subject`
 			, `content`
 			, `type`
+			, `recommendCount`
 			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
@@ -68,6 +70,7 @@
 			, `subject`
 			, `content`
 			, `type`
+			, `recommendCount`
 			, `imagePath`
 			, `createdAt`
 			, `updatedAt`
@@ -76,4 +79,12 @@
 		WHERE
 			`id` = #{freePostId}
 	</select>
+	<update id="updateRecommendCount" parameterType="map">
+		UPDATE `free_post`
+		SET
+			`recommendCount` = #{recommendCount}
+		WHERE
+			`id` = #{freePostId}
+			AND `type` = #{type}
+	</update>
 </mapper>

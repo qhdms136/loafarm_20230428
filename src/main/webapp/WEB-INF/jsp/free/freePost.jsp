@@ -36,7 +36,7 @@
 						<td><a href="/free/free_detail_view?freePostId=${free.freepost.id}&type=${free.freepost.type}">[${free.freepost.category}]  &nbsp;${free.freepost.subject}</a></td>
 						<td>${free.user.nickname}</td>
 						<td><fmt:formatDate value="${free.freepost.createdAt}" pattern="yyyy-MM-dd"/></td>
-						<td>77</td>
+						<td>${free.freepost.recommendCount}</td>
 					</tr>
 				</c:forEach>
 				</tbody>
