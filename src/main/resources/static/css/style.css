@@ -124,4 +124,7 @@ padding:2px 13px 3px;color:#000000;}
 .fd-comment-write{margin-top:10px;margin-left:20px;}
 .fd-comment-input {width:90%;}
 .fd-comment-title{font-size:28px;}
+.fd-comment-name{font-weight:bold;margin-left:20px;margin-top:5px;}
+.fd-comment-date{margin-top:5px;margin-left:20px;color:#8C8C8C;}
+.fd-comment-content{margin-left:20px;margin-top:7px;padding-bottom:15px;border-bottom:solid 1px #BDBDBD;}
 footer{height:100px;background-color:black;color:#ffffff;}

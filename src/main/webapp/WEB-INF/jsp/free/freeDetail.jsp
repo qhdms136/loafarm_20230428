@@ -60,7 +60,22 @@
 		<div class="fd-comment-box">
 			<div class="fd-comment-title border-bottom">
 					<div class="ml-3 mb-1 font-weight-bold">댓글</div>
-				</div>
+			</div>
+			<div class="fd-comment-list">
+				<c:forEach items="${freePostView.commentList}" var="comments">
+					<c:if test="${freePostView.freepost.id eq comments.comment.postId and freePostView.freepost.type eq comments.comment.type}">
+						<div class="d-flex">
+							<div class="fd-comment-name">${comments.user.nickname}</div>
+							<div class="fd-comment-date">(<fmt:formatDate value="${comments.comment.createdAt}" pattern="yyyy-MM-dd"/>)</div>
+						</div>
+						<div class="fd-comment-content">${comments.comment.content}
+							<a href="#" class="commentDelBtn" data-comment-id="${comments.comment.id}">
+								<img src="/static/img/free/garbage.png" width="25px" height="25px;">
+							</a>
+						</div>
+					</c:if>
+				</c:forEach>
+			</div>
 			<div class="fd-comment-write d-flex">
 						<input type="text" class="fd-comment-input form-control mr-2" placeholder="댓글 달기"/>
 						<button type="button" class="fd-comment-btn btn btn-light" data-post-id="${freePostView.freepost.id}" data-type="${freePostView.freepost.type}">게시</button>
@@ -85,7 +100,7 @@ $(document).ready(function(){
 			// response
 			,success:function(data){
 				if(data.code == 1){
-					location.reload();
+					location.reload(true);
 				} else{
 					alert("추천 error 발생");
 				}
@@ -99,7 +114,7 @@ $(document).ready(function(){
 	// 댓글 게시 버튼
 	$('.fd-comment-btn').on('click', function(){
 		let postId = $(this).data("post-id");
-		/* let content = $(this).siblings('input').val().trim(); */
+		 /* let content = $(this).siblings('input').val().trim(); */
 		let content = $(this).prev().val();
 		let type = $(this).data("type");
 		
@@ -120,7 +135,7 @@ $(document).ready(function(){
 			,data:{"postId":postId, "content":content, "type":type}
 		,success:function(data){
 			if(data.code == 1){
-				location.reload(); // 새로고침
+				location.reload(true); // 새로고침
 			} else{
 				alert(data.errorMessage);
 			}
@@ -128,6 +143,28 @@ $(document).ready(function(){
 		,error:function(request, status, error){
 			alert("댓글 게시 중 시스템 오류가 발생했습니다.");
 		}
+		});
+	});
+	
+	$('.commentDelBtn').on('click', function(e){
+		e.preventDefault();
+		let commentId = $(this).data("comment-id");
+		alert(commentId);
+		
+		// ajax
+		$.ajax({
+			// request
+			url:"/comment/delete/" + commentId
+			// response
+			,success:function(data){
+				if(data.code == 1){
+					alert("댓글이 삭제되었습니다.");
+					location.reload(true);
+				}
+			}
+			,error:function(request, status, error){
+				alert("댓글 삭제 중 오류가 발생했습니다.");
+			}
 		});
 	});
 });

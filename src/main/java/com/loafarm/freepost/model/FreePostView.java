@@ -1,5 +1,8 @@
 package com.loafarm.freepost.model;
 
+import java.util.List;
+
+import com.loafarm.comment.model.CommentView;
 import com.loafarm.user.model.User;
 
 public class FreePostView {
@@ -14,6 +17,17 @@ public class FreePostView {
 	
 	// 추천 갯수
 	private int recommendCount;
+	
+	// 댓글 들
+	private List<CommentView> commentList;
+
+	public List<CommentView> getCommentList() {
+		return commentList;
+	}
+
+	public void setCommentList(List<CommentView> commentList) {
+		this.commentList = commentList;
+	}
 
 	public int getRecommendCount() {
 		return recommendCount;

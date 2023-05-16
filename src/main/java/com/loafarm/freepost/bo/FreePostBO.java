@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.loafarm.comment.bo.CommentBO;
+import com.loafarm.comment.model.CommentView;
 import com.loafarm.common.FileManagerService;
 import com.loafarm.freepost.dao.FreePostMapper;
 import com.loafarm.freepost.model.FreePost;
@@ -29,6 +31,9 @@ public class FreePostBO {
 	
 	@Autowired
 	private RecommendBO recommendBO;
+	
+	@Autowired
+	private CommentBO commentBO;
 	
 	public int addFreePost(int userId, 
 			String loginId, 
@@ -94,6 +99,10 @@ public class FreePostBO {
 		// 추천 개수
 		int recommendCount = recommendBO.selectRecommendCountByPostIdType(freePostId, type);
 		freePostView.setRecommendCount(recommendCount);
+		
+		// 댓글 들
+		List<CommentView> commentList = commentBO.generateCommentList(freePostId, type);
+		freePostView.setCommentList(commentList);
 		
 		return freePostView;
 	}

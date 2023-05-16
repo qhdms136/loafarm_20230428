@@ -22,4 +22,26 @@
 			, NOW()
 		)
 	</insert>
+	<select id="selctCommentListByPostIdType" parameterType="map" resultType="com.loafarm.comment.model.Comment">
+		SELECT
+			`id`
+			, `postId`
+			, `userId`
+			, `content`
+			, `type`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`comment`
+		WHERE
+			`postId` = #{postId}
+			AND `type` = #{type}	
+	</select>
+	<delete id="deleteComment" parameterType="int">
+		DELETE
+		FROM
+			`comment`
+		WHERE
+			`id` = #{id}
+	</delete>
 </mapper>
