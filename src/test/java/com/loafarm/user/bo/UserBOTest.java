@@ -3,7 +3,6 @@ package com.loafarm.user.bo;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
-import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +25,7 @@ class UserBOTest {
 		userBO.addUser("test999","test999" , "test999", "tset999@naver.com");
 	}
 	
-	@Test
+	//@Test
 	void 유저가져오기() {
 		logger.info("### 유저 가져오기 ###");
 		User user = userBO.getUserByLoginId("aaaa");

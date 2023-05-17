@@ -142,6 +142,31 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	// 게시물 삭제 버튼
+	$('#freeDeleteBtn').on('click', function(){
+		let freePostId = $(this).data("post-id");
+		alert(freePostId);
+		
+		// ajax
+		$.ajax({	//request
+			type:"DELETE"
+			, url:"/free/delete"
+			, data:{"freePostId":freePostId}
+			// response
+			,success:function(data){
+				if(data.code == 1){
+					alert("삭제되었습니다.");
+					location.href="/free/free_list_view";
+				} else{
+					alert(data.errorMessage);
+				}
+			}
+			,error:function(request, status, error){
+				alert("게시물을 삭제하는데 실패하였습니다.");
+			}
+		});
+	});
 });
 	
 </script>

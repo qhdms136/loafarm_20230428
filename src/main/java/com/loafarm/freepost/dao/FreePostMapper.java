@@ -38,4 +38,12 @@ public interface FreePostMapper {
 			@Param("freePostId") int freePostId,
 			@Param("type") String type,
 			@Param("recommendCount") int recommendCount);
+	
+	public void deleteImageAndUpdateByPostIdUserId(
+			@Param("freePostId") int freePostId,
+			@Param("userId") int userId);
+	
+	public int deletePostByPostIdUserId(
+			@Param("freePostId") int freePostId,
+			@Param("userId") int userId);
 }

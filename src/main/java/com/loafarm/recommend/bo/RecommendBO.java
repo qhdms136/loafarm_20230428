@@ -28,4 +28,7 @@ public class RecommendBO {
 		return recommendMapper.selectRecommendCountByPostIdType(postId, type);
 	}
 	
+	public void deleteRecommendByPostIdType(int postId, String type) {
+		recommendMapper.deleteRecommendByPostIdType(postId, type);
+	}
 }

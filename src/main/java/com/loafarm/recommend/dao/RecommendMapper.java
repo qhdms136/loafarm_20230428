@@ -24,4 +24,8 @@ public interface RecommendMapper {
 	public int selectRecommendCountByPostIdType(
 			@Param("postId") int postId,
 			@Param("type") String type);
+	
+	public void deleteRecommendByPostIdType(
+			@Param("postId") int postId,
+			@Param("type") String type);
 }

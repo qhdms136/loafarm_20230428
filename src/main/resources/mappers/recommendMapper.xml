@@ -46,4 +46,12 @@
 			AND `postId` = #{postId}
 			AND `type` = #{type}
 	</delete>
+	<delete id="deleteRecommendByPostIdType" parameterType="map">
+		DELETE
+		FROM
+			`recommend`
+		WHERE
+			`postId` = #{postId}
+			AND `type` = #{type}
+	</delete>
 </mapper>

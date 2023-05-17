@@ -97,8 +97,38 @@ public class FreePostBO {
 	}
 	
 	// post image만 delete >> delete문을 쓰면 전체 행이 삭제되므로 이미지file만 지우고 업데이트
+	public void deleteImageAndUpdateByPostIdUserId(int freePostId, int userId) {
+		// 기존글 가져오기(이미지 확인을 위해)
+		FreePost freePost = getFreePostByPostIdUserId(freePostId, userId);
+		if(freePost == null) {
+			logger.error("[글 삭제] post is null. freePostId:{}, userId:{}", freePostId, userId);
+			return;
+		}
+		
+		// 기존 이미지 삭제
+		if(freePost.getImagePath() != null){
+			fileManager.deleteFile(freePost.getImagePath());
+		}
+		
+		// update로 null 값 처리
+		freePostMapper.deleteImageAndUpdateByPostIdUserId(freePostId, userId);
+	}
 	
-	
+	// 게시물 삭제
+	public int deletePostByPostIdUserId(int freePostId, int userId) {
+		FreePost freePost = getFreePostByPostIdUserId(freePostId, userId);
+		// 삭제 목록 (DB, 추천, 댓글, 이미지 삭제(각각의 BO를 불러서 삭제))
+		// 이미지 삭제
+		fileManager.deleteFile(freePost.getImagePath());
+		
+		// 추천 삭제
+		recommendBO.deleteRecommendByPostIdType(freePostId, freePost.getType());
+		
+		// 댓글 삭제
+		commentBO.deleteCommentByPostIdType(freePostId, freePost.getType());
+		
+		return freePostMapper.deletePostByPostIdUserId(freePostId, userId);
+	}
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<FreePostView> generateFreePostViewList(Integer userId, String category){

@@ -29,6 +29,10 @@ public class CommentBO {
 		commentMapper.deleteComment(commentId);
 	}
 	
+	public void deleteCommentByPostIdType(int postId, String type) {
+		commentMapper.deleteCommentByPostIdType(postId, type);
+	}
+	
 	// 댓글 리스트 가공
 	// input : postId, type
 	// output : 해당 게시물의 댓글 리스트

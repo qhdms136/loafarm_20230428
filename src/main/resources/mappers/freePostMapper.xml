@@ -119,4 +119,20 @@
 		WHERE
 			`id` = #{freePostId}
 	</update>
+	<update id="deleteImageAndUpdateByPostIdUserId" parameterType="map">
+		UPDATE `free_post`
+		SET
+			`imagePath` = NULL
+		WHERE
+			`id` = #{freePostId}
+			AND `userId` = #{userId}
+	</update>
+	<delete id="deletePostByPostIdUserId" parameterType="map">
+		DELETE
+		FROM
+			`free_post`
+		WHERE
+			`id` = #{freePostId}
+			AND `userId` = #{userId}
+	</delete>
 </mapper>
