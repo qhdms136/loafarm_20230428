@@ -79,6 +79,24 @@
 		WHERE
 			`id` = #{freePostId}
 	</select>
+	<select id="selectFreePostByPostIdUserId" parameterType="map" resultType="com.loafarm.freepost.model.FreePost">
+		SELECT
+			`id`
+			, `userId`
+			, `category`
+			, `subject`
+			, `content`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`free_post`
+		WHERE
+			`id` = #{freePostId}
+			AND `userId` = #{userId}
+	</select>
 	<update id="updateRecommendCount" parameterType="map">
 		UPDATE `free_post`
 		SET
@@ -86,5 +104,19 @@
 		WHERE
 			`id` = #{freePostId}
 			AND `type` = #{type}
+	</update>
+	<update id="updateFreePostByPostId" parameterType="map">
+		UPDATE `free_post`
+		SET
+			`category` = #{category}
+			, `subject` = #{subject}
+			, `content` = #{content}
+			, `updatedAt` = NOW()
+			<!-- 이미지패스 있을때만 수정 -->
+			<if test="imagePath != null">
+			, `imagePath` = #{imagePath}
+			</if>
+		WHERE
+			`id` = #{freePostId}
 	</update>
 </mapper>

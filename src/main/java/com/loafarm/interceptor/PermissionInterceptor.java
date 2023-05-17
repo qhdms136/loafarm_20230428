@@ -30,7 +30,7 @@ public class PermissionInterceptor implements HandlerInterceptor{
 		Integer userId = (Integer)session.getAttribute("userId");
 		
 		// 비로그인 && /(free_detail or free_create)로 온경우 => 로그인 페이지로 리다이렉트, return false
-		if(userId == null && (uri.startsWith("/free/free_create_view") || uri.startsWith("/free/free_detail_view"))) {
+		if(userId == null && (uri.startsWith("/free/free_create_view") || uri.startsWith("/free/free_detail_view") || uri.startsWith("/free/free_update_view"))) {
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}

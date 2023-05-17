@@ -9,7 +9,7 @@
 		<div class="d-flex justify-content-center">
 			<div class="fc-write-box">
 				<select class="form-select form-control" id="category" name="category">
-					<option selected>${freePostView.freepost.category}</option>
+					<option value="${freePost.category}" selected>${freePost.category}</option>
 					<option value="">카테고리</option>
 					<option value="잡담">잡담</option>
 					<option value="투표">투표</option>
@@ -18,10 +18,10 @@
 					<option value="기타">기타</option>
 				</select>
 				<div class="d-flex">
-					<input type="text" id="subject" class="free-subject form-control" placeholder="제목을 입력해주세요" value="${freePostView.freepost.subject}">
+					<input type="text" id="subject" class="free-subject form-control" placeholder="제목을 입력해주세요" value="${freePost.subject}">
 				</div>
 				<div class="d-flex">
-					<textarea class="free-content form-control" id="content" rows="10" placeholder="내용을 입력해주세요">${freePostView.freepost.content}</textarea>
+					<textarea class="free-content form-control" id="content" rows="10" placeholder="내용을 입력해주세요">${freePost.content}</textarea>
 				</div>
 				<div class="fc-file d-flex justify-content-between">
 					<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">
@@ -31,8 +31,8 @@
 						<button type="button" class="fc-list btn-sm" id="freeListBtn">목록</button>
 					</div>
 				</div>
-				<c:if test="${not empty freePostView.freepost.imagePath}">
-					<img class="fc-img-box" src="${freePostView.freepost.imagePath}" alt="업로드 된 이미지" width="200">
+				<c:if test="${not empty freePost.imagePath}">
+					<img class="fc-img-box" src="${freePost.imagePath}" alt="업로드 된 이미지" width="200">
 				</c:if>	
 			</div>
 		</div>

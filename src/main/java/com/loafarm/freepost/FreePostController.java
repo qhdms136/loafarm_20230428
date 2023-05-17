@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.loafarm.freepost.bo.FreePostBO;
+import com.loafarm.freepost.model.FreePost;
 import com.loafarm.freepost.model.FreePostView;
 
 @RequestMapping("/free")
@@ -54,11 +55,10 @@ public class FreePostController {
 	@GetMapping("/free_update_view")
 	public String freeUpdateView(Model model,
 			@RequestParam("freePostId") int freePostId,
-			@RequestParam(value="type", required=false) String type,
 			HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
-		FreePostView freePostView = freePostBO.generateFreePostView(freePostId, userId, type);
-		model.addAttribute("freePostView", freePostView);
+		FreePost freePost = freePostBO.getFreePostByPostIdUserId(freePostId, userId);
+		model.addAttribute("freePost", freePost);
 		model.addAttribute("view", "free/freeUpdate");
 		return "template/layout";
 	}

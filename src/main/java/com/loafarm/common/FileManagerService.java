@@ -7,11 +7,15 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
 @Component // spring bean
 public class FileManagerService {
+	
+	Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	// 실제 업로드 된 이미지가 저장될 경로(서버)
 	// 상수 선언시 대문자로
@@ -49,8 +53,36 @@ public class FileManagerService {
 		return null;
 	}
 	
-	  // uuid 생성
-		public static String getUuid() {
-			return UUID.randomUUID().toString().replaceAll("-", "");
+	// uuid 생성
+	public static String getUuid() {
+		return UUID.randomUUID().toString().replaceAll("-", "");
+	}
+		
+	// 이미지 제거
+	public void deleteFile(String imagePath) {
+		// 겹치는 images 경로를 제거 - imagePath 안에있는 /images/ 구문 제거
+		Path path = Paths.get(FILE_UPLOAD_PATH + imagePath.replace("/images/", ""));
+		// 이미지 삭제
+		if(Files.exists(path)) {
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				logger.error("[이미지 삭제] 이미지 삭제 실패. imagePath: {}", imagePath);
+				return;
+			}
 		}
+		
+		// 디렉토리 폴더 삭제
+		path = path.getParent();
+		if(Files.exists(path)) {
+			try {
+				Files.delete(path);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				logger.error("[이미지 삭제] 디렉토리 삭제 실패. imagePath:{}", imagePath);
+				// 메소드의 끝이기 때문에 return 안해도된다.
+			}
+		}
+	}
 }

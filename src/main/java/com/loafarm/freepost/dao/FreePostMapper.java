@@ -21,6 +21,17 @@ public interface FreePostMapper {
 	
 	public FreePost selectFreePostById(int freePostId);
 	
+	public void updateFreePostByPostId(
+			@Param("freePostId") int freePostId,
+			@Param("category") String category,
+			@Param("subject") String subject,
+			@Param("content") String content,
+			@Param("imagePath") String imagePath);
+	
+	public FreePost selectFreePostByPostIdUserId(
+			@Param("freePostId") int freePostId,
+			@Param("userId") int userId);
+	
 	public List<FreePost> selectFreePostListByCategory(String category);
 	
 	public void updateRecommendCount(

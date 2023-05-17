@@ -3,6 +3,8 @@ package com.loafarm.freepost.bo;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -17,8 +19,11 @@ import com.loafarm.recommend.bo.RecommendBO;
 import com.loafarm.user.bo.UserBO;
 import com.loafarm.user.model.User;
 
+
 @Service
 public class FreePostBO {
+	
+	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
 	private FreePostMapper freePostMapper;
@@ -49,6 +54,47 @@ public class FreePostBO {
 			imagePath = fileManager.saveFile(loginId, file);
 		}
 		return freePostMapper.insertFreePost(userId, category, subject, content, type, imagePath);
+	}
+	
+	public void updateFreePost(int userId, 
+			String loginId,
+			int freePostId,
+			String category, 
+			String subject, 
+			String content,
+			String type,
+			MultipartFile file) {
+		// 기존 글 가져오기
+		FreePost freePost = getFreePostByPostIdUserId(freePostId, userId);
+		
+		// null 값 체크 유무
+		if(freePost == null) {
+			logger.warn("[update post] freePost is null. freePostId: {}, userId: {}", freePostId, userId);
+			return;	// void에선 값을 안넣고 리턴
+		}
+		
+		// 업로드한 이미지가 있으면 서버 업로드 => imagePath받아오기
+		// => 업로드 성공하면 기존 이미지 제거(업로드 실패 시 기존 이미지 사용)
+		String imagePath = null;	// 초기 값
+		if(file != null) {
+			// 업로드
+			imagePath = fileManager.saveFile(loginId, file);
+			
+			// 성공 여부 체크 후 기존 이미지 제거
+			// imagePath 가 null이 아닐때(성공) 그리고 기존 이미지가 있을때 => (이때)기존 이미지 삭제
+			if(imagePath != null && freePost.getImagePath() != null) {
+				// 이미지 제거
+				fileManager.deleteFile(freePost.getImagePath());	// 기존 이미지 제거
+			}
+		}
+		
+		// db update
+		freePostMapper.updateFreePostByPostId(freePostId, category, subject, content, imagePath);
+	}
+	
+	// post 수정페이지 select
+	public FreePost getFreePostByPostIdUserId(int freePostId, int userId) {
+		return freePostMapper.selectFreePostByPostIdUserId(freePostId, userId);
 	}
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
