@@ -28,7 +28,6 @@
 					</div>
 						
 				</div>
-					<img class="fc-img-box" src="/static/img/free/redgood.png" alt="업로드 된 이미지" width="200">
 			</div>
 		</div>
 	</div>

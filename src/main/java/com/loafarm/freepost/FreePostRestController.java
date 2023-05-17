@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,6 +46,40 @@ public class FreePostRestController {
 			result.put("code", 500);
 			result.put("errorMessage", "글을 저장하지 못했습니다.");
 		}
+		return result;
+	}
+	
+	@PutMapping("/update")
+	public Map<String, Object> update(
+			@RequestParam("freePostId") int freePostId,
+			@RequestParam("category") String category,
+			@RequestParam("subject") String subject,
+			@RequestParam("content") String content,
+			@RequestParam(value="file", required=false) MultipartFile file,
+			HttpSession session){
+		
+		int userId = (int)session.getAttribute("userId");
+		String userLoginId = (String)session.getAttribute("userLoginId");
+		
+		// update db
+		freePostBO.updateFreePost(userId, userLoginId, freePostId, category, subject, content, file);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}
+	
+	@PutMapping("/delete_image")
+	public Map<String, Object> deleteImage(
+			@RequestParam("freePostId") int freePostId,
+			HttpSession session){
+		int userId = (int)session.getAttribute("userId");
+		
+		// delete - image
+		// freePostBO.deleteImageAndUpdateByPostIdUserId(freePostId, userId);
+		
+		Map<String, Object> result = new HashMap<>();
 		return result;
 	}
 }

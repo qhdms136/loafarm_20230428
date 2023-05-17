@@ -148,6 +148,7 @@ $(document).ready(function(){
 		});
 	});
 	
+	// 댓글 삭제 버튼
 	$('.commentDelBtn').on('click', function(e){
 		e.preventDefault();
 		let commentId = $(this).data("comment-id");

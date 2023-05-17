@@ -62,7 +62,6 @@ public class FreePostBO {
 			String category, 
 			String subject, 
 			String content,
-			String type,
 			MultipartFile file) {
 		// 기존 글 가져오기
 		FreePost freePost = getFreePostByPostIdUserId(freePostId, userId);
@@ -96,6 +95,10 @@ public class FreePostBO {
 	public FreePost getFreePostByPostIdUserId(int freePostId, int userId) {
 		return freePostMapper.selectFreePostByPostIdUserId(freePostId, userId);
 	}
+	
+	// post image만 delete >> delete문을 쓰면 전체 행이 삭제되므로 이미지file만 지우고 업데이트
+	
+	
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<FreePostView> generateFreePostViewList(Integer userId, String category){
