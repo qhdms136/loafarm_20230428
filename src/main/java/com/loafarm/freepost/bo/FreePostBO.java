@@ -119,7 +119,9 @@ public class FreePostBO {
 		FreePost freePost = getFreePostByPostIdUserId(freePostId, userId);
 		// 삭제 목록 (DB, 추천, 댓글, 이미지 삭제(각각의 BO를 불러서 삭제))
 		// 이미지 삭제
-		fileManager.deleteFile(freePost.getImagePath());
+		if(freePost.getImagePath() != null){
+			fileManager.deleteFile(freePost.getImagePath());
+		}
 		
 		// 추천 삭제
 		recommendBO.deleteRecommendByPostIdType(freePostId, freePost.getType());
