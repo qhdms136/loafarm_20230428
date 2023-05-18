@@ -1,5 +1,6 @@
 package com.loafarm.freepost.bo;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -134,28 +135,34 @@ public class FreePostBO {
 	}
 	// 오늘의 날짜 추천 갯수에 따른 최신순서 목록
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-	public List<FreePostView> generateFreePostTodayBestViewList(Integer userId, Date createdAt){
+	public List<FreePostView> generateFreePostTodayBestViewList(Integer userId){
 		List<FreePostView> freePostViewList = new ArrayList<>();
 		List<FreePost> freePostList = new ArrayList<>();
-		// 글 목록 가져오기
-		freePostList = freePostMapper.selectFreePostListBycreatedAt(createdAt);			
+		// 오늘 날짜 문자열로 추출
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		Date now = new Date();
+		String nowDate = sdf.format(now);
 		
-		// freePostList 반복 >> 1:1 freePost ->FreePostView => freePostViewList에 넣는다.
+		// 글 목록 가져오기
+		freePostList = freePostMapper.selectFreePostListOrderByPostIdRecommendcount();		
+		
+		// freePostList 반복 >> 1:1 freePost -> freePostTodayList-> FreePostView => freePostViewList에 넣는다.
 		// 향상된 for문
 		// for(변수타입 : 리스트)
 		
+		
 		for(FreePost freepost : freePostList) {
-			FreePostView freePostView = new FreePostView();
-			
-			// 글
-			freePostView.setFreepost(freepost); // 지금 가져온 글
-			
-			// 글쓴이 정보
-			User user = userBO.getUserById(freepost.getUserId());
-			freePostView.setUser(user);
-			
-			// 카드 리스트 꼭 채우기!!!!
-			freePostViewList.add(freePostView);
+			FreePostView freePostToday = new FreePostView();
+			String today = sdf.format(freepost.getCreatedAt());
+			if(nowDate.equals(today)) {
+				freePostToday.setFreepost(freepost);// 지금 가져온 글 에서 필터링
+				// 글쓴이 정보
+				User user = userBO.getUserById(freepost.getUserId());
+				freePostToday.setUser(user);
+				
+				// 카드 리스트 꼭 채우기!!!!
+				freePostViewList.add(freePostToday);
+			}
 		}
 		return freePostViewList;
 	}

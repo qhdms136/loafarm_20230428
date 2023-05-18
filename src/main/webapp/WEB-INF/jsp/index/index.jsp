@@ -1,5 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <div>
 	<div class="img-size"></div>
 </div>
@@ -13,36 +16,14 @@
 		</div>
 		<div class="today-content">
 			<ul class="today-list">
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
-				<li><a href="#"> <span class="cate text-primary">잡담</span>
-						<span class="txt">아아아아아아아아아아</span>
-				</a></li>
+			<c:forEach items="${freePostList}" begin="0" end="9" var="free">
+				<li>
+					<a href="#">
+						<span class="cate text-primary">${free.freepost.category}</span>
+						<span class="txt">${free.freepost.subject}</span>
+					</a>
+				</li>
+			</c:forEach>	
 			</ul>
 		</div>
 	</div>

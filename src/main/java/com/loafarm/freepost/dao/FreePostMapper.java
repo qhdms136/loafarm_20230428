@@ -37,6 +37,8 @@ public interface FreePostMapper {
 	
 	public List<FreePost> selectFreePostListByCategory(String category);
 	
+	public List<FreePost> selectFreePostListOrderByPostIdRecommendcount();
+	
 	public void updateRecommendCount(
 			@Param("freePostId") int freePostId,
 			@Param("type") String type,
