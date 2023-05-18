@@ -43,6 +43,25 @@
 		ORDER BY
 			`id` DESC
 	</select>
+	<select id="selectFreePostListByRecommendCount" resultType="com.loafarm.freepost.model.FreePost">
+		SELECT
+			`id`
+			, `userId`
+			, `category`
+			, `subject`
+			, `content`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`free_post`
+		WHERE
+			`recommendCount` >= #{recommendCount}
+		ORDER BY
+			`id` DESC
+	</select>
 	<select id="selectFreePostListByCategory" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
 			`id`

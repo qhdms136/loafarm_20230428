@@ -7,8 +7,8 @@
 	<div class="fp-content">
 		<div class="fp-title">자유 게시판</div>
 		<div class="rc-btn">
-			<a href="#" class="free-img reco1">10추글</a>
-			<a href="#" class="free-img reco3">30추글</a>
+			<a href="/free/free_list_view_recommend?recommendCount=10" class="free-img reco1">10추글</a>
+			<a href="/free/free_list_view_recommend?recommendCount=30" class="free-img reco3">30추글</a>
 		</div>
 		<div class="cate-area">
 			<a href="/free/free_list_view" class="cate-area-one">전체</a>

@@ -1,6 +1,7 @@
 package com.loafarm.freepost.bo;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -131,6 +132,63 @@ public class FreePostBO {
 		
 		return freePostMapper.deletePostByPostIdUserId(freePostId, userId);
 	}
+	// 오늘의 날짜 추천 갯수에 따른 최신순서 목록
+	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
+	public List<FreePostView> generateFreePostTodayBestViewList(Integer userId, Date createdAt){
+		List<FreePostView> freePostViewList = new ArrayList<>();
+		List<FreePost> freePostList = new ArrayList<>();
+		// 글 목록 가져오기
+		freePostList = freePostMapper.selectFreePostListBycreatedAt(createdAt);			
+		
+		// freePostList 반복 >> 1:1 freePost ->FreePostView => freePostViewList에 넣는다.
+		// 향상된 for문
+		// for(변수타입 : 리스트)
+		
+		for(FreePost freepost : freePostList) {
+			FreePostView freePostView = new FreePostView();
+			
+			// 글
+			freePostView.setFreepost(freepost); // 지금 가져온 글
+			
+			// 글쓴이 정보
+			User user = userBO.getUserById(freepost.getUserId());
+			freePostView.setUser(user);
+			
+			// 카드 리스트 꼭 채우기!!!!
+			freePostViewList.add(freePostView);
+		}
+		return freePostViewList;
+	}
+	
+	// 추천 갯수의 따른 자유 게시판 목록
+	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
+	public List<FreePostView> generateFreePostRecommendViewList(Integer userId, int recommendCount){
+		List<FreePostView> freePostViewList = new ArrayList<>();
+		List<FreePost> freePostList = new ArrayList<>();
+		// 글 목록 가져오기
+		freePostList = freePostMapper.selectFreePostListByRecommendCount(recommendCount);			
+		
+		// freePostList 반복 >> 1:1 freePost ->FreePostView => freePostViewList에 넣는다.
+		// 향상된 for문
+		// for(변수타입 : 리스트)
+		
+		for(FreePost freepost : freePostList) {
+			FreePostView freePostView = new FreePostView();
+			
+			// 글
+			freePostView.setFreepost(freepost); // 지금 가져온 글
+			
+			// 글쓴이 정보
+			User user = userBO.getUserById(freepost.getUserId());
+			freePostView.setUser(user);
+			
+			// 카드 리스트 꼭 채우기!!!!
+			freePostViewList.add(freePostView);
+		}
+		return freePostViewList;
+	}
+	
+	
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<FreePostView> generateFreePostViewList(Integer userId, String category){

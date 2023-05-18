@@ -19,6 +19,9 @@ public interface FreePostMapper {
 	
 	public List<FreePost> selectFreePostList();
 	
+	// 추천수에 따른 자유 게시판 목록
+	public List<FreePost> selectFreePostListByRecommendCount(int recommendCount);
+	
 	public FreePost selectFreePostById(int freePostId);
 	
 	public void updateFreePostByPostId(

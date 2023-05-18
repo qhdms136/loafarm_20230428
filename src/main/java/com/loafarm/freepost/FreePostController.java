@@ -34,6 +34,18 @@ public class FreePostController {
 		return "template/layout";
 	}
 	
+	@GetMapping("/free_list_view_recommend")
+	public String freeListRecommendCountView(Model model,
+			@RequestParam("recommendCount") int recommendCount,
+			HttpSession session) {
+		// 비로그인 시에도 게시물 목록 보기 가능
+		Integer userId = (Integer)session.getAttribute("userId");
+		List<FreePostView> freePostViewList = freePostBO.generateFreePostRecommendViewList(userId, recommendCount);
+		model.addAttribute("freePostList", freePostViewList);
+		model.addAttribute("view", "free/freePost");
+		return "template/layout";
+	}
+	
 	@GetMapping("/free_detail_view")
 	public String freeDetailView(Model model,
 			@RequestParam("freePostId") int freePostId,

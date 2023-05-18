@@ -93,7 +93,6 @@ $(document).ready(function(){
 		
 		let postId = $(this).data("post-id");
 		let type = $(this).data("type");
-		alert(postId + ":::" + type);
 		
 		$. ajax({
 			// request

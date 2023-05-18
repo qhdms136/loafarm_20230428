@@ -39,7 +39,7 @@ font-family: 'Noto Sans KR', sans-serif;}
 .article-tb td{font-size:12px;}
 
 /* free_list_view */
-.fp-content{width:60%;height:600px;background-color:#ffffff;}
+.fp-content{width:60%;padding-bottom:80px;background-color:#ffffff;}
 .fp-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
 .rc-btn{margin-left:70px;height:30px;margin-top:25px;}
 .rc-btn a{display:block;
