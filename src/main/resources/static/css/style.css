@@ -204,6 +204,11 @@ footer{height:100px;background-color:black;color:#ffffff;}
 .cc-write-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
 .cc-write-box{margin-bottom:80px;width:80%;background-color:#ffffff;}
 .custom-subject{margin-top:60px;margin-left:40px;}
+.custom-name{width:50%;margin-top:10px;margin-left:40px;}
+.tip-font{font-size:14px;margin-left:40px;margin-top:30px;color:#AA1212;}
+.ch-search{height:40px;margin-top:10px;}
+#imgSearh{font-size:20px;}
+#imgSearh img{margin-top:10px;}
 .cu-img-box{margin-top:20px;margin-left:40px;}
 .cc-file{margin-left:40px;margin-top:50px;}
 .cc-save{font-size:12px;}

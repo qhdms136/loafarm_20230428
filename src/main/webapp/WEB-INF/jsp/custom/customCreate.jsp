@@ -8,6 +8,13 @@
 				<div class="d-flex">
 					<input type="text" id="subject" class="custom-subject form-control" placeholder="제목을 입력해주세요">
 				</div>
+				<div class="tip-font"><b>Tip : </b>캐릭터 검색 후 이미지를 추출하여 업로드 하실 수 있습니다!!!<br><small>(마우스 우클릭 후 다른 이름으로 저장)</small><br>
+				<small>(커스텀이 없거나 서버가 점검중이면 이미지가 안나올 수 있습니다.)</small></div>
+				<div class="d-flex mb-3">
+					<input type=text id="characterName" class="custom-name form-control" placeholder="캐릭터명을 입력해주세요">
+					<button class="btn btn-info ch-search" id="search">검색</button>
+				</div>
+				<div id="imgSearh"></div>
 				<div class="cc-file d-flex justify-content-between">
 					<input type="file" id="file" accept=".jpg, .jpeg, .png, .gif">
 					<div class="cc-btn-box d-flex">
@@ -95,5 +102,31 @@ $(document).ready(function(){
 			}
 		});
 	})
+	
+	//
+	$('#search').on('click', function(){
+		if(!$('#characterName').val()){
+			alert("캐릭터명을 입력해주세요");
+			return;
+		}
+		$.ajax({
+			method: "GET"
+			,url:"https://developer-lostark.game.onstove.com/armories/characters/coolguy/profiles"
+			,data:{CharacterName:$('#characterName').val().trim()}
+			,headers:{authorization: "bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyIsImtpZCI6IktYMk40TkRDSTJ5NTA5NWpjTWk5TllqY2lyZyJ9.eyJpc3MiOiJodHRwczovL2x1ZHkuZ2FtZS5vbnN0b3ZlLmNvbSIsImF1ZCI6Imh0dHBzOi8vbHVkeS5nYW1lLm9uc3RvdmUuY29tL3Jlc291cmNlcyIsImNsaWVudF9pZCI6IjEwMDAwMDAwMDAyNDkyMTYifQ.MDBXKgOvoM_opYyf6_Se5tduLDG4V7ueXr7kOKqcQ1c9SFESn2FtzbYYNiuXFt_KfZ8qKFXh0pxPJKEHF_NacJB4A7nWiitdWMKe-cmyzupiuTQ2Pacueq5Pv5wJnxSAuU3cb8WkdW2VPueKnMJGP7S3CxXmyvKCSZE5Wnj8cXF8aVnYGgRlpW__jt1aF3ywnXJjzOi8jW1T_kNhX2TCFp8FaccQGR6z2lkttMsHFus_nQ-VA_tkFERcNTXkkg8AnpgMOQcGgGZ2mQxcn7WlIHHDEDzaEtHTm6ntGlp-FEzUayvXgPzySAGaHShmmLKjciAz-_9vpYnOHfWq7f4XgA"}
+		})
+			.done(function(msg){
+				if(!msg){
+					alert("캐릭터 정보가 없습니다.");
+					return false;
+				}
+				console.log(msg.CharacterName);
+				console.log(msg.CharacterImage);
+				$("#imgSearh *").remove();
+				$("#imgSearh").append("<b>" + msg.CharacterName + "<b>");
+				$("#imgSearh").append("<img src='" + msg.CharacterImage + "'/>");
+			});
+	});
+	
 });
 </script>
