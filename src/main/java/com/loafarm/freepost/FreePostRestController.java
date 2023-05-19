@@ -45,7 +45,7 @@ public class FreePostRestController {
 			result.put("result", "성공");
 		} else {
 			result.put("code", 500);
-			result.put("errorMessage", "글을 저장하지 못했습니다.");
+			result.put("errorMessage", "글을 저장하는데 실패하였습니다.");
 		}
 		return result;
 	}

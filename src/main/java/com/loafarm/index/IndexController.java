@@ -27,8 +27,7 @@ public class IndexController {
 		List<FreePostView> freePostViewList = freePostBO.generateFreePostTodayBestViewList(userId);
 		model.addAttribute("freePostList", freePostViewList);
 		model.addAttribute("view", "index/index");
-		
-		
+	
 		return "template/layout";
 	}
 }

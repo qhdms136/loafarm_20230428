@@ -143,10 +143,10 @@ public class FreePostBO {
 		Date now = new Date();
 		String nowDate = sdf.format(now);
 		
-		// 글 목록 가져오기
+		// 글 목록 가져오기 >> 미리 OrderBy로 정렬하여 List에 저장할때 순서 맞춤
 		freePostList = freePostMapper.selectFreePostListOrderByPostIdRecommendcount();		
 		
-		// freePostList 반복 >> 1:1 freePost -> freePostTodayList-> FreePostView => freePostViewList에 넣는다.
+		// freePostList 반복 >> 1:1 freePost -> freePostTodayList => freePostViewList에 넣는다.
 		// 향상된 for문
 		// for(변수타입 : 리스트)
 		

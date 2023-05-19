@@ -131,3 +131,85 @@ padding:2px 13px 3px;color:#000000;}
 .fd-comment-date{margin-top:5px;margin-left:20px;color:#8C8C8C;}
 .fd-comment-content{margin-left:20px;margin-top:7px;padding-bottom:15px;border-bottom:solid 1px #BDBDBD;}
 footer{height:100px;background-color:black;color:#ffffff;}
+
+/* custom_list_view */
+.cp-content{width:80%;height:800px;background-color:#ffffff;}
+.cp-title{font-size:32px;padding-top:40px;margin-left:100px;font-weight:bold;}
+
+/* custom-btn */
+.custom-btn {
+  width: 130px;
+  height: 40px;
+  padding: 10px 25px;
+  border: 2px solid #000;
+  font-family: 'Lato', sans-serif;
+  font-weight: 500;
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  display: inline-block;
+}
+
+/* 4 */
+.btn-4 {
+  position: relative;
+  color: #000;
+  z-index: 2;
+  line-height: 40px;
+  padding: 0;
+}
+.btn-4:hover{
+  border: none;
+}
+.btn-4:before,
+.btn-4:after {
+  position: absolute;
+  content: "";
+  width: 0%;
+  height: 0%;
+  border: 2px solid;
+  z-index: -1;
+  transition: all 0.3s ease;
+}
+.btn-4:before {
+  top: 0;
+   left: 0;
+   border-bottom-color: transparent;
+   border-right-color: transparent;
+   border-top-color: #000;
+   border-left-color: #000;
+}
+.btn-4:after{
+   bottom: 0;
+   right: 0;
+   border-top-color: transparent;
+   border-left-color: transparent;
+   border-bottom-color: #000;
+   border-right-color: #000;
+}
+.btn-4:hover:before,
+.btn-4:hover:after {
+  border-color: #000;
+  height: 100%;
+  width: 100%;
+}
+
+
+
+
+
+/* custom_create and update */
+.cc-write-content{width:60%;background-color:#ffffff;}
+.cc-write-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
+.cc-write-box{margin-bottom:80px;width:80%;background-color:#ffffff;}
+.custom-subject{margin-top:60px;margin-left:40px;}
+.cu-img-box{margin-top:20px;margin-left:40px;}
+.cc-file{margin-left:40px;margin-top:50px;}
+.cc-save{font-size:12px;}
+.cc-save:hover{background-color:#000000;}
+.cc-clear{font-size:12px;}
+.cc-list{color:#8C8C8C;background-color:#ffffff;border-color:#BDBDBD;}
+.cc-list:hover{color:#000000;}
+.cc-btn-box{height:30px;width:250px;}
+.cu-file{width:250px;}
