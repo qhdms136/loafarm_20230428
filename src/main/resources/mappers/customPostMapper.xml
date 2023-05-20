@@ -22,4 +22,34 @@
 			, NOW()
 		)
 	</insert>
+	<select id="selectCustomPostList" resultType="com.loafarm.custompost.model.CustomPost">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`custom_post`
+		ORDER BY
+			`id` DESC
+	</select>
+	<select id="selectCustomPostById" parameterType="int" resultType="com.loafarm.custompost.model.CustomPost">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`custom_post`
+		WHERE
+			`id` = #{customPostId}
+	</select>
 </mapper>

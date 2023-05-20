@@ -42,6 +42,7 @@ $(document).ready(function(){
 		.done(function(data){
 			// response
 			if(data.code == 1){
+				window.history.forward();
 				location.href="/index/index_view";
 			} else{
 				alert(data.errorMessage);

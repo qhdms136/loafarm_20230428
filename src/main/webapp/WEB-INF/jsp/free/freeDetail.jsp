@@ -7,7 +7,7 @@
 	<div class="fd-content">
 		<div class="fd-header d-flex justify-content-bwteen">
 			<div class="col-4 d-flex justify-content-start align-items-center">
-				<span class="fd-user-name">${freePostView.user.loginId}</span>
+				<span class="fd-user-name">${freePostView.user.nickname}</span>
 			</div>
 			<div class="col-4 d-flex justify-content-center align-items-center">
 				<span><fmt:formatDate value="${freePostView.freepost.createdAt}" pattern="yyyy-MM-dd"/></span>

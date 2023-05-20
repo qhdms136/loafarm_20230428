@@ -34,8 +34,8 @@ public class PermissionInterceptor implements HandlerInterceptor{
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}
-		
-		if(userId == null && (uri.startsWith("/custom/custom_create_view"))) {
+		// 비로그인 && custom
+		if(userId == null && (uri.startsWith("/custom/custom_create_view") || uri.startsWith("/custom/custom_detail_view"))) {
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}

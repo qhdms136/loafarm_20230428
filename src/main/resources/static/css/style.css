@@ -9,7 +9,14 @@ header{height:100px; background-color:#B2CCFF;}
 .logo-font a{margin-left:20px;font-size:48px;font-weight:bold;font-family: 'Frank Ruhl Libre', serif;
 font-family: 'Noto Sans KR', sans-serif;color:#000000;}
 .logo-font a:hover{color:#000000;text-decoration:none;}
-.menu{height:50px; background-color:#CEFBC9;}
+.menu{height:50px; background-color:#000000;}
+.menu a{color:#ffffff;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    -ms-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    transition: all 0.4s;}
+.menu a:hover{background-color:#ffffff;color:#000000;}
 .img-size{height:300px;  background-color:#D4F4FA;}
 .menu a{font-size:24px;font-family: 'Frank Ruhl Libre', serif;
 font-family: 'Noto Sans KR', sans-serif;}
@@ -135,67 +142,10 @@ footer{height:100px;background-color:black;color:#ffffff;}
 /* custom_list_view */
 .cp-content{width:80%;height:800px;background-color:#ffffff;}
 .cp-title{font-size:32px;padding-top:40px;margin-left:100px;font-weight:bold;}
-
-/* custom-btn */
-.custom-btn {
-  width: 130px;
-  height: 40px;
-  padding: 10px 25px;
-  border: 2px solid #000;
-  font-family: 'Lato', sans-serif;
-  font-weight: 500;
-  background: transparent;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  display: inline-block;
-}
-
-/* 4 */
-.btn-4 {
-  position: relative;
-  color: #000;
-  z-index: 2;
-  line-height: 40px;
-  padding: 0;
-}
-.btn-4:hover{
-  border: none;
-}
-.btn-4:before,
-.btn-4:after {
-  position: absolute;
-  content: "";
-  width: 0%;
-  height: 0%;
-  border: 2px solid;
-  z-index: -1;
-  transition: all 0.3s ease;
-}
-.btn-4:before {
-  top: 0;
-   left: 0;
-   border-bottom-color: transparent;
-   border-right-color: transparent;
-   border-top-color: #000;
-   border-left-color: #000;
-}
-.btn-4:after{
-   bottom: 0;
-   right: 0;
-   border-top-color: transparent;
-   border-left-color: transparent;
-   border-bottom-color: #000;
-   border-right-color: #000;
-}
-.btn-4:hover:before,
-.btn-4:hover:after {
-  border-color: #000;
-  height: 100%;
-  width: 100%;
-}
-
-
+.cp-btn-box{margin-top:30px;margin-right:20px;}
+.cp-box{padding-top:20px;height:400px;margin:20px 25px 0px 25px;background-color:#ffffff;width:300px;box-shadow:3px 3px 3px 3px #BDC0C0;}
+.cp-list-box{padding-top:10px;}
+.card-subject > a{color:#000000;}
 
 
 
@@ -218,3 +168,22 @@ footer{height:100px;background-color:black;color:#ffffff;}
 .cc-list:hover{color:#000000;}
 .cc-btn-box{height:30px;width:250px;}
 .cu-file{width:250px;}
+
+
+/* custom_detail_view */
+.cd-content{width:60%;background-color:#B2EBF4;}
+.cd-header{margin-top:30px;background-color:#B2CCFF;height:60px;}
+.cd-user-name{margin-left:10px;margin-bottom:5px;font-size:24px;font-weight:bold;}
+.cd-box{width:80%;background-color:#ffffff;}
+.cd-subject{margin-top:40px;font-size:28px;color:#AA1212;word-wrap:break-word;}
+.cd-img{margin-top:30px;}
+.cd-like-count{margin-left:7px;font-weight:bold;font-size:16px;color:#CC3D3D;}
+.cd-like-box{margin-top:100px;border-radius:5%;width:90px;height:55px;background-color:#ffffff;border:1px solid #8C8C8C;}
+.cd-bottom{height:100px;background-color:#B2CCFF;}
+.cd-comment-box{margin-bottom:100px;background-color:#ffffff;}
+.cd-comment-write{margin-top:10px;margin-left:20px;}
+.cd-comment-input {width:90%;}
+.cd-comment-title{font-size:28px;}
+.cd-comment-name{font-weight:bold;margin-left:20px;margin-top:5px;}
+.cd-comment-date{margin-top:5px;margin-left:20px;color:#8C8C8C;}
+.cd-comment-content{margin-left:20px;margin-top:7px;padding-bottom:15px;border-bottom:solid 1px #BDBDBD;}
