@@ -19,4 +19,9 @@ public interface CustomPostMapper {
 	public List<CustomPost> selectCustomPostList();
 	
 	public CustomPost selectCustomPostById(int customPostId);
+	
+	public void updateRecommendCount(
+			@Param("customPostId") int customPostId,
+			@Param("type") String type,
+			@Param("recommendCount") int recommendCount);
 }

@@ -28,13 +28,13 @@
 					<div class="cd-like-box d-flex justify-content-center align-items-center">	
 						<c:choose>
 						<%-- 추천하기가 눌려있지 않을 때 --%>
-							<c:when test="${freePostView.filledRecommend eq false}">
-								<a href="#" class="recommend-btn" data-post-id="${freePostView.freepost.id}" data-type="custom">
+							<c:when test="${customPostView.filledRecommend eq false}">
+								<a href="#" class="recommend-btn" data-post-id="${customPostView.custompost.id}" data-type="custom">
 									<img src="/static/img/free/good_like_none.png" width="30" height="30" alt="recommend-none">
 								</a>
 							</c:when>
-							<c:when test="${freePostView.filledRecommend eq true}">
-								<a href="#" class="recommend-btn" data-post-id="${freePostView.freepost.id}" data-type="custom">
+							<c:when test="${customPostView.filledRecommend eq true}">
+								<a href="#" class="recommend-btn" data-post-id="${customPostView.custompost.id}" data-type="custom">
 									<img src="/static/img/free/good_like_red.png" width="30" height="30" alt="recommend-none">
 								</a>
 							</c:when>
@@ -46,13 +46,13 @@
 		</div>
 		<div class="cd-bottom d-flex justify-content-end align-items-center">
 			<div>
-				<button onclick="location.href='/free/free_list_view'" class="btn btn-outline-dark">목록</button>
+				<button onclick="location.href='/custom/custom_list_view'" class="btn btn-outline-dark">목록</button>
 				<c:choose>
 					<c:when test="${userId eq customPostView.user.id}">
-						<button onclick="location.href='/free/free_update_view?freePostId=${customPostView.custompost.id}'" class="mx-3 btn btn-dark">글수정</button>
+						<button onclick="location.href='/custom/custom_update_view?customPostId=${customPostView.custompost.id}'" class="mx-3 btn btn-dark">글수정</button>
 					</c:when>
 					<c:when test="${userId != customPostView.user.id}">
-						<button onclick="location.href='/free/free_create_view'" class="mx-3 btn btn-dark">글쓰기</button>
+						<button onclick="location.href='/custom/custom_create_view'" class="mx-3 btn btn-dark">글쓰기</button>
 					</c:when>
 				</c:choose>
 			</div>
@@ -63,7 +63,7 @@
 			</div>
 			<div class="cd-comment-list">
 				<c:forEach items="${customPostView.commentList}" var="comments">
-					<c:if test="${freePostView.freepost.id eq comments.comment.postId and freePostView.freepost.type eq comments.comment.type}">
+					<c:if test="${customPostView.custompost.id eq comments.comment.postId and customPostView.custompost.type eq comments.comment.type}">
 						<div class="d-flex">
 							<div class="cd-comment-name">${comments.user.nickname}</div>
 							<div class="cd-comment-date">(<fmt:formatDate value="${comments.comment.createdAt}" pattern="yyyy-MM-dd"/>)</div>
@@ -79,9 +79,94 @@
 				</c:forEach>
 			</div>
 			<div class="cd-comment-write d-flex">
-						<input type="text" class="fd-comment-input form-control mr-2" placeholder="댓글 달기"/>
-						<button type="button" class="fd-comment-btn btn btn-light" data-post-id="${freePostView.freepost.id}" data-type="${freePostView.freepost.type}">게시</button>
+						<input type="text" class="cd-comment-input form-control mr-2" placeholder="댓글 달기"/>
+						<button type="button" class="cd-comment-btn btn btn-light" data-post-id="${customPostView.custompost.id}" data-type="${customPostView.custompost.type}">게시</button>
 			</div>
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+	// 추천하기 버튼 클릭
+	$('.cd-like-box > a').on('click', function(e){
+		e.preventDefault();
+		
+		let postId = $(this).data("post-id");
+		let type = $(this).data("type");
+		
+		$.ajax({
+			// request
+			url:"/recommend/" + postId + "/" + type
+			
+			// response
+			,success:function(data){
+				if(data.code == 1){
+					location.reload(true);
+				} else{
+					alert("추천 error 발생");
+				}
+			}
+			,error:function(request, status, error){
+				alert("추천하기 중 오류가 발생했습니다.");
+			}
+		});
+	});
+	
+	// 댓글 게시 버튼
+	$('.cd-comment-btn').on('click', function(){
+		let postId = $(this).data("post-id");
+		let content = $(this).prev().val();
+		let type = $(this).data("type");
+		
+		console.log(postId);
+		console.log(content);
+		console.log(type);
+		
+		if(!content || content == ""){
+			alert("댓글 내용을 입력해주세요.");
+			return;
+		}
+		
+		// ajax
+		$.ajax({
+			// request
+			type:"POST"
+			,url:"/comment/create"
+			,data:{"postId":postId, "content":content, "type":type}
+			,success:function(data){
+				if(data.code == 1){
+					location.reload(true);
+				} else {
+					alert(data.errorMessage);
+				}
+			}
+			,error:function(request, status, error){
+				alert("댓글 게시 중 시스템 오류가 발생했습니다.");
+			}
+		});
+	});
+	
+	// 댓글 삭제 버튼
+	$('.commentDelBtn').on('click', function(e){
+		e.preventDefault();
+		let commentId = $(this).data("comment-id");
+		alert(commentId);
+		
+		// ajax
+		$.ajax({
+			// request
+			url:"/comment/delete/" + commentId
+			// response
+			,success:function(data){
+				if(data.code == 1){
+					alert("댓글이 삭제되었습니다.");
+					location.reload(true);
+				}
+			}
+			,error:function(request, status, error){
+				alert("댓글 삭제 중 오류가 발생했습니다.");
+			}
+		});
+	})
+});
+</script>

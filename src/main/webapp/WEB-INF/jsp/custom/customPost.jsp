@@ -12,7 +12,7 @@
 			<button class="mx-3 btn btn-outline-dark">목록</button>
 			<button class="mx-3 btn btn-dark" id="customWriteBtn">글쓰기</button>
 		</div>
-		<div class="cp-list-box">
+		<div class="cp-list-box d-flex">
 		<c:forEach items="${customPostList}" var="custom">
 			<div class="cp-box">
 				<div class="d-flex justify-content-center">

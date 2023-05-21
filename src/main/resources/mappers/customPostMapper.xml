@@ -52,4 +52,12 @@
 		WHERE
 			`id` = #{customPostId}
 	</select>
+	<update id="updateRecommendCount" parameterType="map">
+		UPDATE `custom_post`
+		SET
+			`recommendCount` = #{recommendCount}
+		WHERE
+			`id` = #{customPostId}
+			AND `type` = #{type}
+	</update>
 </mapper>

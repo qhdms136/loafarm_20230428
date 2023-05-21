@@ -94,7 +94,7 @@ $(document).ready(function(){
 		let postId = $(this).data("post-id");
 		let type = $(this).data("type");
 		
-		$. ajax({
+		$.ajax({
 			// request
 			url:"/recommend/" + postId + "/" + type
 			
@@ -134,16 +134,16 @@ $(document).ready(function(){
 			type:"POST"
 			,url:"/comment/create"
 			,data:{"postId":postId, "content":content, "type":type}
-		,success:function(data){
-			if(data.code == 1){
-				location.reload(true); // 새로고침
-			} else{
-				alert(data.errorMessage);
+			,success:function(data){
+				if(data.code == 1){
+					location.reload(true); // 새로고침
+				} else{
+					alert(data.errorMessage);
+				}
 			}
-		}
-		,error:function(request, status, error){
-			alert("댓글 게시 중 시스템 오류가 발생했습니다.");
-		}
+			,error:function(request, status, error){
+				alert("댓글 게시 중 시스템 오류가 발생했습니다.");
+			}
 		});
 	});
 	

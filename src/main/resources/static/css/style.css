@@ -137,14 +137,14 @@ padding:2px 13px 3px;color:#000000;}
 .fd-comment-name{font-weight:bold;margin-left:20px;margin-top:5px;}
 .fd-comment-date{margin-top:5px;margin-left:20px;color:#8C8C8C;}
 .fd-comment-content{margin-left:20px;margin-top:7px;padding-bottom:15px;border-bottom:solid 1px #BDBDBD;}
-footer{height:100px;background-color:black;color:#ffffff;}
+
 
 /* custom_list_view */
-.cp-content{width:80%;height:800px;background-color:#ffffff;}
+.cp-content{padding-bottom:100px;width:90%;background-color:#ffffff;}
 .cp-title{font-size:32px;padding-top:40px;margin-left:100px;font-weight:bold;}
 .cp-btn-box{margin-top:30px;margin-right:20px;}
-.cp-box{padding-top:20px;height:400px;margin:20px 25px 0px 25px;background-color:#ffffff;width:300px;box-shadow:3px 3px 3px 3px #BDC0C0;}
-.cp-list-box{padding-top:10px;}
+.cp-box{padding-top:20px;height:400px;margin:20px 20px 0px 20px;background-color:#ffffff;width:300px;box-shadow:3px 3px 3px 3px #BDC0C0;}
+.cp-list-box{padding-top:10px;flex-flow:row wrap;margin-left:25px;}
 .card-subject > a{color:#000000;}
 
 
@@ -187,3 +187,7 @@ footer{height:100px;background-color:black;color:#ffffff;}
 .cd-comment-name{font-weight:bold;margin-left:20px;margin-top:5px;}
 .cd-comment-date{margin-top:5px;margin-left:20px;color:#8C8C8C;}
 .cd-comment-content{margin-left:20px;margin-top:7px;padding-bottom:15px;border-bottom:solid 1px #BDBDBD;}
+
+
+
+footer{height:100px;background-color:black;color:#ffffff;}

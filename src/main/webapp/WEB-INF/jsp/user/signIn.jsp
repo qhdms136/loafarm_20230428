@@ -25,7 +25,14 @@
 </div>
 
 <script>
+
 $(document).ready(function(){
+	// 로그인 후 뒤로가기 막기 
+	window.history.forward(); 
+	function noBack(){
+		window.history.forward();
+	} 
+	
 	$('#loginForm').submit(function(e){
 		e.preventDefault(); //서브밋 기능 중단(정확히는 서브밋 하고 브라우저 이동 이벤트 막기)
 		
@@ -37,13 +44,19 @@ $(document).ready(function(){
 		console.log(url);
 		let params = $(this).serialize();
 		console.log(params);
+		var referrer = document.referrer;
 		
 		$.post(url, params) // request
 		.done(function(data){
 			// response
 			if(data.code == 1){
-				window.history.forward();
-				location.href="/index/index_view";
+				// 로그인 후 이전페이지 가져오기 
+				if(referrer.indexOf("/user/sign_in_view") != -1){
+					window.location.href="/index/index_view";
+				} else{
+					window.location.href = referrer;
+				}
+				//location.href="/index/index_view";
 			} else{
 				alert(data.errorMessage);
 			}

@@ -14,7 +14,8 @@
 <!-- 내가 만든 스타일 시트 -->
 <link rel="stylesheet" type="text/css" href="/static/css/style2.css">
 </head>
-<body>
+<!-- 로그인 후 뒤로가기 막기 -->
+<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
 	<div id="wrap">
 		<section class="content">
 			<jsp:include page="../${view}.jsp"/>

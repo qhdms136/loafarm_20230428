@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.loafarm.comment.bo.CommentBO;
+import com.loafarm.comment.model.CommentView;
 import com.loafarm.common.FileManagerService;
 import com.loafarm.custompost.dao.CustomPostMapper;
 import com.loafarm.custompost.model.CustomPost;
@@ -88,12 +89,16 @@ public class CustomPostBO {
 		// 글쓴이 정보
 		User user = userBO.getUserById(customPost.getUserId());
 		customPostView.setUser(user);
+		// 추천 여부
+		customPostView.setFilledRecommend(recommendBO.existRecommend(userId, customPostId, type));
 		
 		// 추천 개수
-		
-		// 추천 여부
-		
+		int recommendCount = recommendBO.selectRecommendCountByPostIdType(customPostId, type);
+		customPostMapper.updateRecommendCount(customPostId, type, recommendCount);
+		customPostView.setRecommendCount(recommendCount);
 		// 댓글 들
+		List<CommentView> commentList = commentBO.generateCommentList(customPostId, type);
+		customPostView.setCommentList(commentList);
 		
 		return customPostView;
 	}
