@@ -18,6 +18,8 @@ public interface CustomPostMapper {
 	
 	public List<CustomPost> selectCustomPostList();
 	
+	public List<CustomPost> selectCustomPostListByLimit(int limit);
+	
 	public CustomPost selectCustomPostById(int customPostId);
 	
 	public void updateRecommendCount(

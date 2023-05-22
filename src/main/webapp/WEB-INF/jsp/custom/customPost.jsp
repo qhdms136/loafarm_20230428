@@ -37,6 +37,13 @@
 </div>
 <script>
 $(document).ready(function(){
+	let options = {
+			root: document.querySelector('#scrollArea'),
+			  rootMargin: '0px',
+			  threshold: 1.0
+			}
+	let observer = new IntersectionObserver(callback, options);
+	
 	// 글쓰기 버튼 및 글쓰기 권한 필터링
 	$('#customWriteBtn').on('click', function(){
 		let userId = '<%=(Integer)session.getAttribute("userId")%>';
