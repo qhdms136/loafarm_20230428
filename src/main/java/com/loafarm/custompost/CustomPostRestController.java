@@ -6,7 +6,9 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -43,4 +45,42 @@ public class CustomPostRestController {
 		}
 		return result;
 	}
+	
+	@PutMapping("/update")
+	public Map<String, Object> update(
+			@RequestParam("customPostId") int customPostId,
+			@RequestParam("subject") String subject,
+			@RequestParam("file") MultipartFile file,
+			HttpSession session){
+		int userId = (int)session.getAttribute("userId");
+		String userLoginId =(String)session.getAttribute("userLoginId");
+		
+		// update db
+		customPostBO.updateCustomPost(userId, userLoginId, customPostId, subject, file);
+		
+		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}
+	
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("customPostId") int customPostId,
+			HttpSession session){
+		Map<String, Object> result = new HashMap<>();
+		int userId = (int)session.getAttribute("userId");
+		
+		// delete
+		int rowCount = customPostBO.deletePostByPostIdUserId(customPostId, userId);
+		if(rowCount > 0) {
+			result.put("code", 1);
+			result.put("result", "성공");
+		} else {
+			result.put("code", 500);
+			result.put("errorMessage", "커스터마이징 게시물 삭제에 실패하였습니다.");
+		}
+		return result;
+	}
+	 
 }

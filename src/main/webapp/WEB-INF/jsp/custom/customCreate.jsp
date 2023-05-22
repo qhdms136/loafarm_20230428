@@ -122,8 +122,12 @@ $(document).ready(function(){
 				}
 				console.log(msg.CharacterName);
 				console.log(msg.CharacterImage);
+				if(msg.CharacterImage == null){
+					alert("커스터마이징 이미지가없습니다.");
+					return false;
+				}
 				$("#imgSearh *").remove();
-				$("#imgSearh").append("<b>" + msg.CharacterName + "<b>");
+				$("#imgSearh").append("<b>" + msg.CharacterName + "<b>"+ "<br>");
 				$("#imgSearh").append("<img src='" + msg.CharacterImage + "'/>");
 			});
 	});

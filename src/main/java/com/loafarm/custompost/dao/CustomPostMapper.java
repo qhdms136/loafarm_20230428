@@ -24,4 +24,19 @@ public interface CustomPostMapper {
 			@Param("customPostId") int customPostId,
 			@Param("type") String type,
 			@Param("recommendCount") int recommendCount);
+	
+	public CustomPost selectCustomPostByPostIdUserId(
+			@Param("customPostId") int customPostId,
+			@Param("userId") int userId);
+	
+	public void updateCustomPostByPostId(
+			@Param("customPostId") int customPostId,
+			@Param("subject") String subject,
+			@Param("imagePath") String imagePath);
+	
+	public int deletePostByPostIdUserId(
+			@Param("customPostId") int customPostId,
+			@Param("userId") int userId);
+	
+	public List<CustomPost> selectCustomPostListOrderByPostIdRecommendCount();
 }

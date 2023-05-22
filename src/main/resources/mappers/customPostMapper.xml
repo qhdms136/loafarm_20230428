@@ -52,6 +52,37 @@
 		WHERE
 			`id` = #{customPostId}
 	</select>
+	<select id="selectCustomPostByPostIdUserId" parameterType="map" resultType="com.loafarm.custompost.model.CustomPost">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`custom_post`
+		WHERE
+			`id` = #{customPostId}
+			AND `userId` = #{userId}
+	</select>
+	<select id="selectCustomPostListOrderByPostIdRecommendCount" resultType="com.loafarm.custompost.model.CustomPost">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`custom_post`
+		ORDER BY
+			`recommendCount` DESC, `id` DESC
+	</select>
 	<update id="updateRecommendCount" parameterType="map">
 		UPDATE `custom_post`
 		SET
@@ -60,4 +91,21 @@
 			`id` = #{customPostId}
 			AND `type` = #{type}
 	</update>
+	<update id="updateCustomPostByPostId" parameterType="map">
+		UPDATE `custom_post`
+		SET
+			`subject` = #{subject}
+			, `imagePath` = #{imagePath}
+			, `updatedAt` = NOW()
+		WHERE
+			`id` = #{customPostId}
+	</update>
+	<delete id="deletePostByPostIdUserId" parameterType="map">
+		DELETE
+		FROM
+			`custom_post`
+		WHERE
+			`id` = #{customPostId}
+			AND `userId` = #{userId}
+	</delete>
 </mapper>

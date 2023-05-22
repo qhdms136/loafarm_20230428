@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.loafarm.custompost.bo.CustomPostBO;
+import com.loafarm.custompost.model.CustomPost;
 import com.loafarm.custompost.model.CustomPostView;
 
 @RequestMapping("/custom")
@@ -27,6 +28,16 @@ public class CustomPostController {
 		// 비 로그인 시에도 게시물 목록을 보기위해 null값 허용
 		Integer userId = (Integer)session.getAttribute("userId");
 		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostViewList(userId);
+		model.addAttribute("customPostList", customPostViewList);
+		model.addAttribute("view", "custom/customPost");
+		return "template/layout";
+	}
+	
+	@GetMapping("/custom_list_view_recommend")
+	public String customListViewRecommend(Model model,
+			HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostRecommendViewList(userId);
 		model.addAttribute("customPostList", customPostViewList);
 		model.addAttribute("view", "custom/customPost");
 		return "template/layout";
@@ -48,6 +59,17 @@ public class CustomPostController {
 		CustomPostView customPostView = customPostBO.generateCustomPostView(customPostId, userId, type);
 		model.addAttribute("customPostView", customPostView);
 		model.addAttribute("view", "custom/customDetail");
+		return "template/layout";
+	}
+	
+	@GetMapping("/custom_update_view")
+	public String customUpdateView(Model model,
+			@RequestParam("customPostId") int customPostId,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		CustomPost customPost = customPostBO.getCustomPostByPostIdUserId(customPostId, userId);
+		model.addAttribute("customPost", customPost);
+		model.addAttribute("view", "custom/customUpdate");
 		return "template/layout";
 	}
 }

@@ -7,12 +7,11 @@
 	<div class="cp-content">
 		<div class="cp-title">커스터마이징 자랑</div>
 		<div class="cp-btn-box d-flex justify-content-end">
-			<button class="mx-3 btn btn-outline-primary">최신순</button>
-			<button class="mx-3 btn btn-outline-danger ">추천순</button>
-			<button class="mx-3 btn btn-outline-dark">목록</button>
+			<button onclick="location.href='/custom/custom_list_view'" class="mx-3 btn btn-outline-primary">최신순</button>
+			<button onclick="location.href='/custom/custom_list_view_recommend'" class="mx-3 btn btn-outline-danger ">추천순</button>
 			<button class="mx-3 btn btn-dark" id="customWriteBtn">글쓰기</button>
 		</div>
-		<div class="cp-list-box d-flex">
+		<div class="cp-list-box d-flex justify-content-start">
 		<c:forEach items="${customPostList}" var="custom">
 			<div class="cp-box">
 				<div class="d-flex justify-content-center">
