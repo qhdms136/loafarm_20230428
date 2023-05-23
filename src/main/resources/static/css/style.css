@@ -188,6 +188,26 @@ padding:2px 13px 3px;color:#000000;}
 .cd-comment-date{margin-top:5px;margin-left:20px;color:#8C8C8C;}
 .cd-comment-content{margin-left:20px;margin-top:7px;padding-bottom:15px;border-bottom:solid 1px #BDBDBD;}
 
+/* guild_list_view */
+.gp-content{width:60%;padding-bottom:80px;background-color:#ffffff;}
+.gp-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
+.guild-table td a{color:#000000;}
+.guild-table{margin-top:50px;}
 
+/* guild_create_view */
+.gc-write-content{width:60%;background-color:#ffffff;}
+.gc-write-title{font-size:32px;margin-top:30px;margin-left:30px;font-weight:bold;}
+.gc-write-box{margin-bottom:50px;width:80%;background-color:#ffffff;}
+.guild-subject{margin-top:20px;margin-left:40px;}
+.guild-content{margin-top:20px;margin-left:40px;}
+.gc-save{font-size:12px;}
+.gc-save:hover{background-color:#000000;}
+.gc-clear{font-size:12px;}
+.gc-list{color:#8C8C8C;background-color:#ffffff;border-color:#BDBDBD;}
+.gc-list:hover{color:#000000;}
+.gc-btn-box{margin-left:40px;margin-top:20px;height:30px;width:250px;}
+#guild_address{width:400px;}
+.number-box{margin-left:40px;margin-top:20px;}
+.address-box{margin-top:20px;margin-left:40px;}
 
 footer{height:100px;background-color:black;color:#ffffff;}
