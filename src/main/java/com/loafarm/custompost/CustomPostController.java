@@ -33,6 +33,16 @@ public class CustomPostController {
 		return "template/layout";
 	}
 	
+	@GetMapping("/custom_more_list_view")
+	public String customMoreListView(Model model,
+			@RequestParam("cnt") int cnt,
+			HttpSession session) {
+		Integer userId = (Integer)session.getAttribute("userId");
+		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostMoreViewList(userId, cnt);
+		model.addAttribute("customPostList", customPostViewList);
+		return "custom/customMoreList";
+	}
+	
 	@GetMapping("/custom_list_view_recommend")
 	public String customListViewRecommend(Model model,
 			HttpSession session) {

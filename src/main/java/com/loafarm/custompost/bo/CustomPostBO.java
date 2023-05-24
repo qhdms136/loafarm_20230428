@@ -21,6 +21,9 @@ import com.loafarm.user.model.User;
 
 @Service
 public class CustomPostBO {
+	
+	private static final int POST_SIZE = 6;
+	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	@Autowired
@@ -108,8 +111,9 @@ public class CustomPostBO {
 	public List<CustomPostView> generateCustomPostViewList(Integer userId){
 		List<CustomPostView> customPostViewList = new ArrayList<>();
 		List<CustomPost> customPostList = new ArrayList<>();
+		
 		// 글 목록 가져오기
-		customPostList = customPostMapper.selectCustomPostList();
+		customPostList = customPostMapper.selectCustomPostListByLimitSix();
 		
 		// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
 		for(CustomPost custompost : customPostList) {
@@ -127,6 +131,33 @@ public class CustomPostBO {
 		}
 		return customPostViewList;
 	}
+	
+	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
+		public List<CustomPostView> generateCustomPostMoreViewList(Integer userId, int cnt){
+			List<CustomPostView> customPostViewList = new ArrayList<>();
+			List<CustomPost> customPostList = new ArrayList<>();
+			int limit = POST_SIZE * cnt;
+			
+			// 글 목록 가져오기
+			customPostList = customPostMapper.selectCustomPostListByLimit(limit);
+			
+			// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
+			for(CustomPost custompost : customPostList) {
+				CustomPostView customPostView = new CustomPostView();
+				
+				// 글
+				customPostView.setCustompost(custompost);
+				
+				// 글쓴이 정보
+				User user = userBO.getUserById(custompost.getUserId());
+				customPostView.setUser(user);
+				
+				// 카드 리스트 채우기
+				customPostViewList.add(customPostView);
+			}
+			return customPostViewList;
+		}
+	
 	
 	// 커스터마이징 상세페이지
 	public CustomPostView generateCustomPostView(int customPostId, int userId, String type) {

@@ -8,7 +8,6 @@ public class GuildPost {
 	private String subject;
 	private String address;
 	private String content;
-	private int subCount;
 	private int maxCount;
 	private Date createdAt;
 	private Date updatedAt;
@@ -42,12 +41,6 @@ public class GuildPost {
 	}
 	public void setContent(String content) {
 		this.content = content;
-	}
-	public int getSubCount() {
-		return subCount;
-	}
-	public void setSubCount(int subCount) {
-		this.subCount = subCount;
 	}
 	public int getMaxCount() {
 		return maxCount;

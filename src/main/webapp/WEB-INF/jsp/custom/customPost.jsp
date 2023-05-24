@@ -36,8 +36,40 @@
 	</div>
 </div>
 <script>
-$(document).ready(function(){
+let target = document.querySelector(".cp-box:last-child");
+console.log(target);
+let cnt = 1;
+let callback = (entries, observer) => {
+	 entries.forEach((entry) => {
+	        if (entry.isIntersecting) {
+	        	
+	            observer.unobserve(entry.target);
+	            cnt += 1;
+	            console.log('화면에서 노출됨');
+	            console.log(cnt);
+	            // ajax
+	            $.ajax({
+	            	url:"/custom/custom_more_list_view"
+	    	        ,data:{"cnt":cnt}
+	    	        ,success:function(data){
+	    	          		$('.cp-list-box').html(data);
+	    	            }
+	            });
+	            
+	        } else {
+	            console.log('화면에서 제외됨');
+	        }
+	    });
+	};
 
+let option = {
+	    threshold: 1,
+	}
+	
+let observer = new IntersectionObserver(callback, option);
+observer.observe(target);
+
+$(document).ready(function(){
 	// 글쓰기 버튼 및 글쓰기 권한 필터링
 	$('#customWriteBtn').on('click', function(){
 		let userId = '<%=(Integer)session.getAttribute("userId")%>';

@@ -10,6 +10,7 @@ import com.loafarm.custompost.model.CustomPost;
 @Repository
 public interface CustomPostMapper {
 	
+	
 	public int insertCustomPost(
 			@Param("userId") int userId,
 			@Param("subject") String subject,
@@ -17,6 +18,8 @@ public interface CustomPostMapper {
 			@Param("imagePath") String imagePath);
 	
 	public List<CustomPost> selectCustomPostList();
+	
+	public List<CustomPost> selectCustomPostListByLimitSix();
 	
 	public List<CustomPost> selectCustomPostListByLimit(int limit);
 	

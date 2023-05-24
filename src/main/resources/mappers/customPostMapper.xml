@@ -38,6 +38,22 @@
 			`id` DESC
 		LIMIT #{limit}
 	</select>
+	<select id="selectCustomPostListByLimitSix" resultType="com.loafarm.custompost.model.CustomPost">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`custom_post`
+		ORDER BY
+			`id` DESC
+		LIMIT 6
+	</select>
 	<select id="selectCustomPostList" resultType="com.loafarm.custompost.model.CustomPost">
 		SELECT
 			`id`
