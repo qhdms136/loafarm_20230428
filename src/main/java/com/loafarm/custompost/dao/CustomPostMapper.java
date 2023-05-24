@@ -19,9 +19,11 @@ public interface CustomPostMapper {
 	
 	public List<CustomPost> selectCustomPostList();
 	
-	public List<CustomPost> selectCustomPostListByLimitSix();
-	
 	public List<CustomPost> selectCustomPostListByLimit(int limit);
+	
+	public List<CustomPost> selectCustomPostListByIndexAndLimit(
+			@Param("index") int index,
+			@Param("limit") int limit);
 	
 	public CustomPost selectCustomPostById(int customPostId);
 	

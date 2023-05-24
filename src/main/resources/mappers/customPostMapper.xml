@@ -38,7 +38,7 @@
 			`id` DESC
 		LIMIT #{limit}
 	</select>
-	<select id="selectCustomPostListByLimitSix" resultType="com.loafarm.custompost.model.CustomPost">
+	<select id="selectCustomPostListByIndexAndLimit" parameterType="map" resultType="com.loafarm.custompost.model.CustomPost">
 		SELECT
 			`id`
 			, `userId`
@@ -52,7 +52,7 @@
 			`custom_post`
 		ORDER BY
 			`id` DESC
-		LIMIT 6
+		LIMIT #{index}, #{limit}
 	</select>
 	<select id="selectCustomPostList" resultType="com.loafarm.custompost.model.CustomPost">
 		SELECT

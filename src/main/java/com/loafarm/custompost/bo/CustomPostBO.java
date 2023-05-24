@@ -113,7 +113,7 @@ public class CustomPostBO {
 		List<CustomPost> customPostList = new ArrayList<>();
 		
 		// 글 목록 가져오기
-		customPostList = customPostMapper.selectCustomPostListByLimitSix();
+		customPostList = customPostMapper.selectCustomPostListByLimit(POST_SIZE);
 		
 		// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
 		for(CustomPost custompost : customPostList) {
@@ -136,10 +136,11 @@ public class CustomPostBO {
 		public List<CustomPostView> generateCustomPostMoreViewList(Integer userId, int cnt){
 			List<CustomPostView> customPostViewList = new ArrayList<>();
 			List<CustomPost> customPostList = new ArrayList<>();
-			int limit = POST_SIZE * cnt;
+			// int limit = POST_SIZE * cnt;
+			int index = POST_SIZE * cnt;
 			
 			// 글 목록 가져오기
-			customPostList = customPostMapper.selectCustomPostListByLimit(limit);
+			customPostList = customPostMapper.selectCustomPostListByIndexAndLimit(index, POST_SIZE);
 			
 			// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
 			for(CustomPost custompost : customPostList) {

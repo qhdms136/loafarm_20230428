@@ -1,5 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<script type="text/javascript">
+ window.history.forward();
+ function noBack(){window.history.forward();}
+</script>
  <div class="d-flex justify-content-center">
 	<div class="login-box">
 		<h1 class="title-margin font-weight-bold">Sign In</h1>
@@ -27,12 +31,6 @@
 <script>
 
 $(document).ready(function(){
-	// 로그인 후 뒤로가기 막기 
-	window.history.forward(); 
-	function noBack(){
-		window.history.forward();
-	} 
-	
 	$('#loginForm').submit(function(e){
 		e.preventDefault(); //서브밋 기능 중단(정확히는 서브밋 하고 브라우저 이동 이벤트 막기)
 		
