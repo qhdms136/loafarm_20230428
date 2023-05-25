@@ -15,11 +15,19 @@
 						<th>제목</th>
 						<th>글쓴이</th>
 						<th>날짜</th>
-						<th>추천</th>
+						<th>최대정원</th>
 					</tr>
 				</thead>
 				<tbody>
-				
+				<c:forEach items="${guildPostList}" var="guild">
+					<tr>
+						<td>${guild.guildpost.id}</td>
+						<td class="text-left"><a href="/guild/guild_detail_view?guildPostId=${guild.guildpost.id}">${guild.guildpost.subject}</a></td>
+						<td>${guild.user.nickname}</td>
+						<td><fmt:formatDate value="${guild.guildpost.createdAt}" pattern="yyyy-MM-dd"/></td>
+						<td>${guild.guildpost.maxCount}</td>
+					</tr>
+				</c:forEach>
 				</tbody>
 			</table>
 		</div>

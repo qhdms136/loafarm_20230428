@@ -1,0 +1,90 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+<div class="d-flex justify-content-center">
+	<div class="gd-content">
+		<div class="gd-header d-flex justify-content-bwteen">
+			<div class="col-4 d-flex justify-content-start align-items-center">
+				<span class="gd-user-name">${guildPostView.user.nickname}</span>
+			</div>
+			<div class="col-4 d-flex justify-content-center align-items-center">
+				<span><fmt:formatDate value="${guildPostView.guildpost.createdAt}" pattern="yyyy-MM-dd"/></span>
+			</div>
+			<div class="col-4"></div>	<!-- 3개의 박스를 일정하게 가운데로 맞추기 위해 -->
+		</div>
+		<div class="d-flex justify-content-center">
+			<div class="gd-box">
+				<div class="gd-subject">${guildPostView.guildpost.subject}</div>
+				<div class="gd-text">${guildPostView.guildpost.content}</div>
+				<div class="address-box d-flex justify-content-center">
+					<div>
+						<div id="map" style="width:500px;height:300px;margin-top:10px;display:block" data-address="${guildPostView.guildpost.address}"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=996f3681c69f47af40cf467e79616ae1"></script>
+					</div>
+				</div>
+				<div class="d-flex justify-content-center">
+					<div class="gd-like-box d-flex justify-content-center align-items-center">	
+						<div class="gd-like-count">${freePostView.recommendCount}</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="gd-bottom d-flex justify-content-end align-items-center">
+			<div>
+				<button onclick="location.href='/free/free_list_view'" class="btn btn-outline-dark">목록</button>
+				<c:choose>
+					<c:when test="${userId eq freePostView.user.id}">
+						<button onclick="location.href='/free/free_update_view?freePostId=${freePostView.freepost.id}'" class="mx-3 btn btn-dark">글수정</button>
+					</c:when>
+					<c:when test="${userId != freePostView.user.id}">
+						<button onclick="location.href='/free/free_create_view'" class="mx-3 btn btn-dark">글쓰기</button>
+					</c:when>
+				</c:choose>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+mapOption = { 
+    center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+    level: 3 // 지도의 확대 레벨
+};
+
+//지도를 표시할 div와  지도 옵션으로  지도를 생성합니다
+var map = new kakao.maps.Map(mapContainer, mapOption); 
+
+//post 주소
+var address = $(this).data("address");
+console.log(address);
+
+//주소-좌표 변환 객체를 생성합니다
+var geocoder = new kakao.maps.services.Geocoder();
+
+// 주소로 좌표를 검색합니다
+geocoder.addressSearch(address, function(result, status) {
+
+    // 정상적으로 검색이 완료됐으면 
+     if (status === kakao.maps.services.Status.OK) {
+
+        var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+
+        // 결과값으로 받은 위치를 마커로 표시합니다
+        var marker = new kakao.maps.Marker({
+            map: map,
+            position: coords
+        });
+
+        // 인포윈도우로 장소에 대한 설명을 표시합니다
+        var infowindow = new kakao.maps.InfoWindow({
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+        });
+        infowindow.open(map, marker);
+
+        // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
+        map.setCenter(coords);
+    } 
+});    
+</script>

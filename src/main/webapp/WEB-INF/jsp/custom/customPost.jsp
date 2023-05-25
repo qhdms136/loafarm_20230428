@@ -35,18 +35,16 @@
 		</div>
 	</div>
 <script>
-$(document).ready(function(){
+$(document).on('addEventListener', '.cp-box', function(){
 	let option = {
 		    threshold: 1,
 	}
 	let target = document.querySelectorAll(".cp-box");
-	let morelist = document.querySelectorAll(".cp-list-box");
 	console.log(target);
 	var cnt = 0;
 	const observer = new IntersectionObserver(entries => {
 		 entries.forEach((entry) => {
 		        if (entry.isIntersecting) {
-		        	observer.unobserve(entry.target)
 		            cnt += 1;
 		            console.log('화면에서 노출됨');
 		            console.log(cnt);
@@ -59,12 +57,19 @@ $(document).ready(function(){
 		    	        	//$('.cp-list-box').html(data);
 		    	        }
 		            });
+		            observer.unobserve(entry.target);
 		        } else {
 		            console.log('화면에서 제외됨');
+		            return;
 		        }
 		    })
 		});
 	 observer.observe(target[target.length -1]);
+	 const fetchItem = () => {
+		 
+	 }
+});
+$(document).ready(function(){
 	// 글쓰기 버튼 및 글쓰기 권한 필터링
 	$('#customWriteBtn').on('click', function(){
 		let userId = '<%=(Integer)session.getAttribute("userId")%>';
@@ -73,6 +78,10 @@ $(document).ready(function(){
 			location.href="/user/sign_in_view";
 		} 
 		location.href="/custom/custom_create_view";
+	});
+	
+	$('.cp-box:last-child').on('click', function() {
+		console.log(this);
 	});
 });
 </script>

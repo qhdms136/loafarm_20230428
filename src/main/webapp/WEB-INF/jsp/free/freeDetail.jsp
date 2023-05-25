@@ -12,7 +12,7 @@
 			<div class="col-4 d-flex justify-content-center align-items-center">
 				<span><fmt:formatDate value="${freePostView.freepost.createdAt}" pattern="yyyy-MM-dd"/></span>
 			</div>
-			<div class="col-4"></div>
+			<div class="col-4"></div><!-- 3개의 박스를 일정하게 가운데로 맞추기 위해 -->
 		</div>
 		<div class="d-flex justify-content-center">
 			<div class="fd-box">
