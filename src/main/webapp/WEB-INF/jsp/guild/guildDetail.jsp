@@ -18,28 +18,31 @@
 			<div class="gd-box">
 				<div class="gd-subject">${guildPostView.guildpost.subject}</div>
 				<div class="gd-text">${guildPostView.guildpost.content}</div>
-				<div class="address-box d-flex justify-content-center">
+				<div>${guildPostView.guildpost.address}</div>
 					<div>
-						<div id="map" style="width:500px;height:300px;margin-top:10px;display:block" data-address="${guildPostView.guildpost.address}"></div>
-						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=996f3681c69f47af40cf467e79616ae1"></script>
+						<input type="hidden" id="address" value="${guildPostView.guildpost.address}">
+						<div id="map" style="width:100%;height:300px;margin-top:10px;display:block"></div>
+						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=996f3681c69f47af40cf467e79616ae1&libraries=services"></script>
 					</div>
+				<div style="margin-top:50px;">
+					<textarea class="sub-content form-control" id="content" rows="5" placeholder="내용을 입력해주세요"></textarea>
 				</div>
-				<div class="d-flex justify-content-center">
-					<div class="gd-like-box d-flex justify-content-center align-items-center">	
-						<div class="gd-like-count">${freePostView.recommendCount}</div>
-					</div>
+				<div class="my-3 d-flex justify-content-center">
+					<c:if test="${userId != guildPostView.user.id}">
+						<button id="subBtn" class="btn btn-primary" data-post-id="${guildPostView.guildpost.id}">신청하기</button>
+					</c:if>
 				</div>
 			</div>
 		</div>
 		<div class="gd-bottom d-flex justify-content-end align-items-center">
 			<div>
-				<button onclick="location.href='/free/free_list_view'" class="btn btn-outline-dark">목록</button>
+				<button onclick="location.href='/guild/guild_list_view'" class="btn btn-outline-dark">목록</button>
 				<c:choose>
-					<c:when test="${userId eq freePostView.user.id}">
+					<c:when test="${userId eq guildPostView.user.id}">
 						<button onclick="location.href='/free/free_update_view?freePostId=${freePostView.freepost.id}'" class="mx-3 btn btn-dark">글수정</button>
 					</c:when>
-					<c:when test="${userId != freePostView.user.id}">
-						<button onclick="location.href='/free/free_create_view'" class="mx-3 btn btn-dark">글쓰기</button>
+					<c:when test="${userId != guildPostView.user.id}">
+						<button onclick="location.href='/guild/guild_create_view'" class="mx-3 btn btn-dark">글쓰기</button>
 					</c:when>
 				</c:choose>
 			</div>
@@ -57,7 +60,7 @@ mapOption = {
 var map = new kakao.maps.Map(mapContainer, mapOption); 
 
 //post 주소
-var address = $(this).data("address");
+var address = $('#address').val();
 console.log(address);
 
 //주소-좌표 변환 객체를 생성합니다
@@ -79,12 +82,41 @@ geocoder.addressSearch(address, function(result, status) {
 
         // 인포윈도우로 장소에 대한 설명을 표시합니다
         var infowindow = new kakao.maps.InfoWindow({
-            content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
+            content: '<div style="width:150px;text-align:center;padding:6px 0;">모임장소</div>'
         });
         infowindow.open(map, marker);
 
         // 지도의 중심을 결과값으로 받은 위치로 이동시킵니다
         map.setCenter(coords);
     } 
-});    
+});
+$(document).ready(function(){
+	$('#subBtn').on('click', function(){
+		let content = $('#content').val();
+		let postId = $(this).data("post-id");
+		console.log(content);
+		console.log(postId);
+		if(!content){
+			alert("내용을 입력해주세요");
+			return;
+		}
+		
+		$.ajax({
+			// request
+			type:"POST"
+			,url:"/subuser/create"
+			,data:{"content":content, "postId":postId}
+			// response
+			,success:function(data){
+				if(data.code == 1){
+					alert("신청이 완료되었습니다.");
+					location.reload(true);
+				} 
+			}
+			,error:function(request, status, error){
+				alert("신청하기를 실패하였습니다.");
+			}
+		});
+	});
+});
 </script>

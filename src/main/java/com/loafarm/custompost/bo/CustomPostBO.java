@@ -138,7 +138,10 @@ public class CustomPostBO {
 			List<CustomPost> customPostList = new ArrayList<>();
 			// int limit = POST_SIZE * cnt;
 			int index = POST_SIZE * cnt;
-			
+			int size = customPostMapper.selectCustomPostListByIndexAndLimit(index, POST_SIZE).size();
+			if(size == 0) {
+				return null;
+			}
 			// 글 목록 가져오기
 			customPostList = customPostMapper.selectCustomPostListByIndexAndLimit(index, POST_SIZE);
 			

@@ -64,6 +64,21 @@ public class CustomPostRestController {
 		return result;
 	}
 	
+	@PostMapping("/more")
+	public Map<String, Object> more(
+			@RequestParam("cnt") int cnt,
+			HttpSession session){
+		Integer userId = (Integer)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
+		customPostBO.generateCustomPostMoreViewList(userId, cnt);
+		if(customPostBO.generateCustomPostMoreViewList(userId, cnt) == null) {
+			result.put("code", 300);
+		}
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}
+	
 	@DeleteMapping("/delete")
 	public Map<String, Object> delete(
 			@RequestParam("customPostId") int customPostId,

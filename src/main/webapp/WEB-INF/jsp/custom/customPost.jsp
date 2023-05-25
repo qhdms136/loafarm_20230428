@@ -11,7 +11,7 @@
 			<button onclick="location.href='/custom/custom_list_view_recommend'" class="mx-3 btn btn-outline-danger ">추천순</button>
 			<button class="mx-3 btn btn-dark" id="customWriteBtn">글쓰기</button>
 		</div>
-		<div class="cp-list-box d-flex justify-content-start">
+		<div id="customListBox" class="cp-list-box d-flex justify-content-start">
 		<c:forEach items="${customPostList}" var="custom">
 			<div class="cp-box">
 				<div class="d-flex justify-content-center">
@@ -33,42 +33,60 @@
 			</div>
 		</c:forEach>
 		</div>
+		<div id="more" style="width:100%; height:200px;"></div>
 	</div>
 <script>
-$(document).on('addEventListener', '.cp-box', function(){
+	var footDiv = document.getElementById('more');
+	var customListBox = document.getElementById('customListBox');
+	var parent = footDiv.parentElement;
+	console.log(parent);
+	
+	customListBox.onscroll = function(e){
+		var rect = footDiv.getBoundingClientRect().top - parent.getBoundingClientRect().top;
+		console.log(rect);
+	}
+	
 	let option = {
 		    threshold: 1,
 	}
-	let target = document.querySelectorAll(".cp-box");
+	let target = document.querySelector("#more");
 	console.log(target);
-	var cnt = 0;
+	var cnt = 1;
 	const observer = new IntersectionObserver(entries => {
 		 entries.forEach((entry) => {
+			 
 		        if (entry.isIntersecting) {
-		            cnt += 1;
-		            console.log('화면에서 노출됨');
-		            console.log(cnt);
-		            // ajax
-		            $.ajax({
-		            	url:"/custom/custom_more_list_view"
-		    	        ,data:{"cnt":cnt}
-		    	        ,success:function(data){
-		    	          $('.cp-list-box').append(data);
-		    	        	//$('.cp-list-box').html(data);
-		    	        }
-		            });
-		            observer.unobserve(entry.target);
+		        	console.log('화면에서 노출됨');
+		        	$.ajax({
+		        		type:"POST"
+		        		,url:"/custom/more"
+		        		,data:{"cnt":cnt}
+		        		,success:function(data){
+		        			if(data.code == 1){
+		        				 // ajax
+		    		            $.ajax({
+		    		            	url:"/custom/custom_more_list_view"
+		    		    	        ,data:{"cnt":cnt}
+		    		    	        ,success:function(data){
+		    		    	        	cnt += 1;
+		    				            console.log(cnt);
+		    		    	          $('.cp-list-box').append(data);
+		    		    	        	//$('.cp-list-box').html(data);
+		    		    	        }
+		    		            });
+		        			} else {
+		        				observer.unobserve(target);
+		        				return false;
+		        			}
+		        		}
+		        	});       
 		        } else {
 		            console.log('화면에서 제외됨');
 		            return;
 		        }
 		    })
 		});
-	 observer.observe(target[target.length -1]);
-	 const fetchItem = () => {
-		 
-	 }
-});
+	//observer.observe(target);
 $(document).ready(function(){
 	// 글쓰기 버튼 및 글쓰기 권한 필터링
 	$('#customWriteBtn').on('click', function(){

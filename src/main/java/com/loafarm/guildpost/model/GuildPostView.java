@@ -9,7 +9,7 @@ public class GuildPostView {
 	// 글쓴이 정보
 	private User user;
 
-	// 추천 갯수
+	// 신청자
 	
 	
 	
