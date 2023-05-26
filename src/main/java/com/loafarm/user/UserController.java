@@ -14,7 +14,7 @@ public class UserController {
 	@GetMapping("/sign_up_view")
 	public String signUpView(Model model) {
 		model.addAttribute("view", "user/signUp");
-		return "template/user";
+		return "template/usersign";
 	}
 	
 	@GetMapping("/sign_in_view")

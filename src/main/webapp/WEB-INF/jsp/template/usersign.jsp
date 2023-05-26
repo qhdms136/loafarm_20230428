@@ -14,13 +14,8 @@
 <!-- 내가 만든 스타일 시트 -->
 <link rel="stylesheet" type="text/css" href="/static/css/style2.css">
 </head>
-<!-- 로그인 후 뒤로가기 막기 -->
-<script type="text/javascript">
- window.history.forward();
- function noBack(){window.history.forward();}
- window.onunload=function(){null};
-</script>
-<body onload="noBack();" onpageshow="if(event.persisted) noBack();" onunload="">
+
+<body>
 	<div id="wrap">
 		<section class="content">
 			<jsp:include page="../${view}.jsp"/>

@@ -1,9 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<script type="text/javascript">
- window.history.forward();
- function noBack(){window.history.forward();}
-</script>
  <div class="d-flex justify-content-center">
 	<div class="login-box">
 		<h1 class="title-margin font-weight-bold">Sign In</h1>
