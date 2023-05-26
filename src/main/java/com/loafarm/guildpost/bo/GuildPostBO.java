@@ -69,4 +69,8 @@ public class GuildPostBO {
 		
 		return guildPostView;
 	}
+	
+	public GuildPost getGuildPostByPostIdUserId(int guildPostId, int userId) {
+		return guildPostMapper.selectGuildPostById(guildPostId);
+	}
 }

@@ -24,10 +24,11 @@ public class CustomPostController {
 	
 	@GetMapping("/custom_list_view")
 	public String customListView(Model model,
+			@RequestParam(value="type", required=false) Integer type,
 			HttpSession session) {
 		// 비 로그인 시에도 게시물 목록을 보기위해 null값 허용
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostViewList(userId);
+		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostViewList(userId, type);
 		model.addAttribute("customPostList", customPostViewList);
 		model.addAttribute("view", "custom/customPost");
 		return "template/layout";
@@ -36,22 +37,23 @@ public class CustomPostController {
 	@GetMapping("/custom_more_list_view")
 	public String customMoreListView(Model model,
 			@RequestParam("cnt") int cnt,
+			@RequestParam(value="type", required=false) Integer type,
 			HttpSession session) {
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostMoreViewList(userId, cnt);
+		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostMoreViewList(userId, cnt, type);
 		model.addAttribute("customPostList", customPostViewList);
 		return "custom/customMoreList";
 	}
 	
-	@GetMapping("/custom_list_view_recommend")
-	public String customListViewRecommend(Model model,
-			HttpSession session) {
-		Integer userId = (Integer)session.getAttribute("userId");
-		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostRecommendViewList(userId);
-		model.addAttribute("customPostList", customPostViewList);
-		model.addAttribute("view", "custom/customPost");
-		return "template/layout";
-	}
+	/*
+	 * @GetMapping("/custom_list_view_recommend") public String
+	 * customListViewRecommend(Model model, HttpSession session) { Integer userId =
+	 * (Integer)session.getAttribute("userId"); List<CustomPostView>
+	 * customPostViewList =
+	 * customPostBO.generateCustomPostRecommendViewList(userId);
+	 * model.addAttribute("customPostList", customPostViewList);
+	 * model.addAttribute("view", "custom/customPost"); return "template/layout"; }
+	 */
 	
 	
 	@GetMapping("/custom_create_view")

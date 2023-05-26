@@ -39,7 +39,7 @@
 				<button onclick="location.href='/guild/guild_list_view'" class="btn btn-outline-dark">목록</button>
 				<c:choose>
 					<c:when test="${userId eq guildPostView.user.id}">
-						<button onclick="location.href='/free/free_update_view?freePostId=${freePostView.freepost.id}'" class="mx-3 btn btn-dark">글수정</button>
+						<button onclick="location.href='/guild/guild_update_view?guildPostId=${guildPostView.guildpost.id}'" class="mx-3 btn btn-dark">글수정</button>
 					</c:when>
 					<c:when test="${userId != guildPostView.user.id}">
 						<button onclick="location.href='/guild/guild_create_view'" class="mx-3 btn btn-dark">글쓰기</button>

@@ -108,12 +108,17 @@ public class CustomPostBO {
 	}
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-	public List<CustomPostView> generateCustomPostViewList(Integer userId){
+	public List<CustomPostView> generateCustomPostViewList(Integer userId, Integer type){
 		List<CustomPostView> customPostViewList = new ArrayList<>();
 		List<CustomPost> customPostList = new ArrayList<>();
 		
 		// 글 목록 가져오기
-		customPostList = customPostMapper.selectCustomPostListByLimit(POST_SIZE);
+		if(type == 2) {
+			customPostList = customPostMapper.selectCustomPostListOrderByPostIdRecommendCount(POST_SIZE);
+		} else {
+			customPostList = customPostMapper.selectCustomPostListByLimit(POST_SIZE);
+		}
+		
 		
 		// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
 		for(CustomPost custompost : customPostList) {
@@ -133,32 +138,57 @@ public class CustomPostBO {
 	}
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-		public List<CustomPostView> generateCustomPostMoreViewList(Integer userId, int cnt){
+		public List<CustomPostView> generateCustomPostMoreViewList(Integer userId, int cnt, Integer type){
 			List<CustomPostView> customPostViewList = new ArrayList<>();
 			List<CustomPost> customPostList = new ArrayList<>();
 			// int limit = POST_SIZE * cnt;
 			int index = POST_SIZE * cnt;
-			int size = customPostMapper.selectCustomPostListByIndexAndLimit(index, POST_SIZE).size();
-			if(size == 0) {
-				return null;
+			if(type == 2) {
+				int size = customPostMapper.selectCustomPostListRecommendCountByIndexAndLimit(index, POST_SIZE).size();
+				if(size == 0) {
+					return null;
+				}
+				// 글 목록 가져오기
+				customPostList = customPostMapper.selectCustomPostListRecommendCountByIndexAndLimit(index, POST_SIZE);
+				
+				// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
+				for(CustomPost custompost : customPostList) {
+					CustomPostView customPostView = new CustomPostView();
+					
+					// 글
+					customPostView.setCustompost(custompost);
+					
+					// 글쓴이 정보
+					User user = userBO.getUserById(custompost.getUserId());
+					customPostView.setUser(user);
+					
+					// 카드 리스트 채우기
+					customPostViewList.add(customPostView);
+				}
+			} else {
+				int size = customPostMapper.selectCustomPostListByIndexAndLimit(index, POST_SIZE).size();
+				if(size == 0) {
+					return null;
+				}
+				// 글 목록 가져오기
+				customPostList = customPostMapper.selectCustomPostListByIndexAndLimit(index, POST_SIZE);
+				
+				// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
+				for(CustomPost custompost : customPostList) {
+					CustomPostView customPostView = new CustomPostView();
+					
+					// 글
+					customPostView.setCustompost(custompost);
+					
+					// 글쓴이 정보
+					User user = userBO.getUserById(custompost.getUserId());
+					customPostView.setUser(user);
+					
+					// 카드 리스트 채우기
+					customPostViewList.add(customPostView);
+				}
 			}
-			// 글 목록 가져오기
-			customPostList = customPostMapper.selectCustomPostListByIndexAndLimit(index, POST_SIZE);
 			
-			// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
-			for(CustomPost custompost : customPostList) {
-				CustomPostView customPostView = new CustomPostView();
-				
-				// 글
-				customPostView.setCustompost(custompost);
-				
-				// 글쓴이 정보
-				User user = userBO.getUserById(custompost.getUserId());
-				customPostView.setUser(user);
-				
-				// 카드 리스트 채우기
-				customPostViewList.add(customPostView);
-			}
 			return customPostViewList;
 		}
 	
@@ -196,27 +226,24 @@ public class CustomPostBO {
 	
 	// 추천 갯수에 따른 커스터마이징 목록
 	// 비 로그인 시에도 볼 수 있도록 null
-	public List<CustomPostView> generateCustomPostRecommendViewList(Integer userId){
-		List<CustomPostView> customPostViewList = new ArrayList<>();
-		List<CustomPost> customPostList = new ArrayList<>();
-		
-		// 글 목록 가져오기
-		customPostList = customPostMapper.selectCustomPostListOrderByPostIdRecommendCount();
-		
-		// customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에 넣기
-		for (CustomPost custompost : customPostList) {
-			CustomPostView customPostView = new CustomPostView();
-
-			// 글
-			customPostView.setCustompost(custompost);
-
-			// 글쓴이 정보
-			User user = userBO.getUserById(custompost.getUserId());
-			customPostView.setUser(user);
-
-			// 카드 리스트 채우기
-			customPostViewList.add(customPostView);
-		}
-		return customPostViewList;
-	}
+	/*
+	 * public List<CustomPostView> generateCustomPostRecommendViewList(Integer
+	 * userId){ List<CustomPostView> customPostViewList = new ArrayList<>();
+	 * List<CustomPost> customPostList = new ArrayList<>();
+	 * 
+	 * // 글 목록 가져오기 customPostList =
+	 * customPostMapper.selectCustomPostListOrderByPostIdRecommendCount();
+	 * 
+	 * // customPostList 반복 >> CustomPost -> CustomPostView => customPostViewList에
+	 * 넣기 for (CustomPost custompost : customPostList) { CustomPostView
+	 * customPostView = new CustomPostView();
+	 * 
+	 * // 글 customPostView.setCustompost(custompost);
+	 * 
+	 * // 글쓴이 정보 User user = userBO.getUserById(custompost.getUserId());
+	 * customPostView.setUser(user);
+	 * 
+	 * // 카드 리스트 채우기 customPostViewList.add(customPostView); } return
+	 * customPostViewList; }
+	 */
 }

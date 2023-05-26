@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.loafarm.guildpost.bo.GuildPostBO;
+import com.loafarm.guildpost.model.GuildPost;
 import com.loafarm.guildpost.model.GuildPostView;
 
 @RequestMapping("/guild")
@@ -42,9 +43,20 @@ public class GuildPostContorller {
 		model.addAttribute("view", "guild/guildDetail");
 		return "template/layout";
 	}
-	@GetMapping("guild_create_view")
+	
+	@GetMapping("/guild_create_view")
 	public String guildCreateView(Model model) {
 		model.addAttribute("view", "guild/guildCreate");
+		return "template/layout";
+	}
+	
+	@GetMapping("/guild_update_view")
+	public String guildUpdateView(Model model,
+			@RequestParam("guildPostId") int guildPostId,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		GuildPost guildPost = guildPostBO.getGuildPostByPostIdUserId(guildPostId, userId);
+		model.addAttribute("view", "guild/guildUpdate");
 		return "template/layout";
 	}
 }

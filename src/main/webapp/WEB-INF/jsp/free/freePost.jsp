@@ -52,19 +52,19 @@
 $(document).ready(function(){
 	
 	// 카테고리 필터링 버튼 클릭시 스타일 유지
-	$('a.cate-area-one').on('click', function(){
+	$('a.cate-area-one').on('click', function(e){
+		e.preventDefault();
 		 $('a.cate-area-one').removeClass("active");
 		 $('a.cate-area-one').css('color', "#000000");
 		 $(this).css('color',"#ffffff"); 
 		 $(this).addClass("active");
-		/*  let category = $(this).data("category");
+		let category = $(this).data("category");
 		console.log(category);
-		$.ajax({
+	/* 	$.ajax({
 			type:"GET"
-			,url:"/free/free_list_view/"
+			,url:"/free/free_list_view"
 			,data:{"category":category}
-			,success:function(data){
-				location.href="/free/free_list_view"
+			,success:function(){
 			}
 			
 		}); */

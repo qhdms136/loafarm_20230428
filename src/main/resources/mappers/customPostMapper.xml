@@ -114,6 +114,23 @@
 			`custom_post`
 		ORDER BY
 			`recommendCount` DESC, `id` DESC
+		LIMIT #{limit}
+	</select>
+		<select id="selectCustomPostListRecommendCountByIndexAndLimit" resultType="com.loafarm.custompost.model.CustomPost">
+		SELECT
+			`id`
+			, `userId`
+			, `subject`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`custom_post`
+		ORDER BY
+			`recommendCount` DESC, `id` DESC
+		LIMIT #{index}, #{limit}
 	</select>
 	<update id="updateRecommendCount" parameterType="map">
 		UPDATE `custom_post`

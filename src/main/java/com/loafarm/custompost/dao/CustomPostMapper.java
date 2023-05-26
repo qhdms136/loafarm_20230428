@@ -45,5 +45,11 @@ public interface CustomPostMapper {
 			@Param("customPostId") int customPostId,
 			@Param("userId") int userId);
 	
-	public List<CustomPost> selectCustomPostListOrderByPostIdRecommendCount();
+	public List<CustomPost> selectCustomPostListOrderByPostIdRecommendCount(int limit);
+	
+	public List<CustomPost> selectCustomPostListRecommendCountByIndexAndLimit(
+			@Param("index") int index,
+			@Param("limit") int limit);
+	
+	
 }
