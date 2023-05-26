@@ -10,11 +10,12 @@
 	 margin: 0 auto;
 	 min-width:1200px;
 }
-
+/*#B2CCFF;*/
 header{
 	height:100px;
-	 background-color:#B2CCFF;
+	background-color:#ffffff;
 }
+
 .logo-font a{
 	margin-left:20px;
 	font-size:48px;
@@ -155,7 +156,38 @@ font-family: 'Noto Sans KR', sans-serif;
 }
 
 
+/* dorp-down */
+.dropdown{
+  position : relative;
+  display : inline-block;
+}
 
+.dropdown-content{
+  display : none;
+  position : absolute;
+  z-index : 1; /*다른 요소들보다 앞에 배치*/
+  font-weight: 400;
+  background-color: #000000;
+  min-width : 200px;
+}
+
+.dropdown-content a{
+  display : block;
+  text-decoration : none;
+  color:#ffffff;;
+  font-size: 12px;
+  padding : 12px 20px;
+}
+
+.dropdown-content a:hover{
+  background-color : #f9f9f9;
+  color:#000000;
+
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
 
 /* free_list_view */
 .fp-content{
@@ -236,6 +268,13 @@ font-family: 'Noto Sans KR', sans-serif;
 	background:#6d6d6d;
 	color:#ffffff;
 	border-radius:10px;
+}
+.free-table > td{
+	width:399px;
+	height:49px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .free-table td a{
 	color:#000000;
@@ -435,6 +474,13 @@ font-family: 'Noto Sans KR', sans-serif;
 	padding-top:10px;
 	padding-left:7%;
 	width:100%;
+}
+.card-subject{
+	width:242px;
+	height:25px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
 }
 .card-subject > a{
 	color:#000000;
@@ -789,6 +835,32 @@ font-family: 'Noto Sans KR', sans-serif;
 
 .address-box {
 	margin-top: 20px;
+}
+
+/* guild_my_view */
+.gm-content{
+	width:60%;
+	padding-bottom:80px;
+	background-color:#ffffff;
+}
+.gm-title{
+	font-size:32px;
+	margin-top:30px;
+	margin-left:30px;
+	font-weight:bold;
+}
+.gm-table{
+	margin-top:30px;
+}
+.gm-table > td{
+	width:235px;
+	height:49px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+.gm-table td a{
+	color:#000000;
 }
 
 footer{height:100px;background-color:black;color:#ffffff;}

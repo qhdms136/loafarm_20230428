@@ -54,6 +54,30 @@ public class GuildPostBO {
 		return guildPostViewList;
 	}
 	
+	// 내 글목록 가져오기
+	public List<GuildPostView> generateGuildPostViewMyList(int userId){
+		List<GuildPostView> guildPostViewList = new ArrayList<>();
+		List<GuildPost> guildPostList = new ArrayList<>();
+		// 글 목록 가져오기
+		guildPostList = guildPostMapper.selectGuildPostMyList(userId);
+		
+		// 반복문
+		for(GuildPost guildpost : guildPostList) {
+			GuildPostView guildPostView = new GuildPostView();
+			
+			// 글
+			guildPostView.setGuildpost(guildpost);
+			
+			// 글쓴이 정보
+			User user = userBO.getUserById(guildpost.getUserId());
+			guildPostView.setUser(user);
+			
+			// 카드 리스트 채우기
+			guildPostViewList.add(guildPostView);
+		}
+		return guildPostViewList;
+	}
+	
 	// 길드모임 상세 페이지
 	public GuildPostView generateGuildPostView(int guildPostId, int userId) {
 		// 길드모임 상세 게시물 1개

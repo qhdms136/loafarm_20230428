@@ -2,23 +2,23 @@
     pageEncoding="UTF-8"%>
 <div class="d-flex justify-content-center">
 	<div class="gc-write-content">
-		<div class="gc-write-title">길드모임 글쓰기</div>
+		<div class="gc-write-title">길드모임 글수정</div>
 		<div class="d-flex justify-content-center">
 			<div class="gc-write-box">
 				<div class="d-flex">
-					<input type="text" id="subject" class="free-subject form-control" placeholder="제목을 입력해주세요">
+					<input type="text" id="subject" class="free-subject form-control" placeholder="제목을 입력해주세요" value="${guildPost.subject}">
 				</div>
 				<div class="address-box d-flex">
-				<input class="form-control" type="text" id="guild_address" placeholder="주소" readonly>
+				<input class="form-control" type="text" id="guild_address" placeholder="주소" readonly value="${guildPost.address}">
 				<input class="btn btn-outline-dark" type="button" onclick="sample5_execDaumPostcode()" value="주소 검색">
 				</div>
 				<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 				
 				<div class="number-box">
-					<span><b>길드모임 최대 인원수</b></span><input type="number" min="5" max="50" class="ml-2" id="maxCount">
+					<span><b>길드모임 최대 인원수</b></span><input type="number" min="5" max="50" class="ml-2" id="maxCount" value="${guildPost.maxCount}">
 				</div>
 				<div class="d-flex">
-					<textarea class="free-content form-control" id="content" rows="10" placeholder="내용을 입력해주세요"></textarea>
+					<textarea class="free-content form-control" id="content" rows="10" placeholder="내용을 입력해주세요">${guildPost.content}</textarea>
 				</div>
 				<div class="d-flex justify-content-end">
 					<div class="gc-btn-box d-flex">
@@ -46,7 +46,7 @@ function sample5_execDaumPostcode() {
  }
  
 $(document).ready(function(){
-	// 자유 게시판 목록을 이동
+	// 길드 게시판 목록을 이동
 	$('#guildListBtn').on('click', function(){
 		location.href="/guild/guild_list_view";
 	});
@@ -97,22 +97,22 @@ $(document).ready(function(){
 		
 		// ajax
 		 $.ajax({
-			type:"POST"
-			, url:"/guild/create"
+			type:"PUT"
+			, url:"/guild/update"
 			, data:{"subject":subject, "address":address, "maxCount":maxCount, "content":content}
 			// response
 			,success:function(data){
 				if(data.code == 1){
 					// 성공
-					alert("글이 저장되었습니다.");
-					location.href="/guild/guild_list_view";
+					alert("글이 수정되었습니다.");
+					location.href="/guild/guild_detail_view";
 				} else {
 					// 중복
 					alert(data.errorMessage);
 				}
 			}
 			,error:function(request, status, error){
-				alert("글을 저장하는데 실패했습니다.");
+				alert("글을 수정하는데 실패했습니다.");
 			}
 		});
 		

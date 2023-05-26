@@ -19,5 +19,7 @@ public interface GuildPostMapper {
 	
 	public List<GuildPost> selectGuildPostList();
 	
+	public List<GuildPost> selectGuildPostMyList(int userId);
+	
 	public GuildPost selectGuildPostById(int guildPostId);
 }

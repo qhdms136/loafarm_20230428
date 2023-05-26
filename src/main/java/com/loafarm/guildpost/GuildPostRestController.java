@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,6 +34,18 @@ public class GuildPostRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
 		result.put("result", "성공");
+		return result;
+	}
+	
+	@PutMapping("/update")
+	public Map<String, Object> update(
+			@RequestParam("subject") String subject,
+			@RequestParam("address") String address,
+			@RequestParam("maxCount") int maxCount,
+			@RequestParam("content") String content,
+			HttpSession session){
+		int userId = (int)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
 		return result;
 	}
 }

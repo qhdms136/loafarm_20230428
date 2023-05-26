@@ -46,7 +46,7 @@ function sample5_execDaumPostcode() {
  }
  
 $(document).ready(function(){
-	// 자유 게시판 목록을 이동
+	// 길드 게시판 목록을 이동
 	$('#guildListBtn').on('click', function(){
 		location.href="/guild/guild_list_view";
 	});

@@ -35,7 +35,7 @@
 		FROM
 			`custom_post`
 		ORDER BY
-			`id` DESC
+			`recommendCount` DESC, `id` DESC
 		LIMIT #{limit}
 	</select>
 	<select id="selectCustomPostListByIndexAndLimit" parameterType="map" resultType="com.loafarm.custompost.model.CustomPost">
@@ -51,7 +51,7 @@
 		FROM
 			`custom_post`
 		ORDER BY
-			`id` DESC
+			`recommendCount` DESC, `id` DESC
 		LIMIT #{index}, #{limit}
 	</select>
 	<select id="selectCustomPostList" resultType="com.loafarm.custompost.model.CustomPost">
@@ -99,38 +99,6 @@
 		WHERE
 			`id` = #{customPostId}
 			AND `userId` = #{userId}
-	</select>
-	<select id="selectCustomPostListOrderByPostIdRecommendCount" resultType="com.loafarm.custompost.model.CustomPost">
-		SELECT
-			`id`
-			, `userId`
-			, `subject`
-			, `type`
-			, `recommendCount`
-			, `imagePath`
-			, `createdAt`
-			, `updatedAt`
-		FROM
-			`custom_post`
-		ORDER BY
-			`recommendCount` DESC, `id` DESC
-		LIMIT #{limit}
-	</select>
-		<select id="selectCustomPostListRecommendCountByIndexAndLimit" resultType="com.loafarm.custompost.model.CustomPost">
-		SELECT
-			`id`
-			, `userId`
-			, `subject`
-			, `type`
-			, `recommendCount`
-			, `imagePath`
-			, `createdAt`
-			, `updatedAt`
-		FROM
-			`custom_post`
-		ORDER BY
-			`recommendCount` DESC, `id` DESC
-		LIMIT #{index}, #{limit}
 	</select>
 	<update id="updateRecommendCount" parameterType="map">
 		UPDATE `custom_post`

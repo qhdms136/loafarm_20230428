@@ -56,7 +56,18 @@ public class GuildPostContorller {
 			HttpSession session) {
 		int userId = (int)session.getAttribute("userId");
 		GuildPost guildPost = guildPostBO.getGuildPostByPostIdUserId(guildPostId, userId);
+		model.addAttribute("guildPost", guildPost);
 		model.addAttribute("view", "guild/guildUpdate");
+		return "template/layout";
+	}
+	
+	@GetMapping("/guild_my_view")
+	public String guildMyView(Model model,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		List<GuildPostView> guildPostViewMyList = guildPostBO.generateGuildPostViewMyList(userId);
+		model.addAttribute("guildMyList", guildPostViewMyList);
+		model.addAttribute("view", "guild/guildMyView");
 		return "template/layout";
 	}
 }

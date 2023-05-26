@@ -8,7 +8,15 @@
 <div class="lg-btn">
 	<c:choose>
 		<c:when test="${not empty userId}">
-			<span class="font-weight-bold">${userNickname}님 안녕하세요</span>
+		<div class="dropdown">
+        	<span class="font-weight-bold">${userNickname}님 안녕하세요</span>
+	      <div class="dropdown-content">
+	        <a href="#">profile</a>
+	        <a href="/guild/guild_my_view?userId=${userId}">내 길드모임 게시글</a>
+	        <a href="#">내 길드모임 신청목록</a>
+	      </div>
+    	</div>
+			
 			<a href="/user/sign_out" class="ml-2 font-weight-bold">로그아웃</a>
 		</c:when>
 		<c:when test="${empty userId}">

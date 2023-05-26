@@ -7,8 +7,6 @@
 	<div class="cp-content">
 		<div class="cp-title">커스터마이징 자랑</div>
 		<div class="cp-btn-box d-flex justify-content-end">
-			<button data-type="1"onclick="location.href='/custom/custom_list_view?type=1'" class="typeBtn mx-3 btn btn-outline-primary">최신순</button>
-			<button data-type="2" onclick="location.href='/custom/custom_list_view?type=2'" class="typeBtn mx-3 btn btn-outline-danger">추천순</button>
 			<button class="mx-3 btn btn-dark" id="customWriteBtn">글쓰기</button>
 		</div>
 		<div id="customListBox" class="">
@@ -34,27 +32,21 @@
 					</div>
 				</c:forEach>
 			</div>
-		<div id="more" style="width:100%; height:200px;" class="bg-primary"></div>
+		<div id="more" style="width:100%; height:200px;"></div>
 		</div>
 		
 	</div>
 <script>
-	$('.typeBtn').click(function(){
-	    var type = $(this).data("type");
-	    console.log(type);
-	});
 	var footDiv = document.getElementById('more');
 	var customListBox = document.getElementById('customListBox');
 	var parent = footDiv.parentElement;
-	console.log();
 	var cnt = 1;
+	console.log(footDiv)
 	customListBox.onscroll = function(e){
-		var rect = footDiv.getBoundingClientRect().top - customListBox.getBoundingClientRect().top;
+		var rect = parseInt(footDiv.getBoundingClientRect().top) - parseInt(customListBox.getBoundingClientRect().top);
 		console.log(rect);
-		
-
 		let option = {
-			    threshold: 1,
+			    threshold: 0.5,
 		}
 		const observer = new IntersectionObserver(entries => {
 			 
@@ -82,24 +74,25 @@
 				        				return;
 				        			}
 			        			}
-			        	}), 500); // 불려지는 시간 설정
-			        	
+			        	}), 400); // 불려지는 시간 설정
 			        	observer.unobserve(footDiv);
 			        	return;
-			        } else {
+			        }
+					else {
 			            console.log('화면에서 제외됨');
 			            return;
 			        }
 			    })
 			}, option);
-		if(rect == 400) {
+		
+		 if(rect == 400) {
 		  	//실행할 로직 (콘텐츠 추가)
 			observer.observe(footDiv);
 		  	return;
 		} else {
 			return;
-		}
-	};
+		} 
+};
 	//observer.observe(target);
 $(document).ready(function(){
 	
@@ -111,10 +104,6 @@ $(document).ready(function(){
 			location.href="/user/sign_in_view";
 		} 
 		location.href="/custom/custom_create_view";
-	});
-	
-	$('.cp-box:last-child').on('click', function() {
-		console.log(this);
 	});
 });
 </script>

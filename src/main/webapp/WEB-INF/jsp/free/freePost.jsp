@@ -11,12 +11,12 @@
 			<a href="/free/free_list_view_recommend?recommendCount=30" class="free-img reco3">30추글</a>
 		</div>
 		<div class="cate-area">
-			<a href="/free/free_list_view" data-category=null class="cate-area-one">전체</a>
-			<a href="/free/free_list_view?category=잡담" data-category="잡담" class="cate-area-one">잡담</a>
-			<a href="/free/free_list_view?category=투표" data-category="투표" class="cate-area-one">투표</a>
-			<a href="/free/free_list_view?category=스킬" data-category="스킬" class="cate-area-one">스킬</a>
-			<a href="/free/free_list_view?category=정보" data-category="정보" class="cate-area-one">정보</a>
-			<a href="/free/free_list_view?category=기타" data-category="기타" class="cate-area-one">기타</a>
+			<a href="/free/free_list_view" class="cate-area-one">전체</a>
+			<a href="/free/free_list_view?category=잡담"  class="cate-area-one">잡담</a>
+			<a href="/free/free_list_view?category=투표"  class="cate-area-one">투표</a>
+			<a href="/free/free_list_view?category=스킬"  class="cate-area-one">스킬</a>
+			<a href="/free/free_list_view?category=정보"  class="cate-area-one">정보</a>
+			<a href="/free/free_list_view?category=기타"  class="cate-area-one">기타</a>
 		</div>
 		<div>
 			<table class="free-table table table-hover text-center">
@@ -52,22 +52,11 @@
 $(document).ready(function(){
 	
 	// 카테고리 필터링 버튼 클릭시 스타일 유지
-	$('a.cate-area-one').on('click', function(e){
-		e.preventDefault();
+	$('a.cate-area-one').on('click', function(){
 		 $('a.cate-area-one').removeClass("active");
 		 $('a.cate-area-one').css('color', "#000000");
 		 $(this).css('color',"#ffffff"); 
 		 $(this).addClass("active");
-		let category = $(this).data("category");
-		console.log(category);
-	/* 	$.ajax({
-			type:"GET"
-			,url:"/free/free_list_view"
-			,data:{"category":category}
-			,success:function(){
-			}
-			
-		}); */
 	});
 	
 	// 글쓰기 버튼 및 글쓰기 권한 필터링

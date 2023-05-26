@@ -67,12 +67,11 @@ public class CustomPostRestController {
 	@PostMapping("/more")
 	public Map<String, Object> more(
 			@RequestParam("cnt") int cnt,
-			@RequestParam("type", required=false) Integer type,
 			HttpSession session){
 		Integer userId = (Integer)session.getAttribute("userId");
 		Map<String, Object> result = new HashMap<>();
-		customPostBO.generateCustomPostMoreViewList(userId, cnt, type);
-		if(customPostBO.generateCustomPostMoreViewList(userId, cnt, type) == null) {
+		customPostBO.generateCustomPostMoreViewList(userId, cnt);
+		if(customPostBO.generateCustomPostMoreViewList(userId, cnt) == null) {
 			result.put("code", 300);
 		} else {
 			result.put("code", 1);
