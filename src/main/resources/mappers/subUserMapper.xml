@@ -20,4 +20,21 @@
  			, NOW()
  		)
  	</insert>
+ 	<select id="selectSubUserByUserId" resultType="com.loafarm.subuser.model.SubUser">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `postId`
+			, `content`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`sub_user`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `state` = '대기중'
+ 			OR `userId` = #{userId}
+ 			AND `state` = '수락'
+ 	</select>
  </mapper>

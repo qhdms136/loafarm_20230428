@@ -103,18 +103,33 @@ $(document).ready(function(){
 		
 		$.ajax({
 			// request
-			type:"POST"
-			,url:"/subuser/create"
-			,data:{"content":content, "postId":postId}
+			url:"/subuser/is_duplicated_id"
 			// response
 			,success:function(data){
-				if(data.code == 1){
-					alert("신청이 완료되었습니다.");
-					location.reload(true);
-				} 
-			}
-			,error:function(request, status, error){
-				alert("신청하기를 실패하였습니다.");
+				if(data.result){
+					// 이미 신청 목록이 존재
+					alert("길드모임 신청은 아이디당 1개만 가능합니다. \n"
+							+ "이미 신청하신 모임글이 있으시다면 신청을 취소하고 다시 넣어주세요");
+					location.href="/guild/guild_list_view";
+				} else{
+					// 신청 가능 
+					$.ajax({
+						// request
+						type:"POST"
+						,url:"/subuser/create"
+						,data:{"content":content, "postId":postId}
+						// response
+						,success:function(data){
+							if(data.code == 1){
+								alert("신청이 완료되었습니다.");
+								location.reload(true);
+							} 
+						}
+						,error:function(request, status, error){
+							alert("신청하기를 실패하였습니다.");
+						}
+					});
+				}
 			}
 		});
 	});

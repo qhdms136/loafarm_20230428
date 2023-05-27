@@ -24,6 +24,21 @@
  			, NOW()
  		)
  	</insert>
+ 		<select id="selectGuildPostByUserId" resultType="com.loafarm.guildpost.model.GuildPost">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `address`
+			, `content`
+			, `maxCount`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`guild_post`
+ 		WHERE
+ 			`userId` = #{userId}	
+ 	</select>
  	<select id="selectGuildPostList" resultType="com.loafarm.guildpost.model.GuildPost">
  		SELECT
  			`id`
@@ -68,4 +83,17 @@
  		WHERE
  			`userId` = #{userId}
  	</select>
+ 	<update id="updateGuildPost" parameterType="map">
+ 		UPDATE
+ 			`guild_post`
+ 		SET
+			`subject` = #{subject}
+			, `address` = #{address}
+			, `content` = #{content}
+			, `maxCount` = #{maxCount}
+			, `updatedAt` = NOW()
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `id` = #{postId}
+ 	</update>
  </mapper>

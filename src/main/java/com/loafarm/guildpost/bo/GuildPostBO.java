@@ -30,6 +30,15 @@ public class GuildPostBO {
 		guildPostMapper.insertGuildPost(userId, subject, address, maxCount, content);
 	}
 	
+	// 중복확인
+	public GuildPost getGuildPostByUserId(int userId) {
+		return guildPostMapper.selectGuildPostByUserId(userId);
+	}
+	
+	public void updateGuildPost(int postId, int userId, String subject, String address, int maxCount, String content) {
+		guildPostMapper.updateGuildPost(postId, userId, subject, address, maxCount, content);
+	}
+	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<GuildPostView> generateGuildPostViewList(Integer userId){
 		List<GuildPostView> guildPostViewList = new ArrayList<>();

@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
+ <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div class="d-flex justify-content-center">
 	<div class="gc-write-content">
@@ -89,33 +89,44 @@ $(document).ready(function(){
 			alert("내용을 입력해주세요");
 			return;
 		}
-		
 		console.log(subject);
 		console.log(address);
 		console.log(maxCount);
 		console.log(content);
-		
-		// ajax
-		 $.ajax({
-			type:"POST"
-			, url:"/guild/create"
-			, data:{"subject":subject, "address":address, "maxCount":maxCount, "content":content}
-			// response
+		$.ajax({
+			//request
+			url:"/guild/is_duplicated_id"
+			//response
 			,success:function(data){
-				if(data.code == 1){
-					// 성공
-					alert("글이 저장되었습니다.");
+				if(data.result){
+					// 이미 작성한 글 존재
+					alert("길드모임 글은 아이디당 1개만 가능합니다 \n"
+							+ "이미 작성하신 글이 있다면 삭제하고 작성해주세요");
 					location.href="/guild/guild_list_view";
-				} else {
-					// 중복
-					alert(data.errorMessage);
+				} else{
+					// ajax 글 작성 가능
+					 $.ajax({
+						type:"POST"
+						, url:"/guild/create"
+						, data:{"subject":subject, "address":address, "maxCount":maxCount, "content":content}
+						// response
+						,success:function(data){
+							if(data.code == 1){
+								// 성공
+								alert("글이 저장되었습니다.");
+								location.href="/guild/guild_list_view";
+							} else {
+								// 중복
+								alert(data.errorMessage);
+							}
+						}
+						,error:function(request, status, error){
+							alert("글을 저장하는데 실패했습니다.");
+						}
+					});
 				}
 			}
-			,error:function(request, status, error){
-				alert("글을 저장하는데 실패했습니다.");
-			}
 		});
-		
 	});
 });
 

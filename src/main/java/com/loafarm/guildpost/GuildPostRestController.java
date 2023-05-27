@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.loafarm.guildpost.bo.GuildPostBO;
+import com.loafarm.guildpost.model.GuildPost;
 
 @RequestMapping("/guild")
 @RestController
@@ -39,13 +40,34 @@ public class GuildPostRestController {
 	
 	@PutMapping("/update")
 	public Map<String, Object> update(
+			@RequestParam("postId") int postId,
 			@RequestParam("subject") String subject,
 			@RequestParam("address") String address,
 			@RequestParam("maxCount") int maxCount,
 			@RequestParam("content") String content,
 			HttpSession session){
 		int userId = (int)session.getAttribute("userId");
+		guildPostBO.updateGuildPost(postId, userId, subject, address, maxCount, content);
 		Map<String, Object> result = new HashMap<>();
+		result.put("code", 1);
+		result.put("result", "성공");
+		return result;
+	}
+	
+	@RequestMapping("/is_duplicated_id")
+	public Map<String, Object> isDuplicatedUserId(
+			HttpSession session){
+		int userId = (int)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
+		// select
+		GuildPost guildPost = guildPostBO.getGuildPostByUserId(userId);
+		if(guildPost != null) {
+			result.put("code", 1);
+			result.put("result", true);
+		} else {
+			result.put("code", 500);
+			result.put("result", false);
+		}
 		return result;
 	}
 }

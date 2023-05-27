@@ -22,4 +22,14 @@ public interface GuildPostMapper {
 	public List<GuildPost> selectGuildPostMyList(int userId);
 	
 	public GuildPost selectGuildPostById(int guildPostId);
+	
+	public GuildPost selectGuildPostByUserId(int userId);
+	
+	public void updateGuildPost(
+			@Param("postId") int postId,
+			@Param("userId") int userId,
+			@Param("subject") String subject,
+			@Param("address") String address,
+			@Param("maxCount") int maxCount,
+			@Param("content") String content);
 }

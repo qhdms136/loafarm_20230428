@@ -22,8 +22,8 @@
 				</div>
 				<div class="d-flex justify-content-end">
 					<div class="gc-btn-box d-flex">
-						<button type="button" class="gc-clear btn-sm btn-outline-dark" id="guildClearBtn">모두 지우기</button>
-						<button type="button" class="gc-save mx-3 btn-sm btn-secondary" id="guildSaveBtn">저장하기</button>
+						<button type="button" class="gc-clear btn-sm btn-outline-dark" id="guildClearBtn" data-post-id="${guildPost.id}">모두 지우기</button>
+						<button type="button" class="gc-save mx-3 btn-sm btn-secondary" id="guildSaveBtn" data-post-id="${guildPost.id}">저장하기</button>
 						<button type="button" class="gc-list btn-sm" id="guildListBtn">목록</button>
 					</div>
 				</div>	
@@ -68,7 +68,7 @@ $(document).ready(function(){
 		let address = $('#guild_address').val().trim();
 		let maxCount = $('#maxCount').val();
 		let content = $('#content').val();
-		
+		let postId = $(this).data("post-id");
 		// 유효성 검사
 		if(!subject){
 			alert("제목을 입력해주세요");
@@ -94,18 +94,18 @@ $(document).ready(function(){
 		console.log(address);
 		console.log(maxCount);
 		console.log(content);
-		
+		console.log(postId)
 		// ajax
 		 $.ajax({
 			type:"PUT"
 			, url:"/guild/update"
-			, data:{"subject":subject, "address":address, "maxCount":maxCount, "content":content}
+			, data:{"postId":postId, "subject":subject, "address":address, "maxCount":maxCount, "content":content}
 			// response
 			,success:function(data){
 				if(data.code == 1){
 					// 성공
 					alert("글이 수정되었습니다.");
-					location.href="/guild/guild_detail_view";
+					location.reload(true);
 				} else {
 					// 중복
 					alert(data.errorMessage);
