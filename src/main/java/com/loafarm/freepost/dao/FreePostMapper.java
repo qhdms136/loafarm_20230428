@@ -17,7 +17,15 @@ public interface FreePostMapper {
 			@Param("type") String type,
 			@Param("imagePath") String imagePath);
 	
-	public List<FreePost> selectFreePostList();
+	public List<FreePost> selectFreePostList(
+			@Param("pagingStart") int pagingStart,
+			@Param("pageLimit") int pageLimit);
+	
+	// 카테고리 별 목록
+	public List<FreePost> selectFreePostListByCategory(
+			@Param("category") String category,
+			@Param("pagingStart") int pagingStart,
+			@Param("pageLimit") int pageLimit);
 	
 	// 추천수에 따른 자유 게시판 목록
 	public List<FreePost> selectFreePostListByRecommendCount(int recommendCount);
@@ -34,8 +42,6 @@ public interface FreePostMapper {
 	public FreePost selectFreePostByPostIdUserId(
 			@Param("freePostId") int freePostId,
 			@Param("userId") int userId);
-	
-	public List<FreePost> selectFreePostListByCategory(String category);
 	
 	public List<FreePost> selectFreePostListOrderByPostIdRecommendcount();
 	

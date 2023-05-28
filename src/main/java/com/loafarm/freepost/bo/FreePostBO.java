@@ -3,7 +3,9 @@ package com.loafarm.freepost.bo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +19,7 @@ import com.loafarm.common.FileManagerService;
 import com.loafarm.freepost.dao.FreePostMapper;
 import com.loafarm.freepost.model.FreePost;
 import com.loafarm.freepost.model.FreePostView;
+import com.loafarm.freepost.model.Page;
 import com.loafarm.recommend.bo.RecommendBO;
 import com.loafarm.user.bo.UserBO;
 import com.loafarm.user.model.User;
@@ -195,17 +198,44 @@ public class FreePostBO {
 		return freePostViewList;
 	}
 	
-	
+	// 1usage new
+	public Page pagingParam(int page) {
+		  // 전체 글 갯수 조회
+        int boardCount = boardRepository.boardCount();
+        // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
+        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+        // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
+        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
+        int endPage = startPage + blockLimit - 1;
+        if (endPage > maxPage) {
+            endPage = maxPage;
+        }
+        Page page = new Page();
+        page.setPage(page);
+        page.setMaxPage(maxPage);
+        page.setStartPage(startPage);
+        page.setEndPage(endPage);
+        return page;
+	}
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-	public List<FreePostView> generateFreePostViewList(Integer userId, String category){
+	public List<FreePostView> generateFreePostViewList(Integer userId, String category, int page){
+		int pageLimit = 3;
+		int pagingStart = (page -1) * pageLimit;
+		// 파라미터 @Param() 할때 오류남
+		 Map<String, Integer> pagingParams = new HashMap<>();
+		 pagingParams.put("start", pagingStart);
+		 pagingParams.put("limit", pageLimit);
+		
+		
 		List<FreePostView> freePostViewList = new ArrayList<>();
 		List<FreePost> freePostList = new ArrayList<>();
 		// 글 목록 가져오기
 		if(category == null) {
-			freePostList = freePostMapper.selectFreePostList();			
+			freePostList = freePostMapper.selectFreePostList(pagingStart, pageLimit);			
 		} else {
-			freePostList = freePostMapper.selectFreePostListByCategory(category);
+			freePostList = freePostMapper.selectFreePostListByCategory(category, pagingStart, pageLimit);
 		}
 		// freePostList 반복 >> 1:1 freePost ->FreePostView => freePostViewList에 넣는다.
 		// 향상된 for문

@@ -26,7 +26,7 @@
 			, NOW()
 		)
 	</insert>
-	<select id="selectFreePostList" resultType="com.loafarm.freepost.model.FreePost">
+	<select id="selectFreePostList" parameterType="map" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
 			`id`
 			, `userId`
@@ -42,6 +42,8 @@
 			`free_post`
 		ORDER BY
 			`id` DESC
+		LIMIT
+			#{pagingStart}, #{pageLimit}
 	</select>
 	<select id="selectFreePostListOrderByPostIdRecommendcount" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
@@ -79,7 +81,7 @@
 		ORDER BY
 			`id` DESC
 	</select>
-	<select id="selectFreePostListByCategory" resultType="com.loafarm.freepost.model.FreePost">
+	<select id="selectFreePostListByCategory" parameterType="map" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
 			`id`
 			, `userId`
@@ -97,6 +99,8 @@
 			`category` = #{category}
 		ORDER BY
 			`id` DESC
+		LIMIT
+			#{pagingStart}, #{pageLimit}	
 	</select>
 	<select id="selectFreePostById" parameterType="int" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
