@@ -19,7 +19,6 @@ import com.loafarm.common.FileManagerService;
 import com.loafarm.freepost.dao.FreePostMapper;
 import com.loafarm.freepost.model.FreePost;
 import com.loafarm.freepost.model.FreePostView;
-import com.loafarm.freepost.model.Page;
 import com.loafarm.recommend.bo.RecommendBO;
 import com.loafarm.user.bo.UserBO;
 import com.loafarm.user.model.User;
@@ -199,7 +198,7 @@ public class FreePostBO {
 	}
 	
 	// 1usage new
-	public Page pagingParam(int page) {
+	/*public Page pagingParam(int page) {
 		  // 전체 글 갯수 조회
         int boardCount = boardRepository.boardCount();
         // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
@@ -211,14 +210,14 @@ public class FreePostBO {
         if (endPage > maxPage) {
             endPage = maxPage;
         }
-        Page page = new Page();
-        page.setPage(page);
-        page.setMaxPage(maxPage);
-        page.setStartPage(startPage);
-        page.setEndPage(endPage);
-        return page;
+        Page pageDTO = new Page();
+        pageDTO.setPage(page);
+        pageDTO.setMaxPage(maxPage);
+        pageDTO.setStartPage(startPage);
+        pageDTO.setEndPage(endPage);
+        return pageDTO;
 	}
-	
+	*/
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<FreePostView> generateFreePostViewList(Integer userId, String category, int page){
 		int pageLimit = 3;
