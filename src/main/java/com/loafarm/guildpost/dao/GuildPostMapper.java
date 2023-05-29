@@ -10,6 +10,7 @@ import com.loafarm.guildpost.model.GuildPost;
 @Repository
 public interface GuildPostMapper {
 	
+	// 추가
 	public void insertGuildPost(
 			@Param("userId") int userId,
 			@Param("subject") String subject,
@@ -25,6 +26,7 @@ public interface GuildPostMapper {
 	
 	public GuildPost selectGuildPostByUserId(int userId);
 	
+	// 업뎃
 	public void updateGuildPost(
 			@Param("postId") int postId,
 			@Param("userId") int userId,
@@ -32,4 +34,9 @@ public interface GuildPostMapper {
 			@Param("address") String address,
 			@Param("maxCount") int maxCount,
 			@Param("content") String content);
+	
+	// 삭제
+	public int deleteGuildPostByPostIdUserId(
+			@Param("guildPostId") int guildPostId,
+			@Param("userId") int userId);
 }

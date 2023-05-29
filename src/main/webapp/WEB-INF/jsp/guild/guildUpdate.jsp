@@ -22,7 +22,7 @@
 				</div>
 				<div class="d-flex justify-content-end">
 					<div class="gc-btn-box d-flex">
-						<button type="button" class="gc-clear btn-sm btn-outline-dark" id="guildClearBtn" data-post-id="${guildPost.id}">모두 지우기</button>
+						<button type="button" class="gc-clear btn-sm btn-outline-dark" id="guildDeleteBtn" data-post-id="${guildPost.id}">삭제하기</button>
 						<button type="button" class="gc-save mx-3 btn-sm btn-secondary" id="guildSaveBtn" data-post-id="${guildPost.id}">저장하기</button>
 						<button type="button" class="gc-list btn-sm" id="guildListBtn">목록</button>
 					</div>
@@ -51,13 +51,30 @@ $(document).ready(function(){
 		location.href="/guild/guild_list_view";
 	});
 
-	// 모두 지우기 버튼
-	$('#guildClearBtn').on('click', function(){
+	// 삭제하기 버튼
+	$('#guildDeleteBtn').on('click', function(){
 		// 값을 넣으면 그 값으로 세팅
-		$('#guild_address').val("");
-		$('#subject').val("");
-		$('#maxCount').val("");
-		$('#content').val("");
+		let guildPostId = $(this).data("post-id");
+		alert(guildPostId);
+		
+		// ajax
+		$.ajax({	// request
+			type:"DELETE"
+			, url:"/guild/delete"
+			, data:{"guildPostId":guildPostId}
+			// response
+			, success:function(data){
+				if(data.code == 1){
+					alert("삭제되었습니다.");
+					location.href="/guild/guild_list_view";
+				} else{
+					alert(data.errorMessage);
+				}
+			}
+			,error:function(request, status, error){
+				alert("게시물을 삭제하는데 실패하였습니다.");
+			}
+		});
 	});
 	
 	// 글 저장 버튼

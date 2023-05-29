@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.loafarm.guildpost.dao.GuildPostMapper;
 import com.loafarm.guildpost.model.GuildPost;
 import com.loafarm.guildpost.model.GuildPostView;
+import com.loafarm.subuser.bo.SubUserBO;
 import com.loafarm.user.bo.UserBO;
 import com.loafarm.user.model.User;
 
@@ -25,6 +26,9 @@ public class GuildPostBO {
 	@Autowired
 	private UserBO userBO;
 	
+	@Autowired
+	private SubUserBO subUserBO;
+	
 	public void addGuildPost(int userId, String subject, String address, int maxCount, String content) {
 		logger.info("[subject:{}, address:{}, maxCount:{}, content:{}]", subject, address, maxCount, content);
 		guildPostMapper.insertGuildPost(userId, subject, address, maxCount, content);
@@ -35,9 +39,21 @@ public class GuildPostBO {
 		return guildPostMapper.selectGuildPostByUserId(userId);
 	}
 	
+	// update
 	public void updateGuildPost(int postId, int userId, String subject, String address, int maxCount, String content) {
 		guildPostMapper.updateGuildPost(postId, userId, subject, address, maxCount, content);
 	}
+	
+	
+	// 게시물 삭제 delete
+	public int deleteGuildPostByPostIdUserId(int guildPostId, int userId) {
+		// 삭제 목록(게시물, 신청자 목록)
+		// 신청자 목록 삭제
+		subUserBO.deleteSubUserByPostId(guildPostId);
+		
+		return guildPostMapper.deleteGuildPostByPostIdUserId(guildPostId, userId);
+	}
+	
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<GuildPostView> generateGuildPostViewList(Integer userId){

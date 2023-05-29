@@ -19,4 +19,8 @@ public class SubUserBO {
 	public SubUser getSubUserByUserId(int userId) {
 		return subUserMapper.selectSubUserByUserId(userId);
 	}
+	
+	public void deleteSubUserByPostId(int postId) {
+		subUserMapper.deleteSubUserByPostId(postId);
+	}
 }

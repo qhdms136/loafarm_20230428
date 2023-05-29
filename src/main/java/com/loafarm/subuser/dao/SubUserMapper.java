@@ -13,4 +13,6 @@ public interface SubUserMapper {
 			@Param("content") String content);
 	
 	public SubUser selectSubUserByUserId(int userId);
+	
+	public void deleteSubUserByPostId(int postId);
 }

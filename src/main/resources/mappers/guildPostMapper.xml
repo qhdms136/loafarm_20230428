@@ -96,4 +96,12 @@
  			`userId` = #{userId}
  			AND `id` = #{postId}
  	</update>
+ 	<delete id="deleteGuildPostByPostIdUserId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`guild_post`
+ 		WHERE
+ 			`id` = #{guildPostId}
+ 			AND `userId` = #{userId}
+ 	</delete>
  </mapper>

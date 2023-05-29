@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,6 +52,25 @@ public class GuildPostRestController {
 		Map<String, Object> result = new HashMap<>();
 		result.put("code", 1);
 		result.put("result", "성공");
+		return result;
+	}
+	
+	@DeleteMapping("/delete")
+	public Map<String, Object> delete(
+			@RequestParam("guildPostId") int guildPostId,
+			HttpSession session){
+		int userId = (int)session.getAttribute("userId");
+		Map<String, Object> result = new HashMap<>();
+		
+		// delete
+		int rowCount = guildPostBO.deleteGuildPostByPostIdUserId(guildPostId, userId);
+		if(rowCount > 0) {
+			result.put("code", 1);
+			result.put("result", "성공");
+		} else {
+			result.put("code", 500);
+			result.put("errorMessage", "게시물 삭제에 실패하였습니다.");
+		}
 		return result;
 	}
 	

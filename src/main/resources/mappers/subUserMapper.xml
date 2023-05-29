@@ -37,4 +37,11 @@
  			OR `userId` = #{userId}
  			AND `state` = '수락'
  	</select>
+ 	<delete id="deleteSubUserByPostId" parameterType="int">
+ 		DELETE
+ 		FROM
+ 			`sub_user`
+ 		WHERE
+ 			`postId` = #{postId}
+ 	</delete>
  </mapper>
