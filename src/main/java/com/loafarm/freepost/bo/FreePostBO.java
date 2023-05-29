@@ -19,6 +19,7 @@ import com.loafarm.common.FileManagerService;
 import com.loafarm.freepost.dao.FreePostMapper;
 import com.loafarm.freepost.model.FreePost;
 import com.loafarm.freepost.model.FreePostView;
+import com.loafarm.freepost.model.Page;
 import com.loafarm.recommend.bo.RecommendBO;
 import com.loafarm.user.bo.UserBO;
 import com.loafarm.user.model.User;
@@ -43,6 +44,10 @@ public class FreePostBO {
 	
 	@Autowired
 	private CommentBO commentBO;
+	
+	// 클래스 변수
+	int pageLimit = 3; // 한 페이지당 보여줄 글 갯수
+	int blockLimit = 3; // 하단에 보여줄 페이지 번호 갯수
 	
 	public int addFreePost(int userId, 
 			String loginId, 
@@ -198,9 +203,9 @@ public class FreePostBO {
 	}
 	
 	// 1usage new
-	/*public Page pagingParam(int page) {
+	public Page pagingParam(int page) {
 		  // 전체 글 갯수 조회
-        int boardCount = boardRepository.boardCount();
+        int boardCount = freePostMapper.selectFreePostListCount();
         // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
         int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
         // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
@@ -217,10 +222,11 @@ public class FreePostBO {
         pageDTO.setEndPage(endPage);
         return pageDTO;
 	}
-	*/
+	
+	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<FreePostView> generateFreePostViewList(Integer userId, String category, int page){
-		int pageLimit = 3;
+		
 		int pagingStart = (page -1) * pageLimit;
 		// 파라미터 @Param() 할때 오류남
 		 Map<String, Integer> pagingParams = new HashMap<>();

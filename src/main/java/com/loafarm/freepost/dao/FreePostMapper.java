@@ -21,6 +21,9 @@ public interface FreePostMapper {
 			@Param("pagingStart") int pagingStart,
 			@Param("pageLimit") int pageLimit);
 	
+	// 전체 글 갯수
+	public int selectFreePostListCount();
+	
 	// 카테고리 별 목록
 	public List<FreePost> selectFreePostListByCategory(
 			@Param("category") String category,

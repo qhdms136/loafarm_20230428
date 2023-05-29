@@ -45,6 +45,12 @@
 		LIMIT
 			#{pagingStart}, #{pageLimit}
 	</select>
+	<select id="selectFreePostListCount" resultType="int">
+		SELECT
+			COUNT(`id`)
+		FROM
+			`free_post`
+	</select>
 	<select id="selectFreePostListOrderByPostIdRecommendcount" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
 			`id`

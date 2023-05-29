@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.loafarm.freepost.bo.FreePostBO;
 import com.loafarm.freepost.model.FreePost;
 import com.loafarm.freepost.model.FreePostView;
+import com.loafarm.freepost.model.Page;
 
 @RequestMapping("/free")
 @Controller
@@ -30,11 +31,13 @@ public class FreePostController {
 		// 비 로그인 시에도 게시물 목록을 보기위해 null값 허용
 		Integer userId = (Integer)session.getAttribute("userId");
 		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId, category, page);
-		//Page page = freePostBO.pagingParam(page);
+		// 페이지 계산
+		Page pageDTO = freePostBO.pagingParam(page);
 		
 		// 해당 페이지에서 보여줄 글 목록
 		model.addAttribute("freePostList", freePostViewList);
 		model.addAttribute("view", "free/freePost");
+		model.addAttribute("paging",pageDTO);
 		System.out.println("page = " + page);
 		System.out.println("freePostViewList = " + freePostViewList);
 		return "template/layout";
