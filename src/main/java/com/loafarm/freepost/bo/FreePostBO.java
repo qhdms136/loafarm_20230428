@@ -45,9 +45,9 @@ public class FreePostBO {
 	@Autowired
 	private CommentBO commentBO;
 	
-	// 클래스 변수
-	int pageLimit = 3; // 한 페이지당 보여줄 글 갯수
-	int blockLimit = 3; // 하단에 보여줄 페이지 번호 갯수
+	// 클래스 변수 (상수 불변)
+	private static final int PAGE_LIMIT = 10; // 한 페이지당 보여줄 글 갯수
+	private static final int BLOCK_LIMIT = 10; // 하단에 보여줄 페이지 번호 갯수
 	
 	public int addFreePost(int userId, 
 			String loginId, 
@@ -203,15 +203,25 @@ public class FreePostBO {
 	}
 	
 	// 1usage new
-	public Page pagingParam(int page) {
-		  // 전체 글 갯수 조회
-        int boardCount = freePostMapper.selectFreePostListCount();
-        // 전체 페이지 갯수 계산(10/3=3.33333 => 4)
-        int maxPage = (int) (Math.ceil((double) boardCount / pageLimit));
+	// 자유게시판 페이징 변수 설정(전체, 카테고리, 추천수)
+	public Page pagingParam(int page, String category, int recommendCount) {
+		  // 카테고리 별 전체 글 갯수 조회
+		int boardCount = 0;
+        if(category == null || category == "") {	// 카테고리값이 없으면 전체 출력 공백 포함
+        	if(recommendCount == 0) {	// 추천 값이 없으면 전체 출력
+        		boardCount = freePostMapper.selectFreePostListCount();        		
+        	} else if(recommendCount >= 10) {
+        		boardCount = freePostMapper.selectFreePostRecommendListByCount(recommendCount);
+        	}
+        } else {	// 카테고리 별로 출력
+        	boardCount = freePostMapper.selectFreePostListByCategoryCount(category);
+        }
+        // 전체 페이지 갯수 계산(ex ) 10/3=3.33333 => 4)
+        int maxPage = (int) (Math.ceil((double) boardCount / PAGE_LIMIT));
         // 시작 페이지 값 계산(1, 4, 7, 10, ~~~~)
-        int startPage = (((int)(Math.ceil((double) page / blockLimit))) - 1) * blockLimit + 1;
+        int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
         // 끝 페이지 값 계산(3, 6, 9, 12, ~~~~)
-        int endPage = startPage + blockLimit - 1;
+        int endPage = startPage + BLOCK_LIMIT - 1;
         if (endPage > maxPage) {
             endPage = maxPage;
         }
@@ -223,24 +233,28 @@ public class FreePostBO {
         return pageDTO;
 	}
 	
-	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-	public List<FreePostView> generateFreePostViewList(Integer userId, String category, int page){
+	// 자유 게시판 페이징 처리(전체, 카테고리, 추천수(10, 30))
+	public List<FreePostView> generateFreePostViewList(Integer userId, String category, int page, int recommendCount){
 		
-		int pagingStart = (page -1) * pageLimit;
+		int pagingStart = (page -1) * PAGE_LIMIT;
 		// 파라미터 @Param() 할때 오류남
 		 Map<String, Integer> pagingParams = new HashMap<>();
 		 pagingParams.put("start", pagingStart);
-		 pagingParams.put("limit", pageLimit);
+		 pagingParams.put("limit", PAGE_LIMIT);
 		
 		
 		List<FreePostView> freePostViewList = new ArrayList<>();
 		List<FreePost> freePostList = new ArrayList<>();
-		// 글 목록 가져오기
-		if(category == null) {
-			freePostList = freePostMapper.selectFreePostList(pagingStart, pageLimit);			
-		} else {
-			freePostList = freePostMapper.selectFreePostListByCategory(category, pagingStart, pageLimit);
+		// 글 목록 가져오기 // 전체 글
+		if(category == null || category == "") {
+			if(recommendCount == 0) {	// 추천 값이 없으면 전체 출력
+				freePostList = freePostMapper.selectFreePostList(pagingStart, PAGE_LIMIT);							
+			} else if(recommendCount >= 10) {	// 추천 값을 받으면 그 수 이상만큼의 추천 수 출력
+				freePostList = freePostMapper.selectFreePostListByRecommendCount(recommendCount);
+			} 
+		} else {	// 카테고리가 있는 글
+			freePostList = freePostMapper.selectFreePostListByCategory(category, pagingStart, PAGE_LIMIT);
 		}
 		// freePostList 반복 >> 1:1 freePost ->FreePostView => freePostViewList에 넣는다.
 		// 향상된 for문

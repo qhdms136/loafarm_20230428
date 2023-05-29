@@ -27,33 +27,39 @@ public class FreePostController {
 	public String freeListView(Model model,
 			@RequestParam(value="category", required=false) String category,
 			@RequestParam(value="page", required=false, defaultValue="1") int page,
+			@RequestParam(value="recommendCount", required=false, defaultValue="0") int recommendCount,
 			HttpSession session) {
 		// 비 로그인 시에도 게시물 목록을 보기위해 null값 허용
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId, category, page);
+		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewList(userId, category, page, recommendCount);
 		// 페이지 계산
-		Page pageDTO = freePostBO.pagingParam(page);
+		Page pageDTO = freePostBO.pagingParam(page, category, recommendCount);
 		
 		// 해당 페이지에서 보여줄 글 목록
 		model.addAttribute("freePostList", freePostViewList);
 		model.addAttribute("view", "free/freePost");
 		model.addAttribute("paging",pageDTO);
+		model.addAttribute("category", category);
+		model.addAttribute("recommendCount", recommendCount);
 		System.out.println("page = " + page);
 		System.out.println("freePostViewList = " + freePostViewList);
 		return "template/layout";
 	}
 	
-	@GetMapping("/free_list_view_recommend")
-	public String freeListRecommendCountView(Model model,
-			@RequestParam("recommendCount") int recommendCount,
-			HttpSession session) {
-		// 비로그인 시에도 게시물 목록 보기 가능
-		Integer userId = (Integer)session.getAttribute("userId");
-		List<FreePostView> freePostViewList = freePostBO.generateFreePostRecommendViewList(userId, recommendCount);
-		model.addAttribute("freePostList", freePostViewList);
-		model.addAttribute("view", "free/freePost");
-		return "template/layout";
-	}
+	/*
+	 * @GetMapping("/free_list_view_recommend") public String
+	 * freeListRecommendCountView(Model model,
+	 * 
+	 * @RequestParam("recommendCount") int recommendCount,
+	 * 
+	 * @RequestParam(value="page", required=false, defaultValue="1") int page,
+	 * HttpSession session) { // 비로그인 시에도 게시물 목록 보기 가능 Integer userId =
+	 * (Integer)session.getAttribute("userId"); List<FreePostView> freePostViewList
+	 * = freePostBO.generateFreePostRecommendViewList(userId, recommendCount); //
+	 * Page pageRecommend = freePostBO.pagingParamByRecommend(page);
+	 * model.addAttribute("freePostList", freePostViewList);
+	 * model.addAttribute("view", "free/freePost"); return "template/layout"; }
+	 */
 	
 	@GetMapping("/free_detail_view")
 	public String freeDetailView(Model model,

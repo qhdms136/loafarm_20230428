@@ -51,6 +51,22 @@
 		FROM
 			`free_post`
 	</select>
+	<select id="selectFreePostListByCategoryCount" resultType="int">
+		SELECT
+			COUNT(`id`)
+		FROM
+			`free_post`
+		WHERE
+			`category` = #{category}
+	</select>
+	<select id="selectFreePostRecommendListByCount" resultType="int">
+		SELECT
+			COUNT(`id`)
+		FROM
+			`free_post`
+		WHERE
+			`recommendCount` >= #{recommendCount}
+	</select>
 	<select id="selectFreePostListOrderByPostIdRecommendcount" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
 			`id`
