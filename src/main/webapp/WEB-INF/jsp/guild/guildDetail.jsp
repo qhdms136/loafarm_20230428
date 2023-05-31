@@ -25,10 +25,16 @@
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=996f3681c69f47af40cf467e79616ae1&libraries=services"></script>
 					</div>
 				<div style="margin-top:50px;">
+					<div class="d-flex justify-content-center">
+					<span>신청현황</span>
+					</div>
 					<textarea class="sub-content form-control" id="content" rows="5" placeholder="내용을 입력해주세요"></textarea>
 				</div>
 				<div class="my-3 d-flex justify-content-center">
 					<c:if test="${userId != guildPostView.user.id}">
+						<c:if test="${guildPostView.subcount ge guildPostView.guildpost.maxCount}">
+							<div>신청포화</div>
+						</c:if>
 						<button id="subBtn" class="btn btn-primary" data-post-id="${guildPostView.guildpost.id}">신청하기</button>
 					</c:if>
 				</div>

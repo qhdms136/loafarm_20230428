@@ -16,6 +16,10 @@ header{
 	background-color:#ffffff;
 }
 
+section {
+	min-height: 870px;
+}
+
 .logo-font a{
 	margin-left:20px;
 	font-size:48px;
@@ -850,7 +854,7 @@ font-family: 'Noto Sans KR', sans-serif;
 	font-weight:bold;
 }
 .gm-table{
-	margin-top:30px;
+	margin-top:20px;
 }
 .gm-table > td{
 	width:235px;
@@ -862,5 +866,15 @@ font-family: 'Noto Sans KR', sans-serif;
 .gm-table td a{
 	color:#000000;
 }
+
+
+
+/* subuser_list */
+.subuser-list-content{
+	width:60%;
+	padding-bottom:80px;
+	background-color:#ffffff;
+}
+
 
 footer{height:100px;background-color:black;color:#ffffff;}

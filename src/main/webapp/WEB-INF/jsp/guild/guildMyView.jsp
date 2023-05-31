@@ -26,7 +26,7 @@
 						<td>${myguild.user.nickname}</td>
 						<td><fmt:formatDate value="${myguild.guildpost.createdAt}" pattern="yyyy-MM-dd"/></td>
 						<td>${myguild.guildpost.maxCount}</td>
-						<td><a href="#">신청목록</a></td>
+						<td><a href="/subuser/subuser_list?postId=${myguild.guildpost.id}">신청목록</a></td>
 					</tr>
 				</c:forEach>
 				</tbody>

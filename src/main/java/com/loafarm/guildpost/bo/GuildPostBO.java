@@ -39,6 +39,10 @@ public class GuildPostBO {
 		return guildPostMapper.selectGuildPostByUserId(userId);
 	}
 	
+	public GuildPost getGuildPostByPostId(int postId) {
+		return guildPostMapper.selectGuildPostById(postId);
+	}
+	
 	// update
 	public void updateGuildPost(int postId, int userId, String subject, String address, int maxCount, String content) {
 		guildPostMapper.updateGuildPost(postId, userId, subject, address, maxCount, content);
@@ -115,6 +119,9 @@ public class GuildPostBO {
 		// 글쓴 유저 정보
 		User user = userBO.getUserById(guildPost.getUserId());
 		guildPostView.setUser(user);
+		
+		int subcount = subUserBO.getSubUserCountByPostId(guildPostId);
+		guildPostView.setSubcount(subcount);
 		
 		return guildPostView;
 	}

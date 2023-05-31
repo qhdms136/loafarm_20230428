@@ -1,38 +1,29 @@
-package com.loafarm.guildpost.model;
+package com.loafarm.subuser.model;
 
 import com.loafarm.user.model.User;
 
-public class GuildPostView {
-	// 길드 게시판 글 1개
-	private GuildPost guildpost;
+public class SubUserView {
 	
-	// 글쓴이 정보
+	private SubUser subuser;
 	private User user;
-
-	// 신청자
 	private int subcount;
 	
+	public SubUser getSubuser() {
+		return subuser;
+	}
+	public void setSubuser(SubUser subuser) {
+		this.subuser = subuser;
+	}
 	
-	public GuildPost getGuildpost() {
-		return guildpost;
-	}
-
-	public void setGuildpost(GuildPost guildpost) {
-		this.guildpost = guildpost;
-	}
-
 	public User getUser() {
 		return user;
 	}
-
 	public void setUser(User user) {
 		this.user = user;
 	}
-
 	public int getSubcount() {
 		return subcount;
 	}
-
 	public void setSubcount(int subcount) {
 		this.subcount = subcount;
 	}

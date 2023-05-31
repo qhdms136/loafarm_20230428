@@ -1,5 +1,7 @@
 package com.loafarm.subuser.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +17,8 @@ public interface SubUserMapper {
 	public SubUser selectSubUserByUserId(int userId);
 	
 	public void deleteSubUserByPostId(int postId);
+	
+	public List<SubUser> selectSubUserByPostId(int postId);
+	
+	public int selectSubUserCountByPostId(int postId);
 }

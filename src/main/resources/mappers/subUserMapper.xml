@@ -37,6 +37,29 @@
  			OR `userId` = #{userId}
  			AND `state` = '수락'
  	</select>
+ 	<select id="selectSubUserByPostId" resultType="com.loafarm.subuser.model.SubUser">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `postId`
+			, `content`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`sub_user`
+ 		WHERE
+ 			`postId` = #{postId}
+ 	</select>
+ 	<select id="selectSubUserCountByPostId" parameterType="int" resultType="int">
+ 		SELECT
+ 			COUNT(*)
+ 		FROM
+ 			`sub_user`
+ 		WHERE
+ 			`postId` = #{postId} AND `state` = '대기중'
+ 			OR `postId` = #{postId} AND `state` = '수락' 
+ 	</select>
  	<delete id="deleteSubUserByPostId" parameterType="int">
  		DELETE
  		FROM
