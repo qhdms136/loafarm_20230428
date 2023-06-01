@@ -33,7 +33,7 @@
 				<c:forEach items="${freePostList}" var="free">
 					<tr>
 						<td>${free.freepost.id}</td>
-						<td class="text-left"><a href="/free/free_detail_view?freePostId=${free.freepost.id}&type=${free.freepost.type}">[${free.freepost.category}]  &nbsp;${free.freepost.subject}</a></td>
+						<td class="text-left"><div class="free-table-content"><a href="/free/free_detail_view?freePostId=${free.freepost.id}&type=${free.freepost.type}">[${free.freepost.category}]  &nbsp;${free.freepost.subject}</a></div></td>
 						<td>${free.user.nickname}</td>
 						<td><fmt:formatDate value="${free.freepost.createdAt}" pattern="yyyy-MM-dd"/></td>
 						<td>${free.freepost.recommendCount}</td>

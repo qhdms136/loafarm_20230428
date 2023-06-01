@@ -92,6 +92,9 @@ font-family: 'Noto Sans KR', sans-serif;
 .txt{
 	font-size:17px;
 }
+a > .txt {
+	color:#000000;
+}
 .today-content{
 	min-height:151px;
 }
@@ -104,6 +107,14 @@ font-family: 'Noto Sans KR', sans-serif;
 	display:flex;
 	flex-flow:row wrap;
 }
+.today-subject{
+	width:240px;
+	height:28px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 .today-list a{
 	max-width:86%;
 	height: 100%;
@@ -273,15 +284,19 @@ font-family: 'Noto Sans KR', sans-serif;
 	color:#ffffff;
 	border-radius:10px;
 }
+.free-table td a{
+	color:#000000;
+}
 .free-table > td{
-	width:399px;
-	height:49px;
+	height:30px;
+}
+
+.free-table-content{
+	width:330px;
+	height:24px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
-}
-.free-table td a{
-	color:#000000;
 }
 
 
@@ -779,6 +794,14 @@ font-family: 'Noto Sans KR', sans-serif;
 	margin-left: 40px;
 }
 
+.guild-table-content{
+	width:330px;
+	height:24px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
 /* guild_detail_view */
 .gd-content {
 	width: 60%;
@@ -856,13 +879,15 @@ font-family: 'Noto Sans KR', sans-serif;
 .gm-table{
 	margin-top:20px;
 }
-.gm-table > td{
+
+.guild-my-subject{
 	width:235px;
 	height:49px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
+
 .gm-table td a{
 	color:#000000;
 }
@@ -874,6 +899,34 @@ font-family: 'Noto Sans KR', sans-serif;
 	width:60%;
 	padding-bottom:80px;
 	background-color:#ffffff;
+}
+
+.subuser-table{
+	margin-top:20px;
+}
+.subuser-content{
+	width:235px;
+	height:24px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+
+/* mysub_list_view  */
+.sub-guildpost-table{
+	margin-top:20px;
+}
+.subguildpost-subject{
+	width:266px;
+	height:24px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	text-align:left;
+	white-space: nowrap;
+}
+.subguildpost-subject > a{
+	color:#000000;
 }
 
 

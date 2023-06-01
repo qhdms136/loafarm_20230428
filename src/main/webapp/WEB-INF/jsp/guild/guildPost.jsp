@@ -22,7 +22,7 @@
 				<c:forEach items="${guildPostList}" var="guild">
 					<tr>
 						<td>${guild.guildpost.id}</td>
-						<td class="text-left"><a href="/guild/guild_detail_view?guildPostId=${guild.guildpost.id}">${guild.guildpost.subject}</a></td>
+						<td class="text-left"><div class="guild-table-content"><a href="/guild/guild_detail_view?guildPostId=${guild.guildpost.id}">${guild.guildpost.subject}</a></div></td>
 						<td>${guild.user.nickname}</td>
 						<td><fmt:formatDate value="${guild.guildpost.createdAt}" pattern="yyyy-MM-dd"/></td>
 						<td>${guild.guildpost.maxCount}</td>

@@ -21,8 +21,17 @@ public class SubUserBO {
 	@Autowired
 	private UserBO userBO;
 	
-	public void addSubUserByUserIdPostId(int userId, int postId, String content) {
-		subUserMapper.insertSubUserByUserIdPostId(userId, postId, content);
+	public int addSubUserByUserIdPostId(int userId, int postId, String content) {
+		return subUserMapper.insertSubUserByUserIdPostId(userId, postId, content);
+	}
+	
+	// 수락 / 거절 update
+	public void updateSubUser(int userId, int postId, String state){
+		subUserMapper.updateSubUser(userId, postId, state);
+	}
+	
+	public List<SubUser> getSubUserListByUserId(int userId){
+		return subUserMapper.selectSubUserListByUserId(userId);
 	}
 	
 	public SubUser getSubUserByUserId(int userId) {

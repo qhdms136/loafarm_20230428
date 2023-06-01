@@ -24,18 +24,23 @@
 						<div id="map" style="width:100%;height:300px;margin-top:10px;display:block"></div>
 						<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=996f3681c69f47af40cf467e79616ae1&libraries=services"></script>
 					</div>
-				<div style="margin-top:50px;">
+				<div style="margin-top:30px;">
 					<div class="d-flex justify-content-center">
-					<span>신청현황</span>
+						<span class="text-primary"><b>신청현황</b></span>
 					</div>
-					<textarea class="sub-content form-control" id="content" rows="5" placeholder="내용을 입력해주세요"></textarea>
+					<div class="d-flex justify-content-center">
+						<span>${guildPostView.subcount} / ${guildPostView.guildpost.maxCount}</span>					
+					</div>
+					<textarea class="sub-content mt-3 form-control" id="content" rows="5" placeholder="내용을 입력해주세요"></textarea>
 				</div>
 				<div class="my-3 d-flex justify-content-center">
 					<c:if test="${userId != guildPostView.user.id}">
 						<c:if test="${guildPostView.subcount ge guildPostView.guildpost.maxCount}">
-							<div>신청포화</div>
+							<button class="btn btn-danger" disabled>신청포화</button>
 						</c:if>
-						<button id="subBtn" class="btn btn-primary" data-post-id="${guildPostView.guildpost.id}">신청하기</button>
+						<c:if test="${guildPostView.subcount lt guildPostView.guildpost.maxCount}">
+							<button id="subBtn" class="btn btn-primary" data-post-id="${guildPostView.guildpost.id}">신청하기</button>
+						</c:if>
 					</c:if>
 				</div>
 			</div>
@@ -129,7 +134,12 @@ $(document).ready(function(){
 							if(data.code == 1){
 								alert("신청이 완료되었습니다.");
 								location.reload(true);
-							} 
+							} else if(data.code == 300){
+								alert(data.errorMessage);
+								location.reload(true);
+							} else{
+								alert(data.errorMessage);
+							}
 						}
 						,error:function(request, status, error){
 							alert("신청하기를 실패하였습니다.");

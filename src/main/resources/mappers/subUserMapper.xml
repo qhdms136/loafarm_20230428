@@ -20,6 +20,21 @@
  			, NOW()
  		)
  	</insert>
+ 	
+ 	<select id="selectSubUserListByUserId" resultType="com.loafarm.subuser.model.SubUser">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `postId`
+			, `content`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`sub_user`
+ 		WHERE
+ 			`userId` = #{userId}
+ 	</select>
  	<select id="selectSubUserByUserId" resultType="com.loafarm.subuser.model.SubUser">
  		SELECT
  			`id`
@@ -60,6 +75,16 @@
  			`postId` = #{postId} AND `state` = '대기중'
  			OR `postId` = #{postId} AND `state` = '수락' 
  	</select>
+ 	<update id="updateSubUser" parameterType="map">
+ 		UPDATE
+ 			`sub_user`
+ 		SET
+ 			`state` = #{state}
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `postId` = #{postId}
+ 	</update>
  	<delete id="deleteSubUserByPostId" parameterType="int">
  		DELETE
  		FROM

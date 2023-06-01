@@ -13,7 +13,7 @@
 	      <div class="dropdown-content">
 	        <a href="#">profile</a>
 	        <a href="/guild/guild_my_view?userId=${userId}">내 길드모임 게시글</a>
-	        <a href="#">내 길드모임 신청목록</a>
+	        <a href="/subuser/mysub_list_view?userId=${userId}">내 길드모임 신청목록</a>
 	      </div>
     	</div>
 			

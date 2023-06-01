@@ -18,10 +18,12 @@
 			<ul class="today-list">
 			<c:forEach items="${freePostList}" begin="0" end="9" var="free">
 				<li>
+					<div class="today-subject">
 					<a href="#">
 						<span class="cate text-primary">${free.freepost.category}</span>
 						<span class="txt">${free.freepost.subject}</span>
 					</a>
+					</div>
 				</li>
 			</c:forEach>	
 			</ul>

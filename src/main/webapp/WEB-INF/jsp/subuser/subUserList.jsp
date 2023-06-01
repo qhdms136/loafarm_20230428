@@ -10,7 +10,7 @@
 			<div class="mt-4 mr-4 d-flex justify-content-end align-items-center">
 			<span style="font-size:18px;"><b>${subcount} / ${guildpost.maxCount}</b></span><span class="mx-3"><b>최대정원</b></span>
 			</div>
-			<table class="gm-table table table-hover text-center">
+			<table class="subuser-table table table-hover text-center">
 				<thead>
 					<tr>
 						<th>글쓴이</th>
@@ -24,19 +24,31 @@
 				<c:forEach items="${subUserList}" var="subuser">
 					<tr>
 						<td>${subuser.user.nickname}</td>
-						<td class="text-left">${subuser.subuser.content}</td>
+						<td class="text-left"><div class="subuser-content">${subuser.subuser.content}</div></td>
 						<td><fmt:formatDate value="${subuser.subuser.createdAt}" pattern="yyyy-MM-dd"/></td>
-						<td>${subuser.subuser.state}</td>
-						
+						<c:choose>
+							<c:when test="${subuser.subuser.state eq '대기중'}">
+								<td><span class="text-secondary"><b>${subuser.subuser.state}</b></span></td>
+							</c:when>
+							<c:when test="${subuser.subuser.state eq '수락'}">
+								<td><span class="text-primary"><b>${subuser.subuser.state}</b></span></td>
+							</c:when>
+							<c:when test="${subuser.subuser.state eq '거절'}">
+								<td><span class="text-danger"><b>${subuser.subuser.state}</b></span></td>
+							</c:when>
+						</c:choose>
+				
 						<c:choose>
 						<c:when test="${subuser.subuser.state eq '대기중'}">
-							<td><button class="btn btn-sm btn-primary">수락</button><button  class="btn btn-sm btn-danger">거절</button></td>
+							<td><button class="subStateBtn btn btn-sm btn-primary"data-user-id="${subuser.subuser.userId}" data-post-id="${subuser.subuser.postId}" data-state="수락">수락</button><button  class="subStateBtn btn btn-sm btn-danger" data-user-id="${subuser.subuser.userId}" data-post-id="${subuser.subuser.postId}" data-state="거절">거절</button></td>
 						</c:when>
 						<c:when test="${subuser.subuser.state eq '수락'}">
-							<td><div>수락</div></td>
+							<td><button class="btn btn-sm btn-primary" disabled>수락</button></td>
+						</c:when>
+						<c:when test="${subuser.subuser.state eq '거절'}">
+							<td><button class="btn btn-sm btn-danger" disabled>거절</button></td>
 						</c:when>
 						</c:choose>
-						
 					</tr>
 				</c:forEach>
 				</tbody>
@@ -44,3 +56,32 @@
 		</div>
 	</div>
 </div>
+<script>
+$(document).ready(function(){
+	$('.subStateBtn').on('click', function(){
+		let userId = $(this).data("user-id");
+		let postId = $(this).data("post-id");
+		let state = $(this).data("state");
+		console.log(userId);
+		console.log(postId);
+		console.log(state);
+		
+		// ajax
+		$.ajax({
+			type:"PUT"
+			,url:"/subuser/update"
+			,data:{"userId":userId, "postId":postId, "state":state}
+		// resposne
+			,success:function(data){
+				if(data.code == 1){
+					// 성공
+					location.reload(true);
+				}
+			}
+			,error:function(request, status, error){
+				alert("수락/거절 하는데 실패했습니다.");
+			}
+		});
+	});
+});
+</script>

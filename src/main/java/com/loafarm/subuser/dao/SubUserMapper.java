@@ -9,12 +9,19 @@ import com.loafarm.subuser.model.SubUser;
 
 @Repository
 public interface SubUserMapper {
-	public void insertSubUserByUserIdPostId(
+	public int insertSubUserByUserIdPostId(
 			@Param("userId") int userId,
 			@Param("postId") int postId,
 			@Param("content") String content);
 	
 	public SubUser selectSubUserByUserId(int userId);
+	
+	public List<SubUser> selectSubUserListByUserId(int userId);
+	
+	public void updateSubUser(
+			@Param("userId") int userId,
+			@Param("postId") int postId,
+			@Param("state") String state);
 	
 	public void deleteSubUserByPostId(int postId);
 	

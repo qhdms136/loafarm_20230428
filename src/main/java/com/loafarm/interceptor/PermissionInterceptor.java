@@ -40,7 +40,13 @@ public class PermissionInterceptor implements HandlerInterceptor{
 			return false;
 		}
 		// 비로그인 && guild
-		if(userId == null && (uri.startsWith("/guild/guild_create_view") || uri.startsWith("/guild/guild_detail_view") || uri.startsWith("/guild/guild_update_view"))){
+		if(userId == null && (uri.startsWith("/guild/guild_create_view") || uri.startsWith("/guild/guild_detail_view") || uri.startsWith("/guild/guild_update_view") || uri.startsWith("/guild/guild_my_view"))){
+			response.sendRedirect("/user/sign_in_view");
+			return false;
+		}
+		
+		// 비로그인 && subuser
+		if(userId == null && (uri.startsWith("/subuser/mysub_list_view"))){
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}
