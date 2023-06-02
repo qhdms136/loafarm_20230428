@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.loafarm.freepost.model.Page;
 import com.loafarm.guildpost.bo.GuildPostBO;
 import com.loafarm.guildpost.model.GuildPost;
 import com.loafarm.guildpost.model.GuildPostView;
@@ -24,11 +25,15 @@ public class GuildPostContorller {
 	
 	@GetMapping("/guild_list_view")
 	public String guildListView(Model model,
+			@RequestParam(value="page", required=false, defaultValue="1") int page,
 			HttpSession session) {
 		// 비 로그인 시에도 게시물 목록을 보기위해 null
 		Integer userId = (Integer)session.getAttribute("userId");
-		List<GuildPostView> guildPostViewList = guildPostBO.generateGuildPostViewList(userId);
+		List<GuildPostView> guildPostViewList = guildPostBO.generateGuildPostViewList(userId, page);
+		// 페이지 계산
+		Page pageDTO = guildPostBO.pagingParam(page);
 		model.addAttribute("guildPostList", guildPostViewList);
+		model.addAttribute("paging", pageDTO);
 		model.addAttribute("view", "guild/guildPost");
 		return "template/layout";
 	}

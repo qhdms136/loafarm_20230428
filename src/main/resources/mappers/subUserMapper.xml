@@ -92,4 +92,12 @@
  		WHERE
  			`postId` = #{postId}
  	</delete>
+ 	<delete id="deleteSubUserByPostIdUserId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`sub_user`
+ 		WHERE
+ 			`postId` = #{postId}
+ 			AND `userId` = #{userId}
+ 	</delete>
  </mapper>

@@ -47,32 +47,32 @@
 				<c:choose>
 			        <%-- 현재 페이지가 1페이지면 이전 글자만 보여줌 --%>
 			        <c:when test="${paging.page<=1}">
-			            <span>[이전]</span>
+			            <span class="paging-unlink-ko">[이전]</span>
 			        </c:when>
 			        <%-- 1페이지가 아닌 경우에는 [이전]을 클릭하면 현재 페이지보다 1 작은 페이지 요청 --%>
 			        <c:otherwise>
-			            <a href="/free/free_list_view?category=${category}&page=${paging.page-1}&recommendCount=${recommendCount}">[이전]</a>
+			            <a class="paging-link-ko" href="/free/free_list_view?category=${category}&page=${paging.page-1}&recommendCount=${recommendCount}">[이전]</a>
 			        </c:otherwise>
 			    </c:choose>
 			     <%--  for(int i=startPage; i<=endPage; i++)      --%>
 			    <c:forEach begin="${paging.startPage}" end="${paging.endPage}" var="i" step="1">
 			        <c:choose>
 			            <%-- 요청한 페이지에 있는 경우 현재 페이지 번호는 텍스트만 보이게 --%>
-			            <c:when test="${i eq paging.page}">
-			                <span>${i}</span>
+			            <c:when test="${i eq paging.page}"> 	
+			                <span class="paging-unlink-number">&nbsp; ${i} &nbsp;</span>
 			            </c:when>
 			
 			            <c:otherwise>
-			                <a href="/free/free_list_view?category=${category}&page=${i}&recommendCount=${recommendCount}">${i}</a>
+			                <a class="paging-link-number" href="/free/free_list_view?category=${category}&page=${i}&recommendCount=${recommendCount}"> &nbsp; ${i} &nbsp; </a>
 			            </c:otherwise>
 			        </c:choose>
 			    </c:forEach>
 			    <c:choose>
 			   	     <c:when test="${paging.page>=paging.maxPage}">
-						<span>[다음]</span>
+						<span class="paging-unlink-ko">[다음]</span>
 		 		     </c:when>
 				   	 <c:otherwise>
-				 	    <a href="/free/free_list_view?category=${category}&page=${paging.page+1}&recommendCount=${recommendCount}">[다음]</a>
+				 	    <a class="paging-link-ko" href="/free/free_list_view?category=${category}&page=${paging.page+1}&recommendCount=${recommendCount}">[다음]</a>
 				   	 </c:otherwise>
 		   		 </c:choose>
 			</div>

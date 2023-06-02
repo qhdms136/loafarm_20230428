@@ -929,5 +929,21 @@ a > .txt {
 	color:#000000;
 }
 
+/* paging */
+.paging-unlink-ko{
+	color:#D5D5D5;
+	font-weight:bold;
+}
+.paging-link-ko{
+	color:#000000;
+	font-weight:bold;
+}
+.paging-unlink-number{
+	background-color:#000000;
+	color:#ffffff;
+}
+.paging-link-number{
+	color:#000000;
+}
 
 footer{height:100px;background-color:black;color:#ffffff;}

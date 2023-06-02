@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.loafarm.freepost.model.Page;
 import com.loafarm.guildpost.dao.GuildPostMapper;
 import com.loafarm.guildpost.model.GuildPost;
 import com.loafarm.guildpost.model.GuildPostView;
@@ -29,6 +30,10 @@ public class GuildPostBO {
 	@Autowired
 	private SubUserBO subUserBO;
 	
+	// 클래스 변수 (상수 불변)
+		private static final int PAGE_LIMIT = 10; // 한 페이지당 보여줄 글 갯수
+		private static final int BLOCK_LIMIT = 10; // 하단에 보여줄 페이지 번호 갯수
+	
 	public void addGuildPost(int userId, String subject, String address, int maxCount, String content) {
 		logger.info("[subject:{}, address:{}, maxCount:{}, content:{}]", subject, address, maxCount, content);
 		guildPostMapper.insertGuildPost(userId, subject, address, maxCount, content);
@@ -48,6 +53,29 @@ public class GuildPostBO {
 		guildPostMapper.updateGuildPost(postId, userId, subject, address, maxCount, content);
 	}
 	
+		// 길드모임 게시판 페이징 변수 설정
+		public Page pagingParam(int page) {
+			  // 카테고리 별 전체 글 갯수 조회
+			
+	        int boardCount = guildPostMapper.selectGuildPostListCount();        		
+	        // 전체 페이지 갯수 계산(ex ) 10/3=3.33333 => 4)
+	        int maxPage = (int) (Math.ceil((double) boardCount / PAGE_LIMIT));
+	        // 시작 페이지 값 계산(1, 11, 21, 31, ~~~~)
+	        int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
+	        // 끝 페이지 값 계산(10, 20, 30, 40, ~~~~)
+	        int endPage = startPage + BLOCK_LIMIT - 1;
+	        if (endPage > maxPage) {
+	            endPage = maxPage;
+	        }
+	        Page pageDTO = new Page();
+	        pageDTO.setPage(page);
+	        pageDTO.setMaxPage(maxPage);
+	        pageDTO.setStartPage(startPage);
+	        pageDTO.setEndPage(endPage);
+	        return pageDTO;
+		}
+	
+	
 	
 	// 게시물 삭제 delete
 	public int deleteGuildPostByPostIdUserId(int guildPostId, int userId) {
@@ -60,11 +88,15 @@ public class GuildPostBO {
 	
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
-	public List<GuildPostView> generateGuildPostViewList(Integer userId){
+	public List<GuildPostView> generateGuildPostViewList(Integer userId, int page){
+		// 페이징 처리
+		int pagingStart = (page -1) * PAGE_LIMIT;
+		
+		
 		List<GuildPostView> guildPostViewList = new ArrayList<>();
 		List<GuildPost> guildPostList = new ArrayList<>();
 		// 글 목록 가져오기
-		guildPostList = guildPostMapper.selectGuildPostList();
+		guildPostList = guildPostMapper.selectGuildPostListLimit(pagingStart, PAGE_LIMIT);
 		
 		// 반복문
 		for(GuildPost guildpost : guildPostList) {

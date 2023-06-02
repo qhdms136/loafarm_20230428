@@ -24,7 +24,13 @@
  			, NOW()
  		)
  	</insert>
- 		<select id="selectGuildPostByUserId" resultType="com.loafarm.guildpost.model.GuildPost">
+ 	<select id="selectGuildPostListCount" resultType="int">
+ 		SELECT
+ 			COUNT(`id`)
+ 		FROM
+ 			`guild_post`
+ 	</select>
+ 	<select id="selectGuildPostByUserId" resultType="com.loafarm.guildpost.model.GuildPost">
  		SELECT
  			`id`
 			, `userId`
@@ -51,8 +57,26 @@
 			, `updatedAt`
  		FROM
  			`guild_post`
- 		ORDER BY `id`	DESC
+ 		ORDER BY `id` DESC
  	</select>
+ 	<select id="selectGuildPostListLimit" parameterType="map" resultType="com.loafarm.guildpost.model.GuildPost">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `address`
+			, `content`
+			, `maxCount`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`guild_post`
+ 		ORDER BY 
+ 			`id` DESC
+ 		LIMIT
+ 			#{pagingStart}, #{pageLimit}
+ 	</select>
+ 	
  	<select id="selectGuildPostById" parameterType="int" resultType="com.loafarm.guildpost.model.GuildPost">
 	 		SELECT
 	 			`id`

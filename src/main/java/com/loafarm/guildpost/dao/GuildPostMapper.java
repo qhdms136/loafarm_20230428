@@ -20,6 +20,12 @@ public interface GuildPostMapper {
 	
 	public List<GuildPost> selectGuildPostList();
 	
+	public List<GuildPost> selectGuildPostListLimit(
+			@Param("pagingStart") int pagingStart,
+			@Param("pageLimit") int pageLimit);
+	
+	public int selectGuildPostListCount();
+	
 	public List<GuildPost> selectGuildPostMyList(int userId);
 	
 	public GuildPost selectGuildPostById(int guildPostId);
