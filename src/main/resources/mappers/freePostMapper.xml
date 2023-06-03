@@ -67,6 +67,35 @@
 		WHERE
 			`recommendCount` >= #{recommendCount}
 	</select>
+	<select id="selectFreePostListByUserIdCount" resultType="int">
+		SELECT
+			COUNT(`id`)
+		FROM
+			`free_post`
+		WHERE
+			`userId` = #{userId}
+	</select>
+	<select id="selectFreePostListByUserIdLimit" parameterType="map" resultType="com.loafarm.freepost.model.FreePost">
+		SELECT
+			`id`
+			, `userId`
+			, `category`
+			, `subject`
+			, `content`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`free_post`
+		WHERE
+			`userId` = #{userId}
+		ORDER BY 
+ 			`id` DESC
+ 		LIMIT
+ 			#{pagingStart}, #{pageLimit}
+	</select>
 	<select id="selectFreePostListOrderByPostIdRecommendcount" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT
 			`id`
@@ -83,6 +112,25 @@
 			`free_post`
 		ORDER BY
 			`recommendCount` DESC, `id` DESC
+	</select>
+	<select id="selectFreePostListByUserId" resultType="com.loafarm.freepost.model.FreePost">
+		SELECT
+			`id`
+			, `userId`
+			, `category`
+			, `subject`
+			, `content`
+			, `type`
+			, `recommendCount`
+			, `imagePath`
+			, `createdAt`
+			, `updatedAt`
+		FROM
+			`free_post`
+		WHERE
+			`userId` = #{userId}
+		ORDER BY
+			`id` DESC
 	</select>
 	<select id="selectFreePostListByRecommendCount" resultType="com.loafarm.freepost.model.FreePost">
 		SELECT

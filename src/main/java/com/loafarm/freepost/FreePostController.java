@@ -73,6 +73,20 @@ public class FreePostController {
 		return "template/layout";
 	}
 	
+	@GetMapping("/myfree_view")
+	public String myFreeView(Model model,
+			@RequestParam(value="page", required=false, defaultValue="1") int page,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		List<FreePostView> freePostViewList = freePostBO.generateFreePostViewByUserId(page, userId);
+		Page PageDTO2 = freePostBO.myPagingParam(page, userId);
+		model.addAttribute("paging", PageDTO2);
+		model.addAttribute("freePostList", freePostViewList);
+		model.addAttribute("view", "free/myfreePost");
+		return "template/layout";
+	}
+	
+	
 	@GetMapping("/free_create_view")
 	public String freeCreateView(Model model) {
 		model.addAttribute("view", "free/freeCreate");

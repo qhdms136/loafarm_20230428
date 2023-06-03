@@ -21,6 +21,16 @@ public interface CustomPostMapper {
 	
 	public List<CustomPost> selectCustomPostListByLimit(int limit);
 	
+	// 내 글 목록
+	public List<CustomPost> selectCustomPostListByuserId(
+			@Param("userId") int userId,
+			@Param("userId") int pagingStart,
+			@Param("userId") int pageLimit);
+	
+	// 내 글 목록 갯수
+	public int selectCustomPostListCountByUserId(int userId);
+	
+	
 	public List<CustomPost> selectCustomPostListByIndexAndLimit(
 			@Param("index") int index,
 			@Param("limit") int limit);

@@ -31,8 +31,8 @@ public class GuildPostBO {
 	private SubUserBO subUserBO;
 	
 	// 클래스 변수 (상수 불변)
-		private static final int PAGE_LIMIT = 10; // 한 페이지당 보여줄 글 갯수
-		private static final int BLOCK_LIMIT = 10; // 하단에 보여줄 페이지 번호 갯수
+	private static final int PAGE_LIMIT = 10; // 한 페이지당 보여줄 글 갯수
+	private static final int BLOCK_LIMIT = 10; // 하단에 보여줄 페이지 번호 갯수
 	
 	public void addGuildPost(int userId, String subject, String address, int maxCount, String content) {
 		logger.info("[subject:{}, address:{}, maxCount:{}, content:{}]", subject, address, maxCount, content);

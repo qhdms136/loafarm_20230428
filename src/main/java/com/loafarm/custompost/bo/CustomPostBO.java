@@ -15,6 +15,7 @@ import com.loafarm.common.FileManagerService;
 import com.loafarm.custompost.dao.CustomPostMapper;
 import com.loafarm.custompost.model.CustomPost;
 import com.loafarm.custompost.model.CustomPostView;
+import com.loafarm.freepost.model.Page;
 import com.loafarm.recommend.bo.RecommendBO;
 import com.loafarm.user.bo.UserBO;
 import com.loafarm.user.model.User;
@@ -22,7 +23,11 @@ import com.loafarm.user.model.User;
 @Service
 public class CustomPostBO {
 	
-	private static final int POST_SIZE = 6;
+	// 클래스 변수 (상수 불변)
+	private static final int POST_SIZE = 6;	// 스크롤 동작시 이미지 나오는 갯수
+	private static final int PAGE_LIMIT = 10; // 한 페이지당 보여줄 글 갯수
+	private static final int BLOCK_LIMIT = 10; // 하단에 보여줄 페이지 번호 갯수
+	
 	
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
@@ -193,6 +198,39 @@ public class CustomPostBO {
 	public CustomPost getCustomPostByPostIdUserId(int customPostId, int userId) {
 		return customPostMapper.selectCustomPostByPostIdUserId(customPostId, userId);
 	}
+	
+	// 내 커스터마이징 글 목록
+	public List<CustomPost> getCustomPostBydUserId(int page, int userId){
+		// 페이징 처리
+		int pagingStart = (page -1) * PAGE_LIMIT;
+		return customPostMapper.selectCustomPostListByuserId(userId, pagingStart, PAGE_LIMIT);
+	}
+	
+	
+	
+	// 내 커스터마이징 페이징 변수 설정
+	public Page pagingParam(int page, int userId) {
+		// 카테고리 별 전체 글 갯수 조회
+				
+       int boardCount = customPostMapper.selectCustomPostListCountByUserId(userId);        		
+       // 전체 페이지 갯수 계산(ex ) 10/3=3.33333 => 4)
+       int maxPage = (int) (Math.ceil((double) boardCount / PAGE_LIMIT));
+       // 시작 페이지 값 계산(1, 11, 21, 31, ~~~~)
+       int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
+       // 끝 페이지 값 계산(10, 20, 30, 40, ~~~~)
+		int endPage = startPage + BLOCK_LIMIT - 1;
+			if (endPage > maxPage) {
+				endPage = maxPage;
+			}
+		Page pageDTO = new Page();
+		pageDTO.setPage(page);
+		pageDTO.setMaxPage(maxPage);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		return pageDTO;
+	}
+	
+	
 	
 	// 추천 갯수에 따른 커스터마이징 목록
 	// 비 로그인 시에도 볼 수 있도록 null

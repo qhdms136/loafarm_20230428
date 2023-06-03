@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.loafarm.custompost.bo.CustomPostBO;
 import com.loafarm.custompost.model.CustomPost;
 import com.loafarm.custompost.model.CustomPostView;
+import com.loafarm.freepost.model.Page;
 
 @RequestMapping("/custom")
 @Controller
@@ -41,6 +42,17 @@ public class CustomPostController {
 		List<CustomPostView> customPostViewList = customPostBO.generateCustomPostMoreViewList(userId, cnt);
 		model.addAttribute("customPostList", customPostViewList);
 		return "custom/customMoreList";
+	}
+	
+	@GetMapping("/mycustom_view")
+	public String myCustomView(Model model,
+			@RequestParam(value="page", required=false, defaultValue="1") int page,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		List<CustomPost> customPosList = customPostBO.getCustomPostBydUserId(page, userId);
+		Page pageDTO = customPostBO.pagingParam(page, userId);
+		model.addAttribute("view", "custom/mycustomPost");
+		return "template/layout";
 	}
 	
 	/*

@@ -48,6 +48,7 @@ public class FreePostBO {
 	// 클래스 변수 (상수 불변)
 	private static final int PAGE_LIMIT = 10; // 한 페이지당 보여줄 글 갯수
 	private static final int BLOCK_LIMIT = 10; // 하단에 보여줄 페이지 번호 갯수
+	// private static final int MY_PAGE_LIMIT = 3;
 	
 	public int addFreePost(int userId, 
 			String loginId, 
@@ -174,6 +175,30 @@ public class FreePostBO {
 		return freePostViewList;
 	}
 	
+	// 내 게시물 (자유 게시판 목록)
+	// 유저 아이디 필수
+	public List<FreePostView> generateFreePostViewByUserId(int page, int userId){
+		int pagingStart = (page -1) * PAGE_LIMIT;
+		
+		List<FreePostView> freePostViewList = new ArrayList<>();
+		List<FreePost> freePostList = new ArrayList<>();
+		// 내가 쓴 글 목록 가져오기
+		freePostList = freePostMapper.selectFreePostListByUserIdLimit(userId, pagingStart, PAGE_LIMIT);
+		for(FreePost freepost : freePostList) {
+			FreePostView freePostView = new FreePostView();
+			// 글
+			freePostView.setFreepost(freepost); // 지금 가져온 글
+			
+			// 글쓴이 정보
+			User user = userBO.getUserById(freepost.getUserId());
+			freePostView.setUser(user);
+						
+			// 카드 리스트 꼭 채우기!!!!
+			freePostViewList.add(freePostView);
+		}
+		return freePostViewList;
+	}
+		
 	// 추천 갯수의 따른 자유 게시판 목록
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<FreePostView> generateFreePostRecommendViewList(Integer userId, int recommendCount){
@@ -232,6 +257,29 @@ public class FreePostBO {
         pageDTO.setEndPage(endPage);
         return pageDTO;
 	}
+	
+	// 2usage new
+	// 내 게시글 페이징 변수 설정
+	public Page myPagingParam(int page, int userId) {
+		 int boardCount = freePostMapper.selectFreePostListByUserIdCount(userId);        		
+	        // 전체 페이지 갯수 계산(ex ) 10/3=3.33333 => 4)
+	        int maxPage = (int) (Math.ceil((double) boardCount / PAGE_LIMIT));
+	        // 시작 페이지 값 계산(1, 11, 21, 31, ~~~~)
+	        int startPage = (((int)(Math.ceil((double) page / BLOCK_LIMIT))) - 1) * BLOCK_LIMIT + 1;
+	        // 끝 페이지 값 계산(10, 20, 30, 40, ~~~~)
+	        int endPage = startPage + BLOCK_LIMIT - 1;
+	        if (endPage > maxPage) {
+	            endPage = maxPage;
+	        }
+	        Page pageDTO2 = new Page();
+	        pageDTO2.setPage(page);
+	        pageDTO2.setMaxPage(maxPage);
+	        pageDTO2.setStartPage(startPage);
+	        pageDTO2.setEndPage(endPage);
+	        return pageDTO2;
+	}
+	
+	
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	// 자유 게시판 페이징 처리(전체, 카테고리, 추천수(10, 30))

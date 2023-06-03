@@ -39,6 +39,19 @@ public interface FreePostMapper {
 	// 추천수에 따른 자유 게시판 목록
 	public List<FreePost> selectFreePostListByRecommendCount(int recommendCount);
 	
+	// 내가 쓴 자유 게시판 목록
+	public List<FreePost> selectFreePostListByUserId(int userId);
+	
+	// 내가 쓴 자유 게시판 목록 갯수
+	public int selectFreePostListByUserIdCount(int userId);
+	
+	// 내가 쓴 자유 게시판 목록 limit
+	public List<FreePost> selectFreePostListByUserIdLimit(
+			@Param("userId") int userId,
+			@Param("pagingStart") int pagingStart,
+			@Param("pageLimit") int pageLimit);
+	
+	
 	public FreePost selectFreePostById(int freePostId);
 	
 	public void updateFreePostByPostId(

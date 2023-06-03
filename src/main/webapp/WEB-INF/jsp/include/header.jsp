@@ -11,7 +11,8 @@
 		<div class="dropdown">
         	<span class="font-weight-bold">${userNickname}님 안녕하세요</span>
 	      <div class="dropdown-content">
-	        <a href="#">profile</a>
+	        <a href="/free/myfree_view?userId=${userId}">내 게시글</a>
+	        <a href="#">내 커스터마이징</a>
 	        <a href="/guild/guild_my_view?userId=${userId}">내 길드모임 게시글</a>
 	        <a href="/subuser/mysub_list_view?userId=${userId}">내 길드모임 신청목록</a>
 	      </div>
