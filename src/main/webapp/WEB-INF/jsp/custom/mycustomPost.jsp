@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <div class="d-flex justify-content-center">
 	<div class="mycustompost-content">
-		<div class="fp-title">내 게시글</div>
+		<div class="fp-title">내 커스터마이징</div>
 		<div>
 			<table class="mycustompost-table table table-hover text-center">
 				<thead>
@@ -17,7 +17,14 @@
 					</tr>
 				</thead>
 				<tbody>
-					
+					<c:forEach items="${customPosList}" var="custompost">
+						<tr>
+							<td>${custompost.id}</td>
+							<td class="text-left"><div class="custompost-subject"><a href="/custom/custom_detail_view?customPostId=${custompost.id}&type=${custompost.type}">${custompost.subject}</a></div></td>
+							<td><fmt:formatDate value="${custompost.createdAt}" pattern="yyyy-MM-dd"/></td>
+							<td>${custompost.recommendCount}</td>
+						</tr>
+					</c:forEach>
 				</tbody>
 			</table>
 		</div>

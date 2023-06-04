@@ -24,8 +24,8 @@ public interface CustomPostMapper {
 	// 내 글 목록
 	public List<CustomPost> selectCustomPostListByuserId(
 			@Param("userId") int userId,
-			@Param("userId") int pagingStart,
-			@Param("userId") int pageLimit);
+			@Param("pagingStart") int pagingStart,
+			@Param("pageLimit") int pageLimit);
 	
 	// 내 글 목록 갯수
 	public int selectCustomPostListCountByUserId(int userId);

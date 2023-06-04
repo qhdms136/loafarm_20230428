@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ <mapper namespace="com.loafarm.noticepost.dao.NoticePostMapper">
+ 	<insert id="insertNoticePost" parameterType="map">
+ 		INSERT INTO `notice_post`
+ 		(
+			`userId`
+			, `subject`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		)
+ 		VALUES
+ 		(
+ 			#{userId}
+ 			, #{subject}
+ 			, #{content}
+ 			, NOW()
+ 			, NOW() 			
+ 		)
+ 	</insert>
+ 	<select id="selectNoticePostListLimit" parameterType="map" resultType="com.loafarm.noticepost.model.NoticePost">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`notice_post`
+ 		ORDER BY
+ 			`id` DESC
+ 		LIMIT
+ 			#{pagingStart}, #{pageLimit}
+ 	</select>
+ 	<select id="selectNoticePostListCount" resultType="int">
+ 		SELECT
+ 			COUNT(`id`)
+ 		FROM
+ 			`notice_post`
+ 	</select>
+ </mapper>

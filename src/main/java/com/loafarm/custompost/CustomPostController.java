@@ -51,6 +51,8 @@ public class CustomPostController {
 		int userId = (int)session.getAttribute("userId");
 		List<CustomPost> customPosList = customPostBO.getCustomPostBydUserId(page, userId);
 		Page pageDTO = customPostBO.pagingParam(page, userId);
+		model.addAttribute("customPosList", customPosList);
+		model.addAttribute("paging", pageDTO);
 		model.addAttribute("view", "custom/mycustomPost");
 		return "template/layout";
 	}

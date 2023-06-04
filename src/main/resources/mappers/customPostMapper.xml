@@ -34,10 +34,10 @@
 			, `updatedAt`
 		FROM
 			`custom_post`
+		WHERE
+			`userId` = #{userId}	
 		ORDER BY
 			`id` DESC
-		WHERE
-			`userId` = #{userId}
 		LIMIT
  			#{pagingStart}, #{pageLimit}	
 	</select>
