@@ -28,6 +28,21 @@ public class NoticePostBO {
 		noticePostMapper.insertNoticePost(userId, subject, content);
 	}
 	
+	// delete
+	public void deleteNoticePostByUserIdPostId(int userId, int postId) {
+		noticePostMapper.deleteNoticePostByUserIdPostId(userId, postId);
+	}
+	
+	// update
+	public void updateNoticePost(int userId, int postId, String subject, String content) {
+		noticePostMapper.updateNoticePostByUserIdPostId(userId, postId, subject, content);
+	}
+	
+	
+	public NoticePost getNoticePostByPostId(int userId, int postId) {
+		return noticePostMapper.selectNoticePostByPostId(postId);
+	}
+	
 	// 공지사항 목록 페이지
 	public List<NoticePost> getNoticePostByLimit(int page, Integer userId){
 		// 페이징 처리

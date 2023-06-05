@@ -25,7 +25,7 @@
 								<div class="card-nickname my-2 ml-2">${custom.user.nickname}</div>
 								<div class="mb-3 d-flex justify-content-end">
 									<img src="/static/img/index/recommend.png" alt="추천" width="25">
-									<span class="mx-3">${custom.custompost.recommendCount}</span>
+									<span class="custom-recommendCount mx-3">${custom.custompost.recommendCount}</span>
 								</div>
 							</div>
 						</div>

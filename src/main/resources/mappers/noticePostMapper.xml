@@ -35,10 +35,41 @@
  		LIMIT
  			#{pagingStart}, #{pageLimit}
  	</select>
+ 	<select id="selectNoticePostByPostId" resultType="com.loafarm.noticepost.model.NoticePost">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`notice_post`
+ 		WHERE
+ 			`id` = #{postId}
+ 	</select>
  	<select id="selectNoticePostListCount" resultType="int">
  		SELECT
  			COUNT(`id`)
  		FROM
  			`notice_post`
  	</select>
+ 	<delete id="deleteNoticePostByUserIdPostId" parameterType="map">
+ 		DELETE
+ 		FROM
+ 			`notice_post`
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND	`id` = #{postId}
+ 	</delete>
+ 	<update id="updateNoticePostByUserIdPostId" parameterType="map">
+ 		UPDATE	`notice_post`
+ 		SET
+ 			`subject` = #{subject}
+ 			, `content` = #{content}
+ 			, `updatedAt` = NOW()
+ 		WHERE
+ 			`userId` = #{userId}
+ 			AND `id` = #{postId}
+ 	</update>
  </mapper>

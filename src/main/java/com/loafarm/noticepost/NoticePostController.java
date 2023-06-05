@@ -43,13 +43,23 @@ public class NoticePostController {
 	}
 	
 	@GetMapping("/notice_detail_view")
-	public String noticeDetailView(Model model) {
+	public String noticeDetailView(Model model,
+			@RequestParam("postId") int postId,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		NoticePost noticePost = noticePostBO.getNoticePostByPostId(userId, postId);
+		model.addAttribute("notice", noticePost);
 		model.addAttribute("view", "notice/noticeDetail");
 		return "template/layout";
 	}
 	
 	@GetMapping("/notice_update_view")
-	public String noticeUpdateView(Model model) {
+	public String noticeUpdateView(Model model,
+			@RequestParam("postId") int postId,
+			HttpSession session) {
+		int userId = (int)session.getAttribute("userId");
+		NoticePost noticePost = noticePostBO.getNoticePostByPostId(userId, postId);
+		model.addAttribute("notice", noticePost);
 		model.addAttribute("view", "notice/noticeUpdate");
 		return "template/layout";
 	}

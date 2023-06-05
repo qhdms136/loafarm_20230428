@@ -3,9 +3,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
-<div>
-	<div class="img-size"></div>
+<div class="img-container">
+	<div class="slide-container">
+		<div class="slide-image"><img src="/static/img/index/loafarmbena.png"></div>	
+		<div class="slide-image"><img src="/static/img/index/loafarmbena2.JPG"></div>
+	</div>
 </div>
+
+
+
 <div class="d-flex justify-content-center">
 	<div class="loa-hot-board">
 		<div class="ml-3 mt-2">

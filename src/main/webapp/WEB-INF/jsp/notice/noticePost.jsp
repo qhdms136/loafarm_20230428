@@ -20,7 +20,7 @@
 					<c:forEach items="${NoticePostList}" var="notice">
 						<tr>
 							<td>공지</td>
-							<td class="text-left"><div class="noticepost-list-subject"><a href="#">${notice.subject}</a></div></td>
+							<td class="text-left"><div class="noticepost-list-subject"><a href="/notice/notice_detail_view?postId=${notice.id}">${notice.subject}</a></div></td>
 							<td><span>admin</span></td>
 							<td><fmt:formatDate value="${notice.createdAt}" pattern="yyyy-MM-dd"/></td>
 						</tr>
