@@ -21,6 +21,8 @@ public interface CustomPostMapper {
 	
 	public List<CustomPost> selectCustomPostListByLimit(int limit);
 	
+	public List<CustomPost> selectCustomPostListByLimitTop3();
+	
 	// 내 글 목록
 	public List<CustomPost> selectCustomPostListByuserId(
 			@Param("userId") int userId,

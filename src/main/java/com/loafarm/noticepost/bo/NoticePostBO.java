@@ -50,7 +50,10 @@ public class NoticePostBO {
 		return noticePostMapper.selectNoticePostListLimit(pagingStart, PAGE_LIMIT);
 	}
 		
-	
+	// index 공지사항 목록
+	public List<NoticePost> getNoticePost(Integer userId){
+		return noticePostMapper.selectNoticePostList();
+	}
 	
 	// 공지사항 페이징 변수처리
 	public Page pagingParam(int page) {

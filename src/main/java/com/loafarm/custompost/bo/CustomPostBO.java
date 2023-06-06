@@ -112,6 +112,28 @@ public class CustomPostBO {
 		return customPostMapper.deletePostByPostIdUserId(customPostId, userId);
 	}
 	
+	// index 커스터마이징 top3
+	public List<CustomPostView> generateCustomPostViewListTop3(Integer userId){
+		List<CustomPostView> customPostViewList = new ArrayList<>();
+		List<CustomPost> customPostList = new ArrayList<>();
+		
+		// 글 목록 가져오기
+		customPostList = customPostMapper.selectCustomPostListByLimitTop3();
+		for(CustomPost custompost : customPostList) {
+			CustomPostView customPostView = new CustomPostView();
+			// 글
+			customPostView.setCustompost(custompost);
+			// 글쓴이 정보
+			User user = userBO.getUserById(custompost.getUserId());
+			customPostView.setUser(user);
+			// 카드 리스트 채우기
+			customPostViewList.add(customPostView);
+		}
+		return customPostViewList;
+	}
+	
+	
+	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<CustomPostView> generateCustomPostViewList(Integer userId){
 		List<CustomPostView> customPostViewList = new ArrayList<>();

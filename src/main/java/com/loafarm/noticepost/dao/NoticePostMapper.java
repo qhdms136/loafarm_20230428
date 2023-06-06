@@ -19,6 +19,8 @@ public interface NoticePostMapper {
 			@Param("pagingStart") int pagingStart,
 			@Param("pageLimit") int pageLimit);
 	
+	public List<NoticePost> selectNoticePostList();
+	
 	public void deleteNoticePostByUserIdPostId(
 			@Param("userId") int userId,
 			@Param("postId") int postId);

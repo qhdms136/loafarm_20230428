@@ -35,6 +35,20 @@
  		LIMIT
  			#{pagingStart}, #{pageLimit}
  	</select>
+ 	<select id="selectNoticePostList" resultType="com.loafarm.noticepost.model.NoticePost">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `subject`
+			, `content`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`notice_post`
+ 		ORDER BY
+ 			`id` DESC
+ 	</select>
+ 	
  	<select id="selectNoticePostByPostId" resultType="com.loafarm.noticepost.model.NoticePost">
  		SELECT
  			`id`

@@ -86,6 +86,11 @@ public class GuildPostBO {
 		return guildPostMapper.deleteGuildPostByPostIdUserId(guildPostId, userId);
 	}
 	
+	// index guildpost
+	public List<GuildPost> getGuildPost(Integer userId){
+		return guildPostMapper.selectGuildPostList();
+	}
+	
 	
 	// 비 로그인시에도 게시판 목록을 볼 수 있게 null 허용
 	public List<GuildPostView> generateGuildPostViewList(Integer userId, int page){
