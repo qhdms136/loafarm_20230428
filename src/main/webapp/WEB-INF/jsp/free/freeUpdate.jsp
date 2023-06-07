@@ -67,11 +67,11 @@ $(document).ready(function(){
 			return;
 		}
 		
-		console.log(category);
+	/* 	console.log(category);
 		console.log(subject);
 		console.log(content);
 		console.log(file);
-		console.log(freePostId);
+		console.log(freePostId); */
 		
 		// 파일 업로드 된 경우에만 확장자 체크
 		
@@ -146,7 +146,7 @@ $(document).ready(function(){
 	// 게시물 삭제 버튼
 	$('#freeDeleteBtn').on('click', function(){
 		let freePostId = $(this).data("post-id");
-		alert(freePostId);
+/* 		alert(freePostId); */
 		
 		// ajax
 		$.ajax({	//request

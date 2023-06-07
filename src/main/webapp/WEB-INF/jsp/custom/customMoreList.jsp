@@ -5,7 +5,7 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 <c:forEach items="${customPostList}" var="custom">
 			<div class="cp-box">
-				<div class="d-flex justify-content-center">
+				<div class="card-img d-flex justify-content-center">
 				<a href="/custom/custom_detail_view?customPostId=${custom.custompost.id}&type=${custom.custompost.type}">
 					<img src="${custom.custompost.imagePath}" alt="커스터마이징" width="250"
 						height="250">

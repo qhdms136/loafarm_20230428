@@ -36,7 +36,7 @@ $(document).ready(function(){
 	$('#noticeDeleteBtn').on('click', function(){
 		// 값을 넣으면 그 값으로 세팅
 		let postId = $(this).data("post-id");
-		console.log(postId);
+		/* console.log(postId); */
 		// ajax
 		$.ajax({
 			//request
@@ -70,9 +70,9 @@ $(document).ready(function(){
 			alert("내용을 입력해주세요");
 			return;
 		}
-		console.log(subject);
+		/* console.log(subject);
 		console.log(content);
-		console.log(postId);
+		console.log(postId); */
 		// ajax
 		$.ajax({
 			// request

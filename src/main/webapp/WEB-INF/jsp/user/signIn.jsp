@@ -35,9 +35,9 @@ $(document).ready(function(){
 		let password = $('#password').val();
 		
 		let url = $(this).attr("action");
-		console.log(url);
+		/* console.log(url); */
 		let params = $(this).serialize();
-		console.log(params);
+	/* 	console.log(params); */
 		var referrer = document.referrer;
 		
 		$.post(url, params) // request

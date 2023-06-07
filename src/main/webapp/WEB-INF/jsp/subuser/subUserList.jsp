@@ -62,9 +62,9 @@ $(document).ready(function(){
 		let userId = $(this).data("user-id");
 		let postId = $(this).data("post-id");
 		let state = $(this).data("state");
-		console.log(userId);
+		/* console.log(userId);
 		console.log(postId);
-		console.log(state);
+		console.log(state); */
 		
 		// ajax
 		$.ajax({

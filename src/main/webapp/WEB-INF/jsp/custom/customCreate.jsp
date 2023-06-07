@@ -46,9 +46,9 @@ $(document).ready(function(){
 		let type = $(this).data("type");
 		let file = $('#file').val(); //파일 경로
 		
-		console.log(subject);
+		/* console.log(subject);
 		console.log(type);
-		console.log(file);
+		console.log(file); */
 		
 		// 유효성 검사
 		if(!subject){
@@ -78,7 +78,7 @@ $(document).ready(function(){
 		formData.append("subject", subject);
 		formData.append("type", type);
 		formData.append("file", $('#file')[0].files[0]);
-		console.log(formData);
+		/* console.log(formData); */
 		
 		$.ajax({
 			// request

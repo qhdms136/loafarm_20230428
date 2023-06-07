@@ -55,7 +55,7 @@ $(document).ready(function(){
 	$('#guildDeleteBtn').on('click', function(){
 		// 값을 넣으면 그 값으로 세팅
 		let guildPostId = $(this).data("post-id");
-		alert(guildPostId);
+		/* alert(guildPostId); */
 		
 		// ajax
 		$.ajax({	// request
@@ -100,18 +100,19 @@ $(document).ready(function(){
 			return;
 		}
 		if(maxCount > 50 || maxCount < 5){
-			alert("최소인원은 5명부터이며 최대인원은 50명입니다.");
+			alert("최소인원은 5명이며 최대인원은 50명입니다.");
+			return;
 		}
 		if(!content){
 			alert("내용을 입력해주세요");
 			return;
 		}
 		
-		console.log(subject);
+		/* console.log(subject);
 		console.log(address);
 		console.log(maxCount);
 		console.log(content);
-		console.log(postId)
+		console.log(postId) */
 		// ajax
 		 $.ajax({
 			type:"PUT"

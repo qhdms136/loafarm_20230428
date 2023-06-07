@@ -119,9 +119,9 @@ $(document).ready(function(){
 		let content = $(this).prev().val();
 		let type = $(this).data("type");
 		
-		console.log(postId);
+		/* console.log(postId);
 		console.log(content);
-		console.log(type);
+		console.log(type); */
 		
 		if(!content || content == ""){
 			alert("댓글 내용을 입력해주세요.");
@@ -151,7 +151,6 @@ $(document).ready(function(){
 	$('.commentDelBtn').on('click', function(e){
 		e.preventDefault();
 		let commentId = $(this).data("comment-id");
-		alert(commentId);
 		
 		// ajax
 		$.ajax({

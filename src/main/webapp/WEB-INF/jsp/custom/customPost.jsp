@@ -13,7 +13,7 @@
 			<div class="cp-list-box d-flex flex-wrap justify-content-start">
 				<c:forEach items="${customPostList}" var="custom">
 					<div class="cp-box">
-						<div class="d-flex justify-content-center">
+						<div class="card-img d-flex justify-content-center">
 						<a href="/custom/custom_detail_view?customPostId=${custom.custompost.id}&type=${custom.custompost.type}">
 							<img src="${custom.custompost.imagePath}" alt="커스터마이징" width="250"
 								height="250">
@@ -41,10 +41,10 @@
 	var customListBox = document.getElementById('customListBox');
 	var parent = footDiv.parentElement;
 	var cnt = 1;
-	console.log(footDiv)
+	/* console.log(footDiv) */
 	customListBox.onscroll = function(e){
 		var rect = parseInt(footDiv.getBoundingClientRect().top) - parseInt(customListBox.getBoundingClientRect().top);
-		console.log(rect);
+		/* console.log(rect); */
 		let option = {
 			    threshold: 0.5,
 		}
@@ -53,7 +53,7 @@
 			entries.forEach((entry) => {	 
 			    // 관찰 대상 들어옴 true  
 				if (entry.isIntersecting) {
-			        	console.log('화면에서 노출됨');
+			        	/* console.log('화면에서 노출됨'); */
 			        	settime = setTimeout(() => $.ajax({
 			        			type:"POST"
 				        		,url:"/custom/more"
@@ -66,7 +66,7 @@
 					    		    	        ,data:{"cnt":cnt}
 					    		    	        ,success:function(data){
 					    		    	        	cnt += 1;
-					    				            console.log(cnt);
+					    				            /* console.log(cnt); */
 					    		    	          $('.cp-list-box').append(data);
 					    		    	        }
 					    		            });
@@ -79,7 +79,7 @@
 			        	return;
 			        }
 					else {
-			            console.log('화면에서 제외됨');
+			           /*  console.log('화면에서 제외됨'); */
 			            return;
 			        }
 			    })

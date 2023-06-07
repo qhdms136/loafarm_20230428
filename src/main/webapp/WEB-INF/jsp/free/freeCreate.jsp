@@ -69,7 +69,7 @@ $(document).ready(function(){
 			alert("내용을 입력해주세요");
 			return;
 		}
-		console.log(category);
+		/* console.log(category); */
 		 // 파일 업로드 된 경우에만 확장자 체크
 		if(file !=""){
 			// 확장자만 뽑아서 소문자로 변환하고 검사

@@ -51,7 +51,7 @@
 $(document).ready(function(){
 	$('.deleteBtn').on('click', function(){
 		let postId = $(this).data("post-id");
-		console.log(postId);
+		/* console.log(postId); */
 		// ajax
 		$.ajax({
 			type:"DELETE"

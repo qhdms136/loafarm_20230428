@@ -35,7 +35,7 @@ public class PermissionInterceptor implements HandlerInterceptor{
 			return false;
 		}
 		// 비로그인 && custom
-		if(userId == null && (uri.startsWith("/custom/custom_create_view") || uri.startsWith("/custom/custom_detail_view") || uri.startsWith("/custom/custom_update_view"))) {
+		if(userId == null && (uri.startsWith("/custom/custom_create_view") || uri.startsWith("/custom/custom_detail_view") || uri.startsWith("/custom/custom_update_view") || uri.startsWith("/custom/mycustom_view"))) {
 			response.sendRedirect("/user/sign_in_view");
 			return false;
 		}

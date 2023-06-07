@@ -72,7 +72,7 @@ var map = new kakao.maps.Map(mapContainer, mapOption);
 
 //post 주소
 var address = $('#address').val();
-console.log(address);
+/* console.log(address); */
 
 //주소-좌표 변환 객체를 생성합니다
 var geocoder = new kakao.maps.services.Geocoder();
@@ -105,8 +105,8 @@ $(document).ready(function(){
 	$('#subBtn').on('click', function(){
 		let content = $('#content').val();
 		let postId = $(this).data("post-id");
-		console.log(content);
-		console.log(postId);
+		/* console.log(content);
+		console.log(postId); */
 		if(!content){
 			alert("내용을 입력해주세요");
 			return;

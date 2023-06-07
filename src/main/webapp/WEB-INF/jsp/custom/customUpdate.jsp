@@ -47,9 +47,9 @@ $(document).ready(function(){
 		let file = $('#file').val(); //파일 경로
 		let customPostId = $(this).data("post-id");
 		
-		console.log(subject);
+		/* console.log(subject);
 		console.log(file);
-		console.log(customPostId);
+		console.log(customPostId); */
 		
 		// 유효성 검사
 		if(!subject){
@@ -79,7 +79,7 @@ $(document).ready(function(){
 		formData.append("subject", subject);
 		formData.append("customPostId", customPostId);
 		formData.append("file", $('#file')[0].files[0]);
-		console.log(formData);
+		/* console.log(formData); */
 		
 		$.ajax({
 			// request
@@ -107,7 +107,7 @@ $(document).ready(function(){
 	// 커스터마이징 게시물 삭제 버튼
 	$('#customDeleteBtn').on('click', function(){
 		let customPostId = $(this).data("post-id");
-		alert(customPostId);
+		/* alert(customPostId); */
 		
 		$.ajax({
 			// request

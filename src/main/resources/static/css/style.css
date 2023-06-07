@@ -206,6 +206,14 @@ a > .txt {
 	width:250px;
 	border:none;
 }
+.card-img a img{
+	 cursor: pointer;
+  	transition: transform 0.3s ease;
+}
+.card-img a img:hover{
+	transform: scale(1.1);
+}
+
 .card-subject{
 	font-size:17px;
 	font-weight:bold;
@@ -449,11 +457,14 @@ a > .txt {
 /* free_detail_view */
 .fd-content{
 	width:60%;
-	background-color:#B2EBF4;
+	/* background-color:#B2EBF4; */
+	background-color:#ffffff;
 }
 .fd-header{
 	margin-top:30px;
-	background-color:#B2CCFF;
+	/* background-color:#B2CCFF; */
+	background-color:#F6F6F6;
+	border-bottom: solid 1px #BDBDBD;
 	height:60px;
 }
 .fd-user-name{
@@ -499,7 +510,8 @@ a > .txt {
 }
 .fd-bottom{
 	height:100px;
-	background-color:#B2CCFF;
+	/* background-color:#B2CCFF; */
+	background-color:#ffffff;
 }
 .fd-comment-box{
 	margin-bottom:100px;
@@ -688,12 +700,15 @@ a > .txt {
 /* custom_detail_view */
 .cd-content {
 	width: 60%;
-	background-color: #B2EBF4;
+	/* background-color: #B2EBF4; */
+	background-color:#ffffff;
 }
 
 .cd-header {
 	margin-top: 30px;
-	background-color: #B2CCFF;
+	/* background-color: #B2CCFF; */
+	background-color:#F6F6F6;
+	border-bottom: solid 1px #BDBDBD;
 	height: 60px;
 }
 
@@ -738,7 +753,8 @@ a > .txt {
 
 .cd-bottom {
 	height: 100px;
-	background-color: #B2CCFF;
+	/* background-color: #B2CCFF; */
+	background-color: #ffffff;
 }
 
 .cd-comment-box {
@@ -892,12 +908,15 @@ a > .txt {
 /* guild_detail_view */
 .gd-content {
 	width: 60%;
-	background-color: #B2EBF4;
+	/* background-color: #B2EBF4; */
+	background-color:#ffffff;
 }
 
 .gd-header {
 	margin-top: 30px;
-	background-color: #B2CCFF;
+	/* background-color: #B2CCFF; */
+	background-color:#F6F6F6;
+	border-bottom: solid 1px #BDBDBD;
 	height: 60px;
 }
 
@@ -944,7 +963,8 @@ a > .txt {
 
 .gd-bottom {
 	height: 100px;
-	background-color: #B2CCFF;
+/* 	background-color: #B2CCFF; */
+	background-color: #ffffff;
 }
 
 .address-box {
@@ -1136,11 +1156,14 @@ a > .txt {
 /* notice_detail_view */
 .noticedetail-content{
 	width:60%;
-	background-color:#B2EBF4;
+	/* background-color:#B2EBF4; */
+	background-color:#ffffff;
 }
 .noticedetail-header{
 	margin-top:30px;
-	background-color:#B2CCFF;
+	/* background-color:#B2CCFF; */
+	background-color:#F6F6F6;
+	border-bottom: solid 1px #BDBDBD;
 	height:60px;
 }
 .noticedetail-user-name{
@@ -1168,7 +1191,8 @@ a > .txt {
 
 .noticedetail-bottom{
 	height:100px;
-	background-color:#B2CCFF;
+	/* background-color:#B2CCFF; */
+	background-color:#ffffff;
 }
 
 

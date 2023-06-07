@@ -164,9 +164,9 @@ $(document).ready(function(){
 		
 		// ajax
 		let url = $(this).attr("action");
-		console.log(url);
+		/* console.log(url); */
 		let params = $(this).serialize();
-		console.log(params);
+		/* console.log(params); */
 		
 		$.post(url, params) // request
 		.done(function(data){

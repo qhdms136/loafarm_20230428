@@ -92,7 +92,7 @@
 	<div class="conent2-1 d-flex justify-content-center mt-4">
 		<c:forEach items="${customPostList}" var="custom">
 		<div class="custom-best-box">
-			<div class="mt-4 d-flex justify-content-center">
+			<div class="card-img mt-4 d-flex justify-content-center">
 				<a href="/custom/custom_detail_view?customPostId=${custom.custompost.id}&type=${custom.custompost.type}">
 				<img src="${custom.custompost.imagePath}" alt="커스터마이징" width="250"
 					height="250">

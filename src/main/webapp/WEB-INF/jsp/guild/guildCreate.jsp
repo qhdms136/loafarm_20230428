@@ -83,16 +83,17 @@ $(document).ready(function(){
 			return;
 		}
 		if(maxCount > 50 || maxCount < 5){
-			alert("최소인원은 5명부터이며 최대인원은 50명입니다.");
+			alert("최소인원은 5명이며 최대인원은 50명입니다.");
+			return;
 		}
 		if(!content){
 			alert("내용을 입력해주세요");
 			return;
 		}
-		console.log(subject);
+		/* console.log(subject);
 		console.log(address);
 		console.log(maxCount);
-		console.log(content);
+		console.log(content); */
 		$.ajax({
 			//request
 			url:"/guild/is_duplicated_id"

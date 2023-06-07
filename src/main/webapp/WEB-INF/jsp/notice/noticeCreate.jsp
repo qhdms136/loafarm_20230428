@@ -54,8 +54,8 @@ $(document).ready(function(){
 			return;
 		}
 		
-		console.log(subject);
-		console.log(content);
+		/* console.log(subject);
+		console.log(content); */
 		
 		// ajax
 		$.ajax({
