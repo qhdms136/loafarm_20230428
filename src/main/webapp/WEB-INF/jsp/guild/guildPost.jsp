@@ -69,7 +69,7 @@
 		</div>
 		
 		<div class="d-flex justify-content-end">
-			<button onclick="location.href='/free/free_list_view'" class="btn btn-outline-dark" id="guildListBtn">목록</button>
+			<button onclick="location.href='/guild/guild_list_view'" class="btn btn-outline-dark" id="guildListBtn">목록</button>
 			<button class="btn btn-dark mx-4" id="guildWriteBtn">글쓰기</button>
 		</div>
 	</div>
