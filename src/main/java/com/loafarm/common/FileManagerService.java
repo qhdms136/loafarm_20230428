@@ -21,7 +21,7 @@ public class FileManagerService {
 	// 상수 선언시 대문자로
 	// D:\\장보은\\project\\loafarm\\workspace\\images/
 	// public static final String FILE_UPLOAD_PATH = "C:\\jbe\\project\\loafarm\\workspace\\images/";
-	 public static final String FILE_UPLOAD_PATH = "home/ec2-user/images";
+	 public static final String FILE_UPLOAD_PATH = "home/ec2-user/images/";
 	
 	// input : MultipartFile(이미지 파일), loginId(이미지가 겹치지 않게 하기위해)
 	// output : image path(String)
