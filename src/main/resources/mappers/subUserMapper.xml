@@ -35,6 +35,20 @@
  		WHERE
  			`userId` = #{userId}
  	</select>
+ 	<select id="selectSubUserById" resultType="com.loafarm.subuser.model.SubUser">
+ 		SELECT
+ 			`id`
+			, `userId`
+			, `postId`
+			, `content`
+			, `state`
+			, `createdAt`
+			, `updatedAt`
+ 		FROM
+ 			`sub_user`
+ 		WHERE
+ 			`id` = #{id}
+ 	</select>
  	<select id="selectSubUserByUserId" resultType="com.loafarm.subuser.model.SubUser">
  		SELECT
  			`id`
