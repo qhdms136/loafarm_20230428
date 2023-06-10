@@ -5,7 +5,6 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <div class="d-flex justify-content-center">
 	<div class="subuser-list-content d-flex justify-content-center">
-	<span style="margin-top:25px;font-weight:bold;font-size:24px;">신청내용</span>
 		<div style="margin-top:80px;font-size:20px;">${subuser.content}</div>
 	</div>
 </div>
