@@ -152,7 +152,7 @@ $(document).ready(function(){
 			return false;
 		}
 		
-		if($('#nickname').hasClass("d-none")){
+		if($('#nicknameCheckOk').hasClass("d-none")){
 			alert("닉네임 중복 확인을 다시 해주세요");
 			return false;
 		}
