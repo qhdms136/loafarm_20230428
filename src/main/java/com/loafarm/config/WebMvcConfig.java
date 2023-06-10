@@ -19,7 +19,9 @@ public class WebMvcConfig implements WebMvcConfigurer{
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		registry
 		.addResourceHandler("/images/**") // 웹 이미지 주소 cf) http://localhost/images/aaaa_2023050601/good.png
+
 		.addResourceLocations("file:///" + FileManagerService.FILE_UPLOAD_PATH); // window / 3개 mac / 2개
+
 	}
 	
 	// intercepter 설정 추가

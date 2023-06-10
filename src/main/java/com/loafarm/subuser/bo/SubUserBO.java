@@ -34,6 +34,10 @@ public class SubUserBO {
 		return subUserMapper.selectSubUserListByUserId(userId);
 	}
 	
+	public SubUser getSubUserById(int userId, int id) {
+		return subUserMapper.selectSubUserById(id);
+	}
+	
 	public SubUser getSubUserByUserId(int userId) {
 		return subUserMapper.selectSubUserByUserId(userId);
 	}

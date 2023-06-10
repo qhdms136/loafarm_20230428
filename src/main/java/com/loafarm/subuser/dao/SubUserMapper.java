@@ -16,6 +16,8 @@ public interface SubUserMapper {
 	
 	public SubUser selectSubUserByUserId(int userId);
 	
+	public SubUser selectSubUserById(int id);
+	
 	public List<SubUser> selectSubUserListByUserId(int userId);
 	
 	public void updateSubUser(

@@ -1018,7 +1018,9 @@ a > .txt {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-
+.subuser-content > a{
+	color:#000000;
+}
 
 /* mysub_list_view  */
 .sub-guildpost-table{

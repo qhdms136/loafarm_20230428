@@ -24,7 +24,7 @@
 				<c:forEach items="${subUserList}" var="subuser">
 					<tr>
 						<td>${subuser.user.nickname}</td>
-						<td class="text-left"><div class="subuser-content">${subuser.subuser.content}</div></td>
+						<td class="text-left"><div class="subuser-content"><a href="/subuser/subuser_more_view?id=${subuser.subuser.id}" target="_blank">${subuser.subuser.content}</a></div></td>
 						<td><fmt:formatDate value="${subuser.subuser.createdAt}" pattern="yyyy-MM-dd"/></td>
 						<c:choose>
 							<c:when test="${subuser.subuser.state eq '대기중'}">
