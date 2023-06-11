@@ -29,7 +29,8 @@ public interface SubUserMapper {
 	
 	public int deleteSubUserByPostIdUserId(
 			@Param("postId") int postId,
-			@Param("userId") int userId);
+			@Param("userId") int userId,
+			@Param("id") int id);
 	
 	public List<SubUser> selectSubUserByPostId(int postId);
 	

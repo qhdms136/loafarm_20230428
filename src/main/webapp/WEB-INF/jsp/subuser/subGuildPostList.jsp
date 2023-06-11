@@ -34,10 +34,10 @@
 						</c:choose>
 						<c:choose>
 							<c:when test="${subguildpost.subuser.state eq '거절'}">
-								<td><button class="deleteBtn btn btn-sm btn-danger" data-post-id="${subguildpost.guildpost.id}">삭제</button></td>
+								<td><button class="deleteBtn btn btn-sm btn-danger" data-post-id="${subguildpost.guildpost.id}" data-id="${subguildpost.subuser.id}">삭제</button></td>
 							</c:when>
 							<c:when test="${subguildpost.subuser.state eq '대기중' or subguildpost.subuser.state eq '수락'}">
-								<td><button class="deleteBtn btn btn-sm btn-primary" data-post-id="${subguildpost.guildpost.id}">신청취소</button></td>
+								<td><button class="deleteBtn btn btn-sm btn-primary" data-post-id="${subguildpost.guildpost.id}" data-id="${subguildpost.subuser.id}">신청취소</button></td>
 							</c:when>
 						</c:choose>
 					</tr>
@@ -51,12 +51,13 @@
 $(document).ready(function(){
 	$('.deleteBtn').on('click', function(){
 		let postId = $(this).data("post-id");
+		let id = $(this).data("id");
 		/* console.log(postId); */
 		// ajax
 		$.ajax({
 			type:"DELETE"
 			, url:"/subuser/delete"
-			, data:{"postId":postId}
+			, data:{"postId":postId, "id":id}
 			// resposne
 			, success:function(data){
 				if(data.code == 1){
