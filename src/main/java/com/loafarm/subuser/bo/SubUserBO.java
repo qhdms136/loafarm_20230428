@@ -68,8 +68,8 @@ public class SubUserBO {
 		subUserMapper.deleteSubUserByPostId(postId);
 	}
 	
-	public int deleteSubUserByPostIdUserId(int postId, int userId) {
-		return subUserMapper.deleteSubUserByPostIdUserId(postId, userId);
+	public int deleteSubUserByPostIdUserId(int postId, int userId, int id) {
+		return subUserMapper.deleteSubUserByPostIdUserId(postId, userId, id);
 	}
 	
 	public int getSubUserCountByPostId(int postId) {

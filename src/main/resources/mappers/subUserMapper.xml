@@ -96,8 +96,8 @@
  			`state` = #{state}
  			, `updatedAt` = NOW()
  		WHERE
- 			`userId` = #{userId}
- 			AND `postId` = #{postId}
+ 			`userId` = #{userId} AND `postId` = #{postId} AND `state` = '대기중'
+ 			OR `userId` = #{userId} AND `postId` = #{postId} AND `state` = '수락'
  	</update>
  	<delete id="deleteSubUserByPostId" parameterType="int">
  		DELETE
@@ -112,6 +112,6 @@
  			`sub_user`
  		WHERE
  			`postId` = #{postId}
- 			AND `userId` = #{userId}
+ 			AND `userId` = #{userId} AND `id` =#{id}
  	</delete>
  </mapper>

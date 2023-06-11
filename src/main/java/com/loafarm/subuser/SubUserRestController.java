@@ -86,11 +86,12 @@ public class SubUserRestController {
 	@DeleteMapping("/delete")
 	public Map<String, Object> delete(
 			@RequestParam("postId") int postId,
+			@RequestParam("id") int id,
 			HttpSession session){
 		int userId = (int)session.getAttribute("userId");
 		Map<String, Object> result = new HashMap<>();
 		// delete
-		int rowCount = subUserBO.deleteSubUserByPostIdUserId(postId, userId);
+		int rowCount = subUserBO.deleteSubUserByPostIdUserId(postId, userId, id);
 		if(rowCount > 0) {
 			result.put("code", 1);
 			result.put("result", "성공");
